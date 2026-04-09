@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekt - PatternLab</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. -->
+  <div class="container">
+    
+    <!-- ============================================================
+         SIDEBAR: Vertikale Navigation und App-Header (wiederverwendet)
+         ============================================================ -->
+    <aside>
+      <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
+      <header>
+        <h1>PatternLab</h1>
+      </header>
+      
+      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="new-project.html">Neues Projekt</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Footer in der Sidebar: Impressum ist gesetzlich erforderlich. -->
+      <footer>
+        <a href="imprint.html">Impressum</a>
+      </footer>
+    </aside>
+
+    <!-- ============================================================
+         HAUPTBEREICH: Projekt-Detailansicht mit PDF und Inhalte
+         ============================================================ -->
+    <main>
+      <!-- Projekt-Header: Zeigt Titel, Kategorie und Fortschritt an. -->
+      <header class="project-header">
+        <!-- Projekttitel: Haupt-Bezeichnung des Projekts. -->
+        <h2>Platzhalter Projekt: Sailor Slippers</h2>
+        
+        <!-- Projektmetadaten: Kategorie und Fortschritt in einer Zeile. -->
+        <div class="project-meta">
+          <p><strong>Kategorie:</strong> Stricken</p>
+          <!-- Fortschritt wird aus Checkliste berechnet: erledigte Punkte / Gesamtpunkte. -->
+          <p><strong>Fortschritt:</strong> <span class="progress-value">5 / 10</span></p>
+        </div>
+      </header>
+
+      <!-- Projekt-Inhalt: Zwei-Spalten-Layout (Inhalte links, PDF rechts). -->
+      <section class="project-content">
+        
+        <!-- ============================================================
+             SPALTE 1: Interaktive Inhalte (Checkliste, Notizen, Daten, Zähler)
+             ============================================================ -->
+        <!-- Inhalts-Wrapper: Gruppiert alle interaktiven Projektinhalte semantisch. Wird später als linke Spalte dargestellt. -->
+        <section class="interactive-content">
+          
+          <!-- Checkliste: Strukturierte To-Do-Liste für die Strick- oder Häkelschritte. -->
+          <section class="checklist-section">
+            <h3>Checkliste</h3>
+            <!-- <ol>: Geordnete Liste für Schritte/Reihen (semantisch korrekt für sequenzielle Aufgaben). -->
+            <ol class="checklist">
+              <!-- Jedes Listenelement ist ein Checklistenpunkt: kann abhakt/aktiviert werden (wird später JavaScript). -->
+              <li>
+                <!-- type="checkbox": Kontrollkästchen für erledigt/unerledigt. Wird später dynamisch verwaltet. -->
+                <input type="checkbox" id="checklist-1" name="checklist-item" value="1">
+                <label for="checklist-1">Reihe 1: Anschlag</label>
+              </li>
+              <li>
+                <input type="checkbox" id="checklist-2" name="checklist-item" value="2">
+                <label for="checklist-2">Reihe 2-10: Grundmuster</label>
+              </li>
+              <li>
+                <input type="checkbox" id="checklist-3" name="checklist-item" value="3">
+                <label for="checklist-3">Reihe 11: Zunahmen</label>
+              </li>
+              <li>
+                <input type="checkbox" id="checklist-4" name="checklist-item" value="4">
+                <label for="checklist-4">Reihe 12-20: Weiteres Muster</label>
+              </li>
+              <li>
+                <input type="checkbox" id="checklist-5" name="checklist-item" value="5">
+                <label for="checklist-5">Abketten</label>
+              </li>
+            </ol>
+            <!-- Button zum Hinzufügen neuer Punkte: wird später durch JavaScript funktionieren. -->
+            <button class="add-checklist-item">+ Punkt hinzufügen</button>
+          </section>
+
+          <!-- Notizen: Freitextbereich für projektspezifische Notizen und Anmerkungen. -->
+          <section class="notes-section">
+            <h3>Notizen</h3>
+            <!-- <textarea>: Mehrzeiliges Textfeld für längere, unstrukturierte Notizen. Wird später in LocalStorage gespeichert. -->
+            <textarea id="project-notes" class="notes" placeholder="Schreiben Sie hier Ihre Notizen auf..."></textarea>
+          </section>
+
+          <!-- Projektdaten: Zeigt die eingegeben Metadaten an (Material, Nadelstärke, Beschreibung). -->
+          <section class="project-data-section">
+            <h3>Projektdaten</h3>
+            <!-- <dl>: Definition List - semantisch korrekt für Schlüssel-Wert-Paare wie Metadaten. -->
+            <dl>
+              <!-- Material: Art des verwendeten Materials. -->
+              <dt>Material:</dt>
+              <dd>Baumwollmischung, 50g</dd>
+              
+              <!-- Nadelstärke: Größe der zu verwendenden Nadeln/Häkelnadeln. -->
+              <dt>Nadelstärke:</dt>
+              <dd>3.5 mm</dd>
+              
+              <!-- Beschreibung: Freitextbeschreibung des Projekts. -->
+              <dt>Beschreibung:</dt>
+              <dd>Ein klassisches Strickprojekt für Anfänger. Perfekt für die erste Socke.</dd>
+            </dl>
+          </section>
+
+          <!-- Maschenzähler: Optional - Zähler für gestrickte/gehäkelte Maschen (Nice-to-have). -->
+          <section class="counter-section">
+            <h3>Maschenzähler</h3>
+            <!-- Anzeige aktueller Zahl: wird später dynamisch aktualisiert. -->
+            <div class="counter-display">
+              <p>Aktuelle Zahl: <strong id="counter-value">0</strong></p>
+            </div>
+            <!-- Counter-Buttons: Schnelle Zu- und Abnahmen. Werden später durch JavaScript verwaltet. -->
+            <div class="counter-buttons">
+              <button class="counter-btn" value="-1">−1</button>
+              <button class="counter-btn" value="+1">+1</button>
+              <button class="counter-btn" value="+10">+10</button>
+              <button class="counter-btn" value="+15">+15</button>
+              <button class="counter-btn" value="reset">Reset</button>
+            </div>
+          </section>
+
+        </section>
+
+        <!-- ============================================================
+             SPALTE 2: PDF-Anleitung
+             ============================================================ -->
+        <!-- PDF-Bereich: Zeigt die hochgeladene Anleitung rechts neben den Inhalten. Wird später durch JavaScript mit echtem PDF gefüllt. -->
+        <section class="pdf-section">
+          <h3>Anleitung</h3>
+          <!-- Platzhalter für PDF: type="application/pdf" wird später dynamisch gefüllt. -->
+          <div class="pdf-placeholder">
+            <!-- <embed>: Semantisches Element zum Einbinden von Dokumenten. type: Dateiformat. -->
+            <embed type="application/pdf" src="placeholder-anleitung.pdf" width="100%" height="600px">
+            <!-- Fallback-Text, falls PDF nicht geladen wird (Barrierefreiheit). -->
+            <p>PDF-Datei konnte nicht geladen werden. Bitte überprüfen Sie den Datei-Upload.</p>
+          </div>
+        </section>
+      </section>
+
+      <!-- Zurück-Link: Navigation zurück zum Dashboard. Wird später optional auch als Button realisiert. -->
+      <div class="project-footer">
+        <a href="index.html">← Zurück zum Dashboard</a>
+      </div>
+    </main>
+  </div>
+
+  <!-- JavaScript: wird später im Semester erklärt -->
+  <script src="js/main.js"></script>
+</body>
+</html>

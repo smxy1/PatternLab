@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatternLab - Häkel- und Strickprojekte</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. -->
+  <div class="container">
+    
+    <!-- ============================================================
+         SIDEBAR: Vertikale Navigation und App-Header
+         ============================================================ -->
+    <aside>
+      <!-- Header mit App-Titel: Sichtbar (z. B. im Impressum) und semantisch als Seiten-Kopfzeile. -->
+      <header>
+        <h1>PatternLab</h1>
+      </header>
+      
+      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. Links führen zu Bereichen auf derselben Seite. -->
+      <nav>
+        <ul>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#new-project">Neues Projekt</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Footer in der Sidebar: Impressum muss auf öffentlich zugänglichen Seiten vorhanden sein (gesetzliche Anforderung). -->
+      <footer>
+        <a href="imprint.html">Impressum</a>
+      </footer>
+    </aside>
+
+    <!-- ============================================================
+         HAUPTBEREICH: Dashboard und Projektverwaltung
+         ============================================================ -->
+    <main>
+      <!-- Dashboard-Sektion: Gruppiert die gesamte Projektübersicht semantisch. -->
+      <section id="dashboard">
+        <h2>Meine Projekte</h2>
+        
+        <!-- Call-to-Action: Großer Button, um schnell neue Projekte zu erstellen. Button kriegt später JavaScript-Handler. -->
+        <section class="cta-section">
+          <button id="new-project">+ Neues Projekt erstellen</button>
+        </section>
+
+        <!-- Projektkarten-Bereich: Kontainer für alle Projektkarten (folgen später als Kartenlayout über CSS Grid/Flexbox). -->
+        <section class="projects">
+          <!-- Projekt-Karte: <article> ist semantisch korrekt, weil jede Karte ein eigenständiger, in sich geschlossener Inhalt ist. -->
+          <article class="project-card">
+            <h3>Platzhalter Projekt 1</h3>
+            <!-- Projektmetadaten: Werden über CSS später nebeneinander oder gestapelt angezeigt. -->
+            <p><strong>Kategorie:</strong> Häkeln</p>
+            <p><strong>Fortschritt:</strong> 5 / 10</p>
+            <button>Öffnen</button>
+          </article>
+
+          <article class="project-card">
+            <h3>Platzhalter Projekt 2</h3>
+            <p><strong>Kategorie:</strong> Stricken</p>
+            <p><strong>Fortschritt:</strong> 8 / 15</p>
+            <button>Öffnen</button>
+          </article>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript: wird später im Semester erklärt -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum - PatternLab</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. -->
+  <div class="container">
+    
+    <!-- ============================================================
+         SIDEBAR: Vertikale Navigation und App-Header (wiederverwendet)
+         ============================================================ -->
+    <aside>
+      <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
+      <header>
+        <h1>PatternLab</h1>
+      </header>
+      
+      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="new-project.html">Neues Projekt</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Footer in der Sidebar: Impressum ist derzeit aktive Seite, daher kein Link nötig. -->
+      <footer>
+        <a href="imprint.html">Impressum</a>
+      </footer>
+    </aside>
+
+    <!-- ============================================================
+         HAUPTBEREICH: Impressum-Seite
+         ============================================================ -->
+    <main>
+      <!-- Impressum-Sektion: Gruppiert alle rechtlichen Informationen. -->
+      <section id="imprint">
+        <h2>Impressum</h2>
+        
+        <!-- Angaben zum Betreiber: <address> ist semantisch korrekt für Kontaktinformationen und Anschriftenangaben. -->
+        <section>
+          <h3>Betreiber der Website</h3>
+          <address>
+            PatternLab<br>
+            Musterstraße 123<br>
+            12345 Musterstadt<br>
+            Deutschland<br>
+            <br>
+            E-Mail: <a href="mailto:info@patternlab.de">info@patternlab.de</a><br>
+            Telefon: <a href="tel:+491234567890">+49 123 45678900</a>
+          </address>
+        </section>
+
+        <!-- Verantwortliche Person: Pflichtangabe (z. B. für Hochschule, Projekt, Private Person). -->
+        <section>
+          <h3>Verantwortliche Person</h3>
+          <p>
+            <strong>Name:</strong> Vorname Nachname<br>
+            <strong>Funktion:</strong> Projektentwickler:in<br>
+            <strong>Hochschule:</strong> Universität XYZ
+          </p>
+        </section>
+
+        <!-- Rechtliche Hinweise: Allgemeine Haftungsausschlüsse und Nutzungsbedingungen. -->
+        <section>
+          <h3>Haftungsausschluss</h3>
+          <p>
+            Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Der Betreiber übernimmt jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte. Die Nutzung dieser Website erfolgt auf eigenes Risiko.
+          </p>
+        </section>
+
+        <!-- Datenschutz: Verweis auf Datenschutzerklärung (wird später möglicherweise ausgelagert). -->
+        <section>
+          <h3>Datenschutz</h3>
+          <p>
+            Informationen zur Verarbeitung personenbezogener Daten finden Sie in unserer Datenschutzerklärung. Diese Website speichert Projektdaten lokal im Browser (LocalStorage). Es erfolgt keine automatische Übertragung von Daten an externe Server.
+          </p>
+        </section>
+
+        <!-- Urheberrecht: Hinweis auf Urheberrechte und Lizenzierung. -->
+        <section>
+          <h3>Urheberrecht</h3>
+          <p>
+            Die Inhalte und die Gestaltung dieser Website sind urheberrechtlich geschützt. Eine Vervielfältigung oder Weiterverbreitung ohne ausdrückliche Genehmigung ist nicht gestattet.
+          </p>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript: wird später im Semester erklärt -->
+  <script src="js/main.js"></script>
+</body>
+</html>

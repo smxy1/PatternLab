@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neues Projekt - PatternLab</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout (identisch mit index.html). -->
+  <div class="container">
+    
+    <!-- ============================================================
+         SIDEBAR: Vertikale Navigation und App-Header (wiederverwendet von index.html)
+         ============================================================ -->
+    <aside>
+      <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
+      <header>
+        <h1>PatternLab</h1>
+      </header>
+      
+      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. Links führen zu Bereichen/Seiten. -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="new-project.html">Neues Projekt</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Footer in der Sidebar: Impressum ist gesetzlich erforderlich. -->
+      <footer>
+        <a href="imprint.html">Impressum</a>
+      </footer>
+    </aside>
+
+    <!-- ============================================================
+         HAUPTBEREICH: Projekt-Erstellungsformular
+         ============================================================ -->
+    <main>
+      <!-- Sektion für Projekt-Erstellung: Gruppiert alle Inhalte dieser Seite. -->
+      <section id="new-project">
+        <h2>Neues Projekt</h2>
+        
+        <!-- Formular: <form> ist das semantisch korrekte Element für Benutzereingaben. action/method werden später durch JavaScript gesteuert. -->
+        <form id="project-form">
+          
+          <!-- Pflichtfelder: Felder ohne (optional) sind erforderlich. -->
+          <fieldset>
+            <!-- <legend> beschreibt semantisch, was diese Feldgruppe enthält. -->
+            <legend>Projektinformationen</legend>
+            
+            <!-- Label + Input für Projekttitel: <label> verbindet Text mit Input semantisch (wichtig für Usability und Screenreader). -->
+            <div>
+              <label for="project-title">Projekttitel *</label>
+              <!-- type="text": Einzeiliges Textfeld. required: Feld muss gefüllt werden. -->
+              <input type="text" id="project-title" name="title" required>
+            </div>
+
+            <!-- Label + Select für Kategorie: Dropdown mit vordefinierten Optionen (Häkeln, Stricken, Andere). -->
+            <div>
+              <label for="project-category">Kategorie *</label>
+              <!-- <select> + <option>: Semantisch korrektes Element für Auswahlfeld. selected="selected": Vorausgewählte Option. -->
+              <select id="project-category" name="category" required>
+                <option value="">-- Wählen Sie eine Kategorie --</option>
+                <option value="haekeln">Häkeln</option>
+                <option value="stricken">Stricken</option>
+                <option value="andere">Andere</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <!-- Optionale Metadaten: Felder, die nicht zwingend gefüllt werden müssen. -->
+          <fieldset>
+            <legend>Optionale Metadaten</legend>
+            
+            <!-- Textarea für Beschreibung: Mehrzeiliges Textfeld für längere Texte. -->
+            <div>
+              <label for="project-description">Beschreibung</label>
+              <!-- rows/cols: Geben die sichtbare Größe an (wird später über CSS übersteuert). -->
+              <textarea id="project-description" name="description" rows="4" cols="50"></textarea>
+            </div>
+
+            <!-- Textfeld für Material: Freitextfeld (z. B. "Wolle, Baumwolle"). -->
+            <div>
+              <label for="project-material">Material</label>
+              <input type="text" id="project-material" name="material" placeholder="z. B. Wolle, Baumwolle">
+            </div>
+
+            <!-- Textfeld für Nadelstärke: Freitextfeld (z. B. "3.5 mm"). -->
+            <div>
+              <label for="project-needle-size">Nadelstärke</label>
+              <input type="text" id="project-needle-size" name="needleSize" placeholder="z. B. 3.5 mm">
+            </div>
+          </fieldset>
+
+          <!-- PDF-Anleitung: Separate Feldgruppe für Datei-Upload. -->
+          <fieldset>
+            <legend>Anleitung</legend>
+            
+            <!-- File-Input für PDF: type="file" öffnet Dateiauswahl. accept: Begrenzt auf PDF-Dateien. -->
+            <div>
+              <label for="project-pdf">PDF-Datei hochladen *</label>
+              <!-- accept="application/pdf": Akzeptiert nur PDF-Dateien. required: Datei muss hochgeladen werden. -->
+              <input type="file" id="project-pdf" name="pdf" accept="application/pdf" required>
+            </div>
+          </fieldset>
+
+          <!-- Speichern-Button: Submit-Button sendet Formular ab (wird später durch JavaScript verarbeitet). -->
+          <button type="submit">Projekt speichern</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript: wird später im Semester erklärt -->
+  <script src="js/main.js"></script>
+</body>
+</html>
