@@ -1,0 +1,1025 @@
+/* ============================================================
+   FARBEN & TYPOGRAFIE
+   ============================================================
+   Aus visual-design.md:
+   - Hintergrund: Creme / Off-White
+   - Flächen: Weiß
+   - Akzentfarbe: Salbeigrün
+   - Text: Dunkelgrau
+   - Schriftart: Open Sans (600=Überschriften, 400=Fließtext, 300=sekundär)
+   ============================================================ */
+
+:root {
+  /* Farben als CSS-Variablen für einfache Nachbearbeitung. */
+  --color-bg: #f5f1ed;        /* Creme / Off-White (Hintergrund) */
+  --color-surface: #ffffff;   /* Weiß (Flächen, Boxen) */
+  --color-accent: #8b9f7f;    /* Salbeigrün (Akzente, Links) */
+  --color-text: #3a3a3a;      /* Dunkelgrau (Fließtext) */
+  --color-text-light: #666666; /* Helleres Grau (sekundär) */
+  
+  /* Größen und Abstände. */
+  --sidebar-width: 250px;     /* Feste Breite der Sidebar. */
+  --spacing-unit: 16px;       /* Basis-Einheit für Abstände (padding, margin, gap). */
+}
+
+/* ============================================================
+   RESET & GLOBALE STILE
+   ============================================================ */
+
+* {
+  /* Vereinfacht Box-Sizing: padding/borders werden in die Breite eingerechnet, nicht hinzuaddiert. */
+  box-sizing: border-box;
+}
+
+html, body {
+  /* Füllt den gesamten Viewport aus, ermöglicht sticky layouts. */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Schriftart aus visual-design.md: Open Sans. */
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400; /* Standard: Fließtext. */
+  font-size: 16px;
+  line-height: 1.5;
+  
+  /* Hintergrundfarbe: Creme / Off-White. */
+  background-color: var(--color-bg);
+  
+  /* Textfarbe: Dunkelgrau. */
+  color: var(--color-text);
+}
+
+/* ============================================================
+   HAUPTLAYOUT: Zwei-Spalten-Struktur (Sidebar + Main)
+   ============================================================
+   Flexbox Layout: Sidebar (links, feste Breite) + Main (rechts, flexibel wachsend).
+   ============================================================ */
+
+.container {
+  /* Flexbox für nebeneinander angeordnete Spalten. */
+  display: flex;
+  
+  /* Richtung: horizontal (Sidebar links, Main rechts). */
+  flex-direction: row;
+  
+  /* Füllt den gesamten Viewport aus (solange Inhalte nicht größer sind). */
+  min-height: 100vh;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.sidebar {
+  /* Feste Breite (aus --sidebar-width = 250px). */
+  width: var(--sidebar-width);
+  
+  /* Fläche: Weiß. */
+  background-color: var(--color-surface);
+  
+  /* Padding: Innere Abstände (oben/unten/links/rechts). */
+  padding: var(--spacing-unit) calc(var(--spacing-unit) * 0.75); /* 16px oben/unten, 12px links/rechts */
+  
+  /* Leichte Schatten für Tiefenwirkung (visual-design.md: "Leichte Schatten"). */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  
+  /* Verhindert dass Inhalte der Sidebar nicht schrumpfen. */
+  flex-shrink: 0;
+  
+  /* Flexbox für vertikale Anordnung der Inhalte. */
+  display: flex;
+  flex-direction: column;
+  
+  /* Inhalte oben aufreihen (Header, Nav), Footer bleibt unten durch margin-top: auto. */
+  justify-content: flex-start;
+}
+}
+
+.sidebar header {
+  /* Margin-Bottom: Abstand zwischen Header und Navigation. */
+  margin-bottom: var(--spacing-unit);
+}
+
+.sidebar h1 {
+  /* Überschrift: Open Sans 600 (Bold). */
+  font-weight: 600;
+  font-size: 20px;
+  
+  /* Großzügige Abstände: wenig Überladung (visual-design.md). */
+  margin: 0 0 var(--spacing-unit) 0;
+  
+  /* Akzentfarbe kann für visuellen Fokus verwendet werden. */
+  color: var(--color-accent);
+}
+
+.sidebar nav ul {
+  /* Listenformatierung entfernen. */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  /* Flexbox für vertikale Navigation. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+}
+
+.sidebar nav a {
+  /* Verbindung: Akzentfarbe. */
+  color: var(--color-accent);
+  
+  /* Text-Dekoration entfernen (Standard für saubere Links). */
+  text-decoration: none;
+  
+  /* Interaktivität andeuten: Bold bei Hover. */
+  font-weight: 500;
+  
+  /* Transition für sanfte Übergänge. */
+  transition: color 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  /* Dunklere Akzentfarbe beim Hover. */
+  color: #6d7f61;
+  text-decoration: underline;
+}
+
+.sidebar footer {
+  /* Margin-Top: auto schiebt den Footer nach unten, während Header und Nav oben bleiben. */
+  margin-top: auto;
+  padding-top: var(--spacing-unit);
+  
+  /* Grenze oben zur visuellen Trennung. */
+  border-top: 1px solid #e0e0e0;
+}
+
+.sidebar footer a {
+  /* Sekundärtexte: Helleres Grau. */
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-size: 14px;
+  
+  /* Hover-Effekt. */
+  transition: color 0.2s ease;
+}
+
+.sidebar footer a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   HAUPTBEREICH (MAIN)
+   ============================================================ */
+
+.main-content {
+  /* Flexbox: wächst um verbleibenden Platz zu füllen. */
+  flex: 1;
+  
+  /* Großzügige innere Abstände (visual-design.md: "Viel Weißraum"). */
+  padding: calc(var(--spacing-unit) * 2);
+  
+  /* Maximale Breite für bessere Lesbarkeit: 1200px ist Standard best practice und ermöglicht 2-spaltige Layouts wie auf der Projektseite. */
+  max-width: 1200px;
+  width: 100%;
+}
+
+.main-content h2 {
+  /* Überschrift Level 2: Open Sans 600 (Bold). */
+  font-weight: 600;
+  font-size: 28px;
+  
+  /* Große Abstände für Hierarchie. */
+  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
+  
+  color: var(--color-text);
+}
+
+.main-content section {
+  /* Jeder Abschnitt: Weiße Fläche mit Abstände. */
+  background-color: var(--color-surface);
+  
+  /* Padding: Innere Abstände. */
+  padding: var(--spacing-unit);
+  
+  /* Margin: Äußerer Abstand zwischen Abschnitten. */
+  margin-bottom: var(--spacing-unit);
+  
+  /* Abgerundete Ecken (visual-design.md). */
+  border-radius: 6px;
+  
+  /* Leichte Schatten für Tiefenwirkung. */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.main-content section h3 {
+  /* Unterüberschriften: Open Sans 600 (Bold), etwas kleiner. */
+  font-weight: 600;
+  font-size: 18px;
+  
+  /* Abstände unter Überschrift. */
+  margin: 0 0 var(--spacing-unit) 0;
+  
+  color: var(--color-text);
+}
+
+.main-content section p {
+  /* Fließtext: Open Sans 400. */
+  font-weight: 400;
+  
+  /* Großzügiger Zeilenabstand für Lesbarkeit. */
+  line-height: 1.6;
+  
+  /* Abstand zwischen Absätzen. */
+  margin: 0 0 calc(var(--spacing-unit) * 0.75) 0;
+}
+
+.main-content address {
+  /* Adresse: Keine besonderen Formatierungen, folgt Standard-Styling. */
+  font-style: normal;
+  
+  /* Abstand unter der Adresse. */
+  margin: 0;
+  line-height: 1.8;
+}
+
+.main-content address a {
+  /* Links in der Adresse: Akzentfarbe. */
+  color: var(--color-accent);
+  text-decoration: none;
+  
+  /* Hover-Effekt. */
+  transition: color 0.2s ease;
+}
+
+.main-content address a:hover {
+  color: #6d7f61;
+  text-decoration: underline;
+}
+
+.main-content dl {
+  /* Definition List: Keine besonderen Formatierungen. */
+  margin: 0;
+  padding: 0;
+}
+
+.main-content dt {
+  /* Definition Term (Schlüssel): Bold für visuellen Fokus. */
+  font-weight: 600;
+  margin-top: calc(var(--spacing-unit) * 0.75);
+}
+
+.main-content dd {
+  /* Definition Description (Wert): Sekundärtext für Hierarchie. */
+  color: var(--color-text-light);
+  margin: 0 0 0 var(--spacing-unit);
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+/* ============================================================
+   DASHBOARD: Call-to-Action-Bereich und Projektkarten
+   ============================================================
+   Bereich für Projekt-Überblick mit Schaffungs-Button und Kartenlayout.
+   ============================================================ */
+
+.cta-section {
+  /* CTA-Bereich: Prominenter Button-Balken mit Akzentfarbe (visual-design.md: "großer Balken"). */
+  background-color: var(--color-accent);
+  
+  /* Padding: Großzügige innere Abstände für visuellen Fokus. */
+  padding: calc(var(--spacing-unit) * 1.5);
+  
+  /* Margin: Abstand zum nächsten Element. */
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  
+  /* Abgerundete Ecken */
+  border-radius: 8px;
+  
+  /* Leichte Schatten für Tiefenwirkung. */
+  box-shadow: 0 4px 12px rgba(139, 159, 127, 0.2);
+}
+
+.cta-section button {
+  /* Button: Breite 100% um den gesamten CTA-Bereich zu nutzen. */
+  width: 100%;
+  
+  /* Padding: Innere Abstände für Schlagfläche. */
+  padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
+  
+  /* Schrift: Bold und größer für visuellen Fokus. */
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  
+  /* Hintergrund: Weiß für Kontrast zur Sidebar-Farbe. */
+  background-color: var(--color-surface);
+  
+  /* Textfarbe: Akzentfarbe für Konsistenz. */
+  color: var(--color-accent);
+  
+  /* Rahmen: Dezenter Rahmen für Definition. */
+  border: 2px solid var(--color-surface);
+  
+  /* Abgerundete Ecken */
+  border-radius: 6px;
+  
+  /* Cursor: Zeigt Klickbarkeit an. */
+  cursor: pointer;
+  
+  /* Transition für sanfte Hover-Effekte. */
+  transition: all 0.2s ease;
+}
+
+.cta-section button:hover {
+  /* Hover-Effekt: Leichte Aufhellung oder Skalierung. */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 159, 127, 0.3);
+}
+
+/* ============================================================
+   PROJEKTKARTEN-LAYOUT
+   ============================================================ */
+
+.projects {
+  /* CSS-Grid: 2 Spalten für Projektkarten (responsive später ausbaubar). */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  
+  /* Gap: Abstand zwischen Karten. */
+  gap: calc(var(--spacing-unit) * 1.5);
+  
+  /* Margin-Bottom: Abstand zum Fuß der Seite. */
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.project-card {
+  /* Karte: Weiße Fläche mit Abstand und Schatten. */
+  background-color: var(--color-surface);
+  
+  /* Padding: Innere Abstände für Content-Spacing. */
+  padding: var(--spacing-unit);
+  
+  /* Abgerundete Ecken (visual-design.md). */
+  border-radius: 8px;
+  
+  /* Schatten: Hebt Karte visuell hervor. */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  
+  /* Transition für Hover-Effekte. */
+  transition: all 0.2s ease;
+  
+  /* Flex-Layout für vertikale Anordnung der Inhalte. */
+  display: flex;
+  flex-direction: column;
+  
+  /* Gap: Abstand zwischen Elementen in der Karte. */
+  gap: calc(var(--spacing-unit) * 0.5);
+}
+
+.project-card:hover {
+  /* Hover-Effekt: Schatten verstärken für Tiefe. */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.project-card h3 {
+  /* Kartentitel: Überschrift. */
+  font-weight: 600;
+  font-size: 18px;
+  
+  /* Margin: Kein großer Abstand, da Layout durch Flex-Gap gesteuert ist. */
+  margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
+  
+  color: var(--color-text);
+}
+
+.project-card p {
+  /* Projektmetadaten: Kleinere Schrift, sekundärer Text. */
+  font-size: 14px;
+  color: var(--color-text-light);
+  
+  /* Margin: Minimal für Kompaktheit. */
+  margin: 0;
+  line-height: 1.4;
+}
+
+.project-card button {
+  /* "Öffnen"-Button: Selbst angepasst (anders als CTA-Button). */
+  background-color: transparent;
+  
+  /* Border: Feiner Rahmen mit Akzentfarbe. */
+  border: 1px solid var(--color-accent);
+  
+  /* Text: Akzentfarbe. */
+  color: var(--color-accent);
+  
+  /* Padding: Kompakt für Kartengröße. */
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+  
+  /* Schrift. */
+  font-weight: 500;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  
+  /* Abgerundete Ecken */
+  border-radius: 4px;
+  
+  /* Cursor */
+  cursor: pointer;
+  
+  /* Transition */
+  transition: all 0.2s ease;
+  
+  /* Margin-Top: auto schiebt Button nach unten in flexem Container. */
+  margin-top: auto;
+}
+
+.project-card button:hover {
+  /* Hover: Hintergrund wird zur Akzentfarbe. */
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+/* ============================================================
+   FORMULAR: Struktur (Fieldsets, Legends, Abstände)
+   ============================================================
+   Formularstruktur mit <fieldset> für Feldgruppen und <legend> für Überschriften.
+   ============================================================ */
+
+.form-container {
+  /* Formularcontainer: Weiße Fläche mit Abstand und Schatten. */
+  background-color: var(--color-surface);
+  
+  /* Padding: Innere Abstände. */
+  padding: var(--spacing-unit);
+  
+  /* Margin: Äußerer Abstand. */
+  margin-bottom: var(--spacing-unit);
+  
+  /* Abgerundete Ecken */
+  border-radius: 8px;
+  
+  /* Leichte Schatten für Tiefenwirkung. */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.form-container h2 {
+  /* Überschrift: Open Sans 600 (Bold). */
+  font-weight: 600;
+  font-size: 28px;
+  
+  /* Große Abstände für Hierarchie. */
+  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
+  
+  color: var(--color-text);
+}
+
+.project-form {
+  /* Formular: Kein besonderes Styling hier, nur Struktur. */
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.project-form fieldset {
+  /* Fieldset: Gruppiert zusammenhängende Felder. */
+  border: none;
+  padding: 0;
+  margin: 0;
+  
+  /* Flexbox für vertikale Anordnung der Felder. */
+  display: flex;
+  flex-direction: column;
+  
+  /* Gap: Abstand zwischen Feldern in der Gruppe. */
+  gap: var(--spacing-unit);
+}
+
+.project-form legend {
+  /* Legend: Überschrift für Feldgruppe. */
+  font-weight: 600;
+  font-size: 16px;
+  
+  /* Padding: Raum um Text. */
+  padding: 0 0 calc(var(--spacing-unit) * 0.5) 0;
+  
+  /* Farbe: Akzent für Fokus. */
+  color: var(--color-accent);
+  
+  /* Border: Linie unter der Legend für visueller Trennung. */
+  border-bottom: 2px solid var(--color-accent);
+  
+  /* Margin: Kein Standard-Margin. */
+  margin: 0;
+  
+  width: 100%;
+}
+
+/* ============================================================
+   FORMULAR: Input-Felder (Label, Input, Textarea, Select)
+   ============================================================ */
+
+.form-group {
+  /* Form-Group: Wrapper für Label + Input. */
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 0.5);
+}
+
+.form-group label {
+  /* Label: Schrift. */
+  font-weight: 500;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  
+  /* Farbe: Dunkelgrau für guten Kontrast. */
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  /* Alle Input-Elemente: Einheitliches Styling. */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  
+  /* Padding: Innere Abstände für komfortable Eingabe. */
+  padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
+  
+  /* Border: Feiner Rahmen. */
+  border: 1px solid #ddd;
+  
+  /* Abgerundete Ecken */
+  border-radius: 4px;
+  
+  /* Hintergrund: Weiß. */
+  background-color: var(--color-surface);
+  
+  /* Farbe: Dunkelgrau. */
+  color: var(--color-text);
+  
+  /* Transition für Focus-Effekt. */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  /* Focus-Effekt: Akzentfarbe-Rahmen und Schatten. */
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(139, 159, 127, 0.1);
+}
+
+.form-group textarea {
+  /* Textarea: Mehrzeiliges Feld mit größerer Höhe. */
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ============================================================
+   FORMULAR: Buttons (Submit-Button)
+   ============================================================ */
+
+.btn-primary {
+  /* Primärer Button: Speichern-Button. */
+  background-color: var(--color-accent);
+  
+  /* Text: Weiß für Kontrast. */
+  color: var(--color-surface);
+  
+  /* Padding: Großzügig für Sichtbarkeit. */
+  padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+  
+  /* Schrift. */
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  
+  /* Border: Keine sichtbare Border. */
+  border: none;
+  
+  /* Abgerundete Ecken */
+  border-radius: 4px;
+  
+  /* Cursor */
+  cursor: pointer;
+  
+  /* Transition */
+  transition: all 0.2s ease;
+  
+  /* Margin-Top: Abstand von den Feldern. */
+  margin-top: var(--spacing-unit);
+}
+
+.btn-primary:hover {
+  /* Hover-Effekt: Dunklere Farbe und Schatten. */
+  background-color: #6d7f61;
+  box-shadow: 0 4px 12px rgba(139, 159, 127, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   PROJEKTSEITE: Header und Zwei-Spalten-Layout
+   ============================================================
+   Projektansicht mit Titel, Kategorie, Fortschritt, PDF und Inhalte nebeneinander.
+   ============================================================ */
+
+.project-header {
+  /* Header der Projektseite: Weiße Fläche mit Metadaten. */
+  background-color: var(--color-surface);
+  
+  /* Padding: Innere Abstände. */
+  padding: var(--spacing-unit);
+  
+  /* Margin: Abstand zum nächsten Element. */
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  
+  /* Abgerundete Ecken */
+  border-radius: 8px;
+  
+  /* Leichte Schatten für Tiefenwirkung. */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.project-header h2 {
+  /* Projekttitel: Große, fette Überschrift. */
+  font-weight: 600;
+  font-size: 28px;
+  
+  /* Abstände. */
+  margin: 0 0 var(--spacing-unit) 0;
+  
+  color: var(--color-text);
+}
+
+.project-meta {
+  /* Metadaten-Bereich: Kategorie und Fortschritt. */
+  display: flex;
+  gap: calc(var(--spacing-unit) * 2);
+  flex-wrap: wrap;
+}
+
+.project-meta p {
+  /* Metadaten-Text: Sekundäre Größe und Farbe. */
+  font-size: 14px;
+  color: var(--color-text-light);
+  
+  /* Keine Abstände. */
+  margin: 0;
+}
+
+.progress-value {
+  /* Fortschrittswert: Hervorgehobene Farbe. */
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   PROJEKT-INHALT: ZWEI-SPALTEN-LAYOUT
+   ============================================================
+   Flexbox-Layout: PDF (links, feste Breite) + Inhalte (rechts, flexibel).
+   ============================================================ */
+
+.project-content {
+  /* Flexbox für nebeneinander angeordnete Spalten. */
+  display: flex;
+  flex-direction: row;
+  
+  /* Gap: Abstand zwischen den beiden Spalten. */
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+/* ============================================================
+   SPALTE 1: PDF-Bereich (Links)
+   ============================================================ */
+
+.pdf-section {
+  /* PDF-Spalte: Weiße Fläche mit Abstand und Schatten. */
+  background-color: var(--color-surface);
+  
+  /* Padding: Innere Abstände. */
+  padding: var(--spacing-unit);
+  
+  /* Abgerundete Ecken */
+  border-radius: 8px;
+  
+  /* Leichte Schatten für Tiefenwirkung. */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  
+  /* Flexbox: Wächst um verfügbaren Platz zu teilen (inkl. Gap). */
+  flex: 1;
+  
+  /* Überlauf erlauben (PDF könnte höher sein als Parent). */
+  display: flex;
+  flex-direction: column;
+}
+
+.pdf-section h3 {
+  /* Überschrift: Fette, kleine Schrift. */
+  font-weight: 600;
+  font-size: 18px;
+  
+  /* Abstände. */
+  margin: 0 0 var(--spacing-unit) 0;
+  
+  color: var(--color-text);
+}
+
+.pdf-placeholder {
+  /* PDF-Platzhal ter: Flexbox für zentrierten Inhalt. */
+  flex: 1;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  /* Hintergrund: Helleres Grau (Platzhalter-Farbe). */
+  background-color: #f9f9f9;
+  
+  /* Border: Subtiler Rahmen. */
+  border: 1px solid #eee;
+  
+  /* Abgerundete Ecken */
+  border-radius: 4px;
+  
+  /* Padding: Innere Abstände. */
+  padding: var(--spacing-unit);
+}
+
+.pdf-placeholder embed {
+  /* Eingebettetes PDF: Maximale Größe nutzen. */
+  width: 100%;
+  height: 100%;
+}
+
+.pdf-placeholder p {
+  /* Fallback-Text für Fehlerfall. */
+  font-size: 14px;
+  color: var(--color-text-light);
+  text-align: center;
+  margin: var(--spacing-unit);
+}
+
+/* ============================================================
+   SPALTE 2: Interaktive Inhalte (Rechts)
+   ============================================================ */
+
+.interactive-content {
+  /* Inhalts-Spalte: Flexbox für vertikale Anordnung der Sektionen. */
+  flex: 1;
+  
+  display: flex;
+  flex-direction: column;
+  
+  /* Gap: Abstand zwischen Sektionen. */
+  gap: var(--spacing-unit);
+  
+  /* Kein Hintergrund: Nur ein Container für die inneren Boxen. */
+  background-color: transparent;
+}
+
+.checklist-section,
+.notes-section,
+.project-data-section,
+.counter-section {
+  /* Jede Sektion innerhalb: Eigene weiße Box mit Abstand und Schatten. */
+  background-color: var(--color-surface);
+  
+  /* Padding: Innere Abstände. */
+  padding: var(--spacing-unit);
+  
+  /* Abgerundete Ecken */
+  border-radius: 8px;
+  
+  /* Leichte Schatten für Tiefenwirkung. */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.interactive-content h3 {
+  /* Überschrift der Sektionen: Fett und kontrastreich. */
+  font-weight: 600;
+  font-size: 16px;
+  
+  /* Abstände. */
+  margin: 0 0 calc(var(--spacing-unit) * 0.75) 0;
+  
+  color: var(--color-text);
+}
+
+/* ============================================================
+   CHECKLISTE: Styling
+   ============================================================ */
+
+.checklist {
+  /* Liste: Keine Standard-Formatierung. */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  /* Gap zwischen Items. */
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 0.5);
+}
+
+.checklist li {
+  /* Listenitem: Flex für inline Checkbox + Label. */
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 0.5);
+}
+
+.checklist input[type="checkbox"] {
+  /* Checkbox: Standard-Styling. */
+  cursor: pointer;
+}
+
+.checklist label {
+  /* Label: Schrift und Cursor. */
+  font-size: 14px;
+  cursor: pointer;
+  
+  margin: 0;
+}
+
+.add-checklist-item {
+  /* Button zum Hinzufügen: Sekundärer Style. */
+  background-color: transparent;
+  
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+  
+  font-weight: 500;
+  font-size: 14px;
+  
+  border-radius: 4px;
+  cursor: pointer;
+  
+  transition: all 0.2s ease;
+  
+  margin-top: calc(var(--spacing-unit) * 0.5);
+}
+
+.add-checklist-item:hover {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+/* ============================================================
+   NOTIZEN: Styling
+   ============================================================ */
+
+.notes {
+  /* Textarea für Notizen: Mehrzeiliges Feld mit größerer Höhe. */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  
+  padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
+  
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  
+  resize: vertical;
+  min-height: 120px;
+  
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notes:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(139, 159, 127, 0.1);
+}
+
+/* ============================================================
+   PROJEKTDATEN: Styling
+   ============================================================ */
+
+.project-data-section dl {
+  /* Definition List: Struktur für Metadaten. */
+  margin: 0;
+  padding: 0;
+  
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: var(--spacing-unit);
+}
+
+.project-data-section dt {
+  /* Term (Schlüssel): Bold für Fokus. */
+  font-weight: 600;
+  font-size: 14px;
+  
+  color: var(--color-text);
+}
+
+.project-data-section dd {
+  /* Description (Wert): Sekundärttext. */
+  font-size: 14px;
+  color: var(--color-text-light);
+  
+  margin: 0;
+}
+
+/* ============================================================
+   MASCHENZÄHLER: Styling
+   ============================================================ */
+
+.counter-display {
+  /* Anzeige der aktuellen Zahl. */
+  text-align: center;
+  
+  padding: var(--spacing-unit);
+  
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  
+  margin-bottom: var(--spacing-unit);
+}
+
+.counter-display p {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+  
+  margin: 0;
+}
+
+#counter-value {
+  /* Zahl: Akzentfarbe für Fokus. */
+  color: var(--color-accent);
+}
+
+.counter-buttons {
+  /* Button-Bereich: Responsive Anordnung. */
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing-unit) * 0.5);
+}
+
+.counter-btn {
+  /* Counter-Button: Kompakt und funktional. */
+  background-color: transparent;
+  
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  
+  padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 0.75);
+  
+  font-weight: 500;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  
+  border-radius: 4px;
+  cursor: pointer;
+  
+  transition: all 0.2s ease;
+  
+  flex: 1;
+  min-width: 60px;
+}
+
+.counter-btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+/* ============================================================
+   PROJEKT-FOOTER: Zurück-Link
+   ============================================================ */
+
+.project-footer {
+  /* Footer: Abstand vom Content und zentriert. */
+  margin-top: calc(var(--spacing-unit) * 2);
+  padding-top: var(--spacing-unit);
+  
+  text-align: center;
+  
+  border-top: 1px solid #eee;
+}
+
+.project-footer a {
+  /* Link: Akzentfarbe mit Hover. */
+  color: var(--color-accent);
+  text-decoration: none;
+  
+  font-size: 14px;
+  
+  transition: color 0.2s ease;
+}
+
+.project-footer a:hover {
+  color: #6d7f61;
+  text-decoration: underline;
+}

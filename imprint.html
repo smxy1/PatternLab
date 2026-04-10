@@ -8,13 +8,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. -->
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
   <div class="container">
     
     <!-- ============================================================
-         SIDEBAR: Vertikale Navigation und App-Header (wiederverwendet)
+         SIDEBAR: Vertikale Navigation und App-Header
+         ============================================================
+         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
-    <aside>
+    <aside class="sidebar">
       <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
       <header>
         <h1>PatternLab</h1>
@@ -36,8 +39,11 @@
 
     <!-- ============================================================
          HAUPTBEREICH: Impressum-Seite
+         ============================================================
+         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
-    <main>
+    <main class="main-content">
       <!-- Impressum-Sektion: Gruppiert alle rechtlichen Informationen. -->
       <section id="imprint">
         <h2>Impressum</h2>

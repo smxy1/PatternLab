@@ -8,13 +8,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. -->
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
   <div class="container">
     
     <!-- ============================================================
-         SIDEBAR: Vertikale Navigation und App-Header (wiederverwendet)
+         SIDEBAR: Vertikale Navigation und App-Header
+         ============================================================
+         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
-    <aside>
+    <aside class="sidebar">
       <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
       <header>
         <h1>PatternLab</h1>
@@ -36,8 +39,11 @@
 
     <!-- ============================================================
          HAUPTBEREICH: Projekt-Detailansicht mit PDF und Inhalte
+         ============================================================
+         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
-    <main>
+    <main class="main-content">
       <!-- Projekt-Header: Zeigt Titel, Kategorie und Fortschritt an. -->
       <header class="project-header">
         <!-- Projekttitel: Haupt-Bezeichnung des Projekts. -->
@@ -51,13 +57,28 @@
         </div>
       </header>
 
-      <!-- Projekt-Inhalt: Zwei-Spalten-Layout (Inhalte links, PDF rechts). -->
+      <!-- Projekt-Inhalt: Zwei-Spalten-Layout (PDF links, Inhalte rechts). -->
       <section class="project-content">
         
         <!-- ============================================================
-             SPALTE 1: Interaktive Inhalte (Checkliste, Notizen, Daten, Zähler)
+             SPALTE 1: PDF-Anleitung (Links)
              ============================================================ -->
-        <!-- Inhalts-Wrapper: Gruppiert alle interaktiven Projektinhalte semantisch. Wird später als linke Spalte dargestellt. -->
+        <!-- PDF-Bereich: Zeigt die hochgeladene Anleitung. Wird später durch JavaScript mit echtem PDF gefüllt. -->
+        <section class="pdf-section">
+          <h3>Anleitung</h3>
+          <!-- Platzhalter für PDF: type="application/pdf" wird später dynamisch gefüllt. -->
+          <div class="pdf-placeholder">
+            <!-- <embed>: Semantisches Element zum Einbinden von Dokumenten. type: Dateiformat. -->
+            <embed type="application/pdf" src="placeholder-anleitung.pdf" width="100%" height="600px">
+            <!-- Fallback-Text, falls PDF nicht geladen wird (Barrierefreiheit). -->
+            <p>PDF-Datei konnte nicht geladen werden. Bitte überprüfen Sie den Datei-Upload.</p>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SPALTE 2: Interaktive Inhalte (Checkliste, Notizen, Daten, Zähler) (Rechts)
+             ============================================================ -->
+        <!-- Inhalts-Wrapper: Gruppiert alle interaktiven Projektinhalte semantisch. Wird später als rechte Spalte dargestellt. -->
         <section class="interactive-content">
           
           <!-- Checkliste: Strukturierte To-Do-Liste für die Strick- oder Häkelschritte. -->
@@ -137,20 +158,6 @@
 
         </section>
 
-        <!-- ============================================================
-             SPALTE 2: PDF-Anleitung
-             ============================================================ -->
-        <!-- PDF-Bereich: Zeigt die hochgeladene Anleitung rechts neben den Inhalten. Wird später durch JavaScript mit echtem PDF gefüllt. -->
-        <section class="pdf-section">
-          <h3>Anleitung</h3>
-          <!-- Platzhalter für PDF: type="application/pdf" wird später dynamisch gefüllt. -->
-          <div class="pdf-placeholder">
-            <!-- <embed>: Semantisches Element zum Einbinden von Dokumenten. type: Dateiformat. -->
-            <embed type="application/pdf" src="placeholder-anleitung.pdf" width="100%" height="600px">
-            <!-- Fallback-Text, falls PDF nicht geladen wird (Barrierefreiheit). -->
-            <p>PDF-Datei konnte nicht geladen werden. Bitte überprüfen Sie den Datei-Upload.</p>
-          </div>
-        </section>
       </section>
 
       <!-- Zurück-Link: Navigation zurück zum Dashboard. Wird später optional auch als Button realisiert. -->

@@ -8,19 +8,22 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout (identisch mit index.html). -->
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
   <div class="container">
     
     <!-- ============================================================
-         SIDEBAR: Vertikale Navigation und App-Header (wiederverwendet von index.html)
+         SIDEBAR: Vertikale Navigation und App-Header
+         ============================================================
+         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
-    <aside>
+    <aside class="sidebar">
       <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
       <header>
         <h1>PatternLab</h1>
       </header>
       
-      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. Links führen zu Bereichen/Seiten. -->
+      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
       <nav>
         <ul>
           <li><a href="index.html">Dashboard</a></li>
@@ -36,31 +39,37 @@
 
     <!-- ============================================================
          HAUPTBEREICH: Projekt-Erstellungsformular
+         ============================================================
+         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
-    <main>
-      <!-- Sektion für Projekt-Erstellung: Gruppiert alle Inhalte dieser Seite. -->
-      <section id="new-project">
+    <main class="main-content">
+      <!-- Sektion für Projekt-Erstellung: Gruppiert alle Formularinhalte. -->
+      <section class="form-container">
         <h2>Neues Projekt</h2>
         
-        <!-- Formular: <form> ist das semantisch korrekte Element für Benutzereingaben. action/method werden später durch JavaScript gesteuert. -->
-        <form id="project-form">
+        <!-- Formular: Semantisches Element für Benutzereingaben. Wird später mit JavaScript verarbeitet. -->
+        <form id="project-form" class="project-form">
           
-          <!-- Pflichtfelder: Felder ohne (optional) sind erforderlich. -->
+          <!-- ============================================================
+               FELDGRUPPE 1: Pflichtfelder (Titel, Kategorie)
+               ============================================================ -->
+          <!-- <fieldset>: Gruppiert zusammenhängende Felder semantisch. <legend>: Beschreibung der Gruppe (wichtig für Screenreader und visuellen Fokus). -->
           <fieldset>
-            <!-- <legend> beschreibt semantisch, was diese Feldgruppe enthält. -->
             <legend>Projektinformationen</legend>
             
-            <!-- Label + Input für Projekttitel: <label> verbindet Text mit Input semantisch (wichtig für Usability und Screenreader). -->
-            <div>
+            <!-- Input-Wrapper: Jedes Feld in einem DIV für konsistente Abstände. -->
+            <div class="form-group">
+              <!-- <label>: Verknüpfung mit Input via for/id (wichtig für Usability: Klick auf Label fokussiert Input). -->
               <label for="project-title">Projekttitel *</label>
-              <!-- type="text": Einzeiliges Textfeld. required: Feld muss gefüllt werden. -->
-              <input type="text" id="project-title" name="title" required>
+              <!-- type="text": Einzeiliges Textfeld. placeholder: Hilfreicher Hinweis. -->
+              <input type="text" id="project-title" name="title" placeholder="Haube" required>
             </div>
 
-            <!-- Label + Select für Kategorie: Dropdown mit vordefinierten Optionen (Häkeln, Stricken, Andere). -->
-            <div>
+            <!-- Kategorieauswahl: <select> mit vordefinierten Optionen. -->
+            <div class="form-group">
               <label for="project-category">Kategorie *</label>
-              <!-- <select> + <option>: Semantisch korrektes Element für Auswahlfeld. selected="selected": Vorausgewählte Option. -->
+              <!-- <select> + <option>: Semantisch korrektes Auswahlfeld für Limited Choices. -->
               <select id="project-category" name="category" required>
                 <option value="">-- Wählen Sie eine Kategorie --</option>
                 <option value="haekeln">Häkeln</option>
@@ -70,44 +79,48 @@
             </div>
           </fieldset>
 
-          <!-- Optionale Metadaten: Felder, die nicht zwingend gefüllt werden müssen. -->
+          <!-- ============================================================
+               FELDGRUPPE 2: Optionale Metadaten
+               ============================================================ -->
           <fieldset>
             <legend>Optionale Metadaten</legend>
             
-            <!-- Textarea für Beschreibung: Mehrzeiliges Textfeld für längere Texte. -->
-            <div>
+            <!-- Textarea für Beschreibung: Mehrzeiliges Textfeld. -->
+            <div class="form-group">
               <label for="project-description">Beschreibung</label>
-              <!-- rows/cols: Geben die sichtbare Größe an (wird später über CSS übersteuert). -->
-              <textarea id="project-description" name="description" rows="4" cols="50"></textarea>
+              <!-- <textarea>: Mehrzeiliges Feld. placeholder: Beispieltext. -->
+              <textarea id="project-description" name="description" placeholder="Beschreiben Sie Ihr Projekt..."></textarea>
             </div>
 
-            <!-- Textfeld für Material: Freitextfeld (z. B. "Wolle, Baumwolle"). -->
-            <div>
+            <!-- Material-Input: Freitextfeld für Materialangaben. -->
+            <div class="form-group">
               <label for="project-material">Material</label>
-              <input type="text" id="project-material" name="material" placeholder="z. B. Wolle, Baumwolle">
+              <input type="text" id="project-material" name="material" placeholder="Schurwolle, Garn">
             </div>
 
-            <!-- Textfeld für Nadelstärke: Freitextfeld (z. B. "3.5 mm"). -->
-            <div>
+            <!-- Nadelstärke-Input: Freitextfeld für Nadelstärke/Häkelnadel-Größe. -->
+            <div class="form-group">
               <label for="project-needle-size">Nadelstärke</label>
               <input type="text" id="project-needle-size" name="needleSize" placeholder="z. B. 3.5 mm">
             </div>
           </fieldset>
 
-          <!-- PDF-Anleitung: Separate Feldgruppe für Datei-Upload. -->
+          <!-- ============================================================
+               FELDGRUPPE 3: PDF-Upload
+               ============================================================ -->
           <fieldset>
             <legend>Anleitung</legend>
             
-            <!-- File-Input für PDF: type="file" öffnet Dateiauswahl. accept: Begrenzt auf PDF-Dateien. -->
-            <div>
+            <!-- File-Input für PDF-Upload. -->
+            <div class="form-group">
               <label for="project-pdf">PDF-Datei hochladen *</label>
-              <!-- accept="application/pdf": Akzeptiert nur PDF-Dateien. required: Datei muss hochgeladen werden. -->
+              <!-- type="file": Öffnet Dateiauswahl. accept="application/pdf": Nur PDF-Dateien erlaubt. -->
               <input type="file" id="project-pdf" name="pdf" accept="application/pdf" required>
             </div>
           </fieldset>
 
-          <!-- Speichern-Button: Submit-Button sendet Formular ab (wird später durch JavaScript verarbeitet). -->
-          <button type="submit">Projekt speichern</button>
+          <!-- Submit-Button: Wird später mit JavaScript verarbeitet (LocalStorage speichern). -->
+          <button type="submit" class="btn-primary">Projekt speichern</button>
         </form>
       </section>
     </main>
