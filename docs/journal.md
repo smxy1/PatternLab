@@ -64,3 +64,9 @@ HTML-Struktur erstellen (imprint, index, new-project, project), auf GitHub commi
 
 ## 10.04.2026
 HTML-Struktur finalisiert und CSS-Layout für alle Seiten umgesetzt. README erstellt und Design-Mockups ins Repository integriert.
+
+## 12.04.2026
+Erste JavaScript-Interaktion umgesetzt.
+
+## 13.04.2026
+Tutorial zu HTML- und CSS- Basics erstellt sowie bestehenden Code mit erklärenden Kommentaren ergänzt, Open Sans über Google Fonts eingebunden und weitere Implementierungsschritte geplant.
