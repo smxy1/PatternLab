@@ -1,27 +1,15 @@
-# HTML Basics: Prototyp
+# HTML & CSS Basics
 
-## Überblick
-
-HTML (HyperText Markup Language) ist die Grundlage jeder Website.  
-Es definiert die Struktur und den Inhalt der Seite, während CSS das Aussehen gestaltet.
-
-In diesem Projekt wird HTML verwendet, um:
-- die Seitenstruktur aufzubauen
-- Inhalte zu organisieren
-- Formulare für Projekte bereitzustellen
-- Navigation zwischen Seiten zu ermöglichen
-
----
-
+# HTML Basics
 ## Grundstruktur einer HTML-Seite
 
-Jede Seite folgt diesem Aufbau:
+Jede HTML-Seite folgt einem festen Aufbau:
 
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>PatternLab</title>
+  <title>Seite</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -34,135 +22,182 @@ Jede Seite folgt diesem Aufbau:
 - `<!DOCTYPE html>` → definiert HTML5  
 - `<html>` → gesamtes Dokument  
 - `<head>` → Metadaten (nicht sichtbar)  
-- `<body>` → sichtbarer Inhalt der Seite  
+- `<body>` → sichtbarer Inhalt  
 
 ---
 
-## Semantische Struktur
+## HTML-Elemente
 
-Für den Aufbau der Seiten werden semantische HTML-Elemente verwendet:
+Ein HTML-Element besteht meist aus:
 
-<aside>...</aside>
-<main>...</main>
-<section>...</section>
+<tag>Inhalt</tag>
+
+### Beispiel
+
+<p>Text</p>
+
+- `<p>` → Start-Tag  
+- `</p>` → End-Tag  
+- Inhalt steht dazwischen  
+
+Einige Elemente sind selbstschließend:
+
+<img src="bild.jpg" alt="Beschreibung">
+
+---
+
+## Attribute
+
+Attribute liefern zusätzliche Informationen zu Elementen.
+
+<a href="seite.html">Link</a>
+
+- `href` → Zieladresse  
+
+<img src="bild.jpg" alt="Bildbeschreibung">
+
+- `src` → Quelle  
+- `alt` → Beschreibung  
+
+---
+
+## Überschriften und Text
+
+<h1>Überschrift</h1>
+<p>Absatz</p>
+
+- `<h1> - <h6>` → Überschriften  
+- `<p>` → Absatz  
+
+Textauszeichnung:
+
+<strong>Fett</strong>
+<em>Kursiv</em>
+
+- `<strong>` → wichtige Hervorhebung  
+- `<em>` → Betonung  
+
+---
+
+## Links
+
+<a href="seite.html">Zur Seite</a>
+
+- Verbindet verschiedene Seiten miteinander  
+- Grundlage der Navigation  
+
+---
+
+## Bilder
+
+<img src="bild.jpg" alt="Beschreibung">
+
+- Zeigt Bilder an  
+- `alt` ist wichtig für Barrierefreiheit  
+
+---
+
+## Listen
+
+<ul>
+  <li>Element</li>
+</ul>
+
+<ol>
+  <li>Element</li>
+</ol>
+
+- `<ul>` → ungeordnete Liste  
+- `<ol>` → geordnete Liste  
+- `<li>` → Listenelement  
+
+---
+
+## Semantische Elemente
+
 <header>...</header>
 <nav>...</nav>
+<main>...</main>
+<section>...</section>
+<aside>...</aside>
 
 ### Bedeutung
 
-- `<aside>` → Sidebar (Navigation)  
-- `<main>` → Hauptinhalt  
-- `<nav>` → Navigation  
-- `<section>` → inhaltlicher Bereich  
 - `<header>` → Kopfbereich  
+- `<nav>` → Navigation  
+- `<main>` → Hauptinhalt  
+- `<section>` → inhaltlicher Abschnitt  
+- `<aside>` → Zusatzbereich  
 
-Diese Elemente machen den Code verständlicher und strukturierter.
-
----
-
-## Navigation mit Links
-
-Seiten werden über Links verbunden:
-
-<a href="new-project.html">Neues Projekt</a>
-
-### Erklärung
-
-- `<a>` = Link  
-- `href` = Zielseite  
+Diese Elemente strukturieren die Seite logisch.
 
 ---
 
-## Container und Struktur
+## Container
 
-<div class="project-card">
-  <h3>Projekt</h3>
-</div>
+<div>Inhalt</div>
+<span>Text</span>
 
-- `<div>` ist ein neutrales Container-Element  
-- wird für Layout und Gruppierung verwendet  
+- `<div>` → Block-Element für Struktur  
+- `<span>` → Inline-Element für kleinere Inhalte  
 
 ---
 
 ## Formulare
 
-Formulare werden verwendet, um neue Projekte anzulegen:
-
 <form>
-  <label for="title">Titel</label>
-  <input type="text" id="title">
+  <label for="name">Name</label>
+  <input type="text" id="name">
 
-  <button>Speichern</button>
+  <textarea></textarea>
+
+  <button>Senden</button>
 </form>
 
 ### Wichtige Elemente
 
 - `<form>` → Formular  
 - `<input>` → Eingabefeld  
-- `<textarea>` → längerer Text  
+- `<textarea>` → mehrzeiliger Text  
 - `<button>` → Aktion  
 - `<label>` → Beschriftung  
 
 ---
 
-## Checkliste
+## Tabellen (Grundlagen)
 
-Für Arbeitsschritte wird eine Liste mit Checkboxen verwendet:
+<table>
+  <tr>
+    <th>Titel</th>
+    <th>Wert</th>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>B</td>
+  </tr>
+</table>
 
-<ol>
-  <li>
-    <input type="checkbox">
-    Reihe 1 stricken
-  </li>
-</ol>
-
-- `<ol>` → geordnete Liste  
-- `<li>` → Listenelement  
-- Checkbox → erledigt / nicht erledigt  
-
----
-
-## Notizen
-
-<textarea></textarea>
-
-- Mehrzeiliges Eingabefeld für freie Notizen  
+- `<table>` → Tabelle  
+- `<tr>` → Zeile  
+- `<th>` → Kopfzelle  
+- `<td>` → Datenzelle  
 
 ---
 
-## Projektdaten
+## HTML und CSS
 
-<dl>
-  <dt>Material</dt>
-  <dd>Wolle</dd>
-</dl>
+HTML und CSS arbeiten zusammen:
 
-- `<dl>` → Liste von Begriffen und Werten  
-- `<dt>` → Begriff  
-- `<dd>` → Wert  
+- HTML → Struktur  
+- CSS → Darstellung  
 
----
+CSS wird über `class` oder `id` mit HTML verbunden:
 
-## PDF einbinden
-
-<embed src="file.pdf" type="application/pdf">
-
-- Zeigt eine PDF direkt im Browser an  
+<div class="box"></div>
 
 ---
 
-## Klassen und CSS
-
-<div class="project-card"></div>
-
-- `class` verbindet HTML mit CSS  
-- wird für Styling verwendet  
-
----
-
-## Grundlayout der Anwendung
-
-Alle Seiten folgen diesem Muster:
+## Grundlayout einer Seite
 
 <body>
 
@@ -176,15 +211,213 @@ Alle Seiten folgen diesem Muster:
 
 ---
 
-## Fazit
+# CSS Basics
+## Grundsyntax
 
-Die wichtigsten HTML-Bausteine in diesem Projekt sind:
+CSS besteht aus Regeln, die auf HTML-Elemente angewendet werden.
 
-- Struktur: `<main>`, `<aside>`, `<section>`  
-- Navigation: `<a>`  
-- Formulare: `<form>`, `<input>`, `<textarea>`  
-- Listen: `<ol>`, `<li>`  
-- Metadaten: `<dl>`  
-- Container: `<div>`  
-- Styling-Verbindung: `class`  
+selector {
+  property: value;
+}
 
+### Erklärung
+
+- `selector` → bestimmt, welche Elemente gestylt werden  
+- `property` → beschreibt die Eigenschaft (z. B. Farbe)  
+- `value` → legt den Wert fest  
+
+### Beispiel
+
+p {
+  color: blue;
+  font-size: 16px;
+}
+
+Alle Absätze werden blau dargestellt und haben eine Schriftgröße von 16 Pixel.
+
+---
+
+## Selektoren
+
+### Element-Selektor
+
+p {
+  color: red;
+}
+
+- Gilt für alle `<p>`-Elemente  
+
+### Klassen-Selektor
+
+.box {
+  background-color: lightgray;
+}
+
+- Gilt für alle Elemente mit `class="box"`  
+
+### ID-Selektor
+
+#main {
+  font-weight: bold;
+}
+
+- Gilt für das Element mit `id="main"`  
+- Sollte nur einmal pro Seite verwendet werden  
+
+### Kombination
+
+div.box {
+  padding: 10px;
+}
+
+- Nur `<div>`-Elemente mit Klasse `box`  
+
+---
+
+## CSS einbinden
+
+### Externe Datei (Standard)
+
+<link rel="stylesheet" href="css/style.css">
+
+- CSS wird in einer separaten Datei gespeichert  
+- Wird im `<head>` eingebunden  
+- Wiederverwendbar für mehrere Seiten  
+
+### Interne Styles
+
+<style>
+  body { margin: 0; }
+</style>
+
+- Direkt im HTML-Dokument  
+- Nur für eine Seite  
+
+### Inline Styles
+
+<p style="color: red;">Text</p>
+
+- Direkt im Element  
+- Schwer wartbar, vermeiden  
+
+---
+
+## Farben
+
+color: red;
+background-color: #f0f0f0;
+
+- `color` → Textfarbe  
+- `background-color` → Hintergrundfarbe  
+
+Farben können als:
+- Namen (`red`)
+- Hex (`#ff0000`)
+- RGB (`rgb(255,0,0)`) angegeben werden  
+
+---
+
+## Text und Schrift
+
+font-size: 16px;
+font-family: Arial, sans-serif;
+text-align: center;
+
+- `font-size` → Schriftgröße  
+- `font-family` → Schriftart  
+- `text-align` → Ausrichtung  
+
+---
+
+## Box-Modell
+
+Jedes Element besteht aus:
+
+- Content → Inhalt  
+- Padding → Innenabstand  
+- Border → Rahmen  
+- Margin → Außenabstand  
+
+### Beispiel
+
+div {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+---
+
+## Größe
+
+width: 200px;
+height: 100px;
+
+- Legt Breite und Höhe eines Elements fest  
+
+---
+
+## Layout (projektrelevant)
+
+### Flexbox (für einfache Layouts)
+
+.container {
+  display: flex;
+}
+
+- Elemente werden nebeneinander angeordnet  
+
+### Beispiel Sidebar + Inhalt
+
+body {
+  display: flex;
+}
+
+aside {
+  width: 200px;
+}
+
+main {
+  flex: 1;
+}
+
+- Sidebar hat feste Breite  
+- Hauptbereich nimmt restlichen Platz ein  
+
+---
+
+## Abstände
+
+margin: 10px;
+padding: 10px;
+
+- `margin` → Abstand nach außen  
+- `padding` → Abstand nach innen  
+
+---
+
+## Klassen im Projekt
+
+.project-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.button {
+  background-color: black;
+  color: white;
+}
+
+- Klassen werden für wiederverwendbare Komponenten genutzt  
+
+---
+
+## Zustände (einfach)
+
+a:hover {
+  color: blue;
+}
+
+- Wird angewendet, wenn der Benutzer mit der Maus über ein Element fährt  
+
+---

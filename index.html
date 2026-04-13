@@ -2,63 +2,73 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PatternLab - Dashboard</title>
-  
-  <!-- Google Fonts: Open Sans web-safe (statt System-Fallback).
-       visual-design.md: Gewählte Schriftart mit Gewichten 300, 400, 600. -->
+  <!-- Google Fonts: Open Sans wird von Google CDN geladen (Schriftstärken: 300, 400, 600). Garantiert web-safe Schriftart auf allen Geräten. -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  
-  <!-- Single CSS file: Konsistente Farben & Layout über alle 4 Seiten -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- ============================================================
-       ZWEI-SPALTEN-LAYOUT: Sidebar (250px fixed) + Main (flex: 1)
-       Layout-Technologie: CSS Flexbox (siehe style.css .container)
-       ============================================================ -->
+  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
   <div class="container">
     
-    <!-- SIDEBAR: Navigation, Logo, Impressum-Footer
-         CSS-Klasse .sidebar steuert: 250px breit, weiß, fester Platz, sticky footer
-         Gilt für: index, new-project, project, imprint (konsistent!) -->
+    <!-- ============================================================
+         SIDEBAR: Vertikale Navigation und App-Header
+         ============================================================
+         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         ============================================================ -->
     <aside class="sidebar">
-      <header><h1>PatternLab</h1></header>
+      <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
+      <header>
+        <h1>PatternLab</h1>
+      </header>
+      
+      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
       <nav>
         <ul>
           <li><a href="index.html">Dashboard</a></li>
           <li><a href="new-project.html">Neues Projekt</a></li>
         </ul>
       </nav>
-      <footer><a href="imprint.html">Impressum</a></footer>
+      
+      <!-- Footer in der Sidebar: Impressum ist gesetzlich erforderlich. -->
+      <footer>
+        <a href="imprint.html">Impressum</a>
+      </footer>
     </aside>
 
-    <!-- DASHBOARD: CTA-Button + Projektkarten-Grid
-         requirements.md: Dashboard zeigt Übersicht mit Projekten
-         visual-design.md: "großer Balken / Call-to-Action oben, dann Kartenlayout" -->
+    <!-- ============================================================
+         HAUPTBEREICH: Dashboard und Projektverwaltung
+         ============================================================
+         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
+         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         ============================================================ -->
     <main class="main-content">
+      <!-- Dashboard-Sektion: Gruppiert die gesamte Projektübersicht semantisch. -->
       <section id="dashboard">
         <h2>Meine Projekte</h2>
         
-        <!-- CTA-SEKTION: Grüner Button zu new-project.html
-             id="new-project" wird von JavaScript abgegriffen (main.js)
-             Farbe (Salbeigrün) = Primary Action aus visual-design.md -->
+        <!-- Call-to-Action-Bereich: Prominenter Balken für schnelle Projekt-Erstellung (aus visual-design.md: "großer Balken / Call-to-Action"). -->
         <section class="cta-section">
+          <!-- CTA-Button: Wird später mit JavaScript zu new-project.html verlinkt. Starke Farbe und großzügig dimensioniert. -->
           <button id="new-project">+ Neues Projekt erstellen</button>
         </section>
 
-        <!-- PROJEKTE-GRID: 2 Spalten, responsiv mit CSS Grid
-             Zeigt Titel | Kategorie | Fortschritt | "Öffnen"-Button
-             MOMENTAN: Statische Platzhalter (später aus localStorage dynamisch)
-             ZIEL: Nächster JS-Schritt = Karten aus localStorage generieren -->
+        <!-- Projektkarten-Layout: CSS-Grid für responsive Kartendarstellung. Zeigt Titel, Kategorie, Fortschritt und Öffnen-Button. -->
         <section class="projects">
+          <!-- Projekt-Karte 1: <article> ist semantisch korrekt für eigenständige, wiederverwendbare Inhaltsblöcke. -->
           <article class="project-card">
             <h3>Platzhalter Projekt 1</h3>
+            <!-- Projektmetadaten: Kategorie und Fortschritt. Wird über CSS zu kompakter Darstellung formatiert. -->
             <p><strong>Kategorie:</strong> Häkeln</p>
             <p><strong>Fortschritt:</strong> 5 / 10</p>
+            <!-- Öffnen-Button: Wird später mit JavaScript das Projekt laden. -->
             <button class="open-project-btn">Öffnen</button>
           </article>
 
+          <!-- Projekt-Karte 2: Zweites Beispiel für Kartenlayout-Struktur. -->
           <article class="project-card">
             <h3>Platzhalter Projekt 2</h3>
             <p><strong>Kategorie:</strong> Stricken</p>
@@ -72,7 +82,5 @@
 
   <!-- JavaScript: wird später im Semester erklärt -->
   <script src="js/main.js"></script>
-</body>
-</html>
 </body>
 </html>
