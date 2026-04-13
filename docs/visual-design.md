@@ -71,6 +71,7 @@ Das Design unterstützt konzentriertes Arbeiten durch Klarheit, Lesbarkeit und g
 ## Typografie
 
 - Schriftart: Open Sans
+- Quelle: Google Fonts CDN (garantiert web-safe auf allen Geräten)
 - Schriftstärken:
   - 600 (Überschriften)
   - 400 (Fließtext)

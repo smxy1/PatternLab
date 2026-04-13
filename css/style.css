@@ -59,7 +59,7 @@ body {
    ============================================================ */
 
 .container {
-  /* Flexbox für nebeneinander angeordnete Spalten. */
+  /* <div class="container">: Wrapper für Zwei-Spalten-Layout (Sidebar + Main) */
   display: flex;
   
   /* Richtung: horizontal (Sidebar links, Main rechts). */
@@ -74,7 +74,7 @@ body {
    ============================================================ */
 
 .sidebar {
-  /* Feste Breite (aus --sidebar-width = 250px). */
+  /* <aside class="sidebar">: Linke Navigations-Spalte mit Logo, Links, Footer */
   width: var(--sidebar-width);
   
   /* Fläche: Weiß. */
@@ -96,7 +96,7 @@ body {
   /* Inhalte oben aufreihen (Header, Nav), Footer bleibt unten durch margin-top: auto. */
   justify-content: flex-start;
 }
-}
+
 
 .sidebar header {
   /* Margin-Bottom: Abstand zwischen Header und Navigation. */
@@ -116,7 +116,7 @@ body {
 }
 
 .sidebar nav ul {
-  /* Listenformatierung entfernen. */
+  /* <nav><ul>: Vertikale Navigationsliste (Dashboard, Neues Projekt) */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -128,7 +128,7 @@ body {
 }
 
 .sidebar nav a {
-  /* Verbindung: Akzentfarbe. */
+  /* <a>: Navigationslinks (stilisiert grün, kein Unterstrich) */
   color: var(--color-accent);
   
   /* Text-Dekoration entfernen (Standard für saubere Links). */
@@ -142,7 +142,7 @@ body {
 }
 
 .sidebar nav a:hover {
-  /* Dunklere Akzentfarbe beim Hover. */
+  /* <a> im Hover-State: Dunklere Farbe + Unterstrich */
   color: #6d7f61;
   text-decoration: underline;
 }
@@ -157,7 +157,7 @@ body {
 }
 
 .sidebar footer a {
-  /* Sekundärtexte: Helleres Grau. */
+  /* <footer><a>: Impressum-Link (sekundär: hellgrau, klein) */
   color: var(--color-text-light);
   text-decoration: none;
   font-size: 14px;
@@ -176,7 +176,7 @@ body {
    ============================================================ */
 
 .main-content {
-  /* Flexbox: wächst um verbleibenden Platz zu füllen. */
+  /* <main class="main-content">: Flexibler Hauptbereich (Dashboard, Formulare, etc.) */
   flex: 1;
   
   /* Großzügige innere Abstände (visual-design.md: "Viel Weißraum"). */
@@ -286,7 +286,7 @@ body {
    ============================================================ */
 
 .cta-section {
-  /* CTA-Bereich: Prominenter Button-Balken mit Akzentfarbe (visual-design.md: "großer Balken"). */
+  /* <section class="cta-section">: Call-to-Action Balken (grüner "Neues Projekt" Button) */
   background-color: var(--color-accent);
   
   /* Padding: Großzügige innere Abstände für visuellen Fokus. */
@@ -303,7 +303,7 @@ body {
 }
 
 .cta-section button {
-  /* Button: Breite 100% um den gesamten CTA-Bereich zu nutzen. */
+  /* <button id="new-project">: Großer weißer Button im grünen Balken */
   width: 100%;
   
   /* Padding: Innere Abstände für Schlagfläche. */
@@ -344,7 +344,7 @@ body {
    ============================================================ */
 
 .projects {
-  /* CSS-Grid: 2 Spalten für Projektkarten (responsive später ausbaubar). */
+  /* <section class="projects">: Grid-Container für 2-spaltige Projektkarten */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   
@@ -356,7 +356,7 @@ body {
 }
 
 .project-card {
-  /* Karte: Weiße Fläche mit Abstand und Schatten. */
+  /* <article class="project-card">: Einzelne Projektkarte (Titel, Kategorie, Button) */
   background-color: var(--color-surface);
   
   /* Padding: Innere Abstände für Content-Spacing. */
@@ -407,7 +407,7 @@ body {
 }
 
 .project-card button {
-  /* "Öffnen"-Button: Selbst angepasst (anders als CTA-Button). */
+  /* <button class="open-project-btn">: "Öffnen"-Button mit grünem Rahmen */
   background-color: transparent;
   
   /* Border: Feiner Rahmen mit Akzentfarbe. */
@@ -450,7 +450,7 @@ body {
    ============================================================ */
 
 .form-container {
-  /* Formularcontainer: Weiße Fläche mit Abstand und Schatten. */
+  /* <section class="form-container">: Wrapper um das "Neues Projekt"-Formular */
   background-color: var(--color-surface);
   
   /* Padding: Innere Abstände. */
@@ -478,14 +478,14 @@ body {
 }
 
 .project-form {
-  /* Formular: Kein besonderes Styling hier, nur Struktur. */
+  /* <form id="project-form">: Formular zum Erstellen neuer Projekte */
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing-unit) * 1.5);
 }
 
 .project-form fieldset {
-  /* Fieldset: Gruppiert zusammenhängende Felder. */
+  /* <fieldset>: Gruppierte Felder (z.B. "Projektinformationen", "Optionale Metadaten") */
   border: none;
   padding: 0;
   margin: 0;
@@ -499,7 +499,7 @@ body {
 }
 
 .project-form legend {
-  /* Legend: Überschrift für Feldgruppe. */
+  /* <legend>: Überschrift einer Feldgruppe (grün mit Unterstrich) */
   font-weight: 600;
   font-size: 16px;
   
@@ -523,14 +523,14 @@ body {
    ============================================================ */
 
 .form-group {
-  /* Form-Group: Wrapper für Label + Input. */
+  /* <div class="form-group">: Label + Input-Feld zusammen */
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing-unit) * 0.5);
 }
 
 .form-group label {
-  /* Label: Schrift. */
+  /* <label>: Beschriftung für Input-Felder */
   font-weight: 500;
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
@@ -542,7 +542,7 @@ body {
 .form-group input,
 .form-group textarea,
 .form-group select {
-  /* Alle Input-Elemente: Einheitliches Styling. */
+  /* <input>, <textarea>, <select>: Einheitliches Styling für alle Eingabefelder */
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -569,7 +569,7 @@ body {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-  /* Focus-Effekt: Akzentfarbe-Rahmen und Schatten. */
+  /* Input-Felder im :focus-State: Grüner Rahmen + subtile Hauch */
   outline: none;
   border-color: var(--color-accent);
   box-shadow: 0 0 0 3px rgba(139, 159, 127, 0.1);
@@ -586,7 +586,7 @@ body {
    ============================================================ */
 
 .btn-primary {
-  /* Primärer Button: Speichern-Button. */
+  /* <button type="submit">: Großer grüner "Projekt speichern" Button */
   background-color: var(--color-accent);
   
   /* Text: Weiß für Kontrast. */
@@ -630,7 +630,7 @@ body {
    ============================================================ */
 
 .project-header {
-  /* Header der Projektseite: Weiße Fläche mit Metadaten. */
+  /* <div class="project-header">: Header mit Titel, Kategorie, Fortschritt */
   background-color: var(--color-surface);
   
   /* Padding: Innere Abstände. */
@@ -686,7 +686,7 @@ body {
    ============================================================ */
 
 .project-content {
-  /* Flexbox für nebeneinander angeordnete Spalten. */
+  /* <div class="project-content">: Zwei-Spalten Layout (PDF links, Inhalte rechts) */
   display: flex;
   flex-direction: row;
   
@@ -699,7 +699,7 @@ body {
    ============================================================ */
 
 .pdf-section {
-  /* PDF-Spalte: Weiße Fläche mit Abstand und Schatten. */
+  /* <div class="pdf-section">: Linke Spalte mit eingebettetem PDF (oder Platzhalter) */
   background-color: var(--color-surface);
   
   /* Padding: Innere Abstände. */
@@ -771,7 +771,7 @@ body {
    ============================================================ */
 
 .interactive-content {
-  /* Inhalts-Spalte: Flexbox für vertikale Anordnung der Sektionen. */
+  /* <div class="interactive-content">: Rechte Spalte (Checkliste, Notizen, Daten, Counter) */
   flex: 1;
   
   display: flex;
@@ -788,7 +788,7 @@ body {
 .notes-section,
 .project-data-section,
 .counter-section {
-  /* Jede Sektion innerhalb: Eigene weiße Box mit Abstand und Schatten. */
+  /* Vier verschiedene Subsektionen der rechten Spalte (jeweils eigene weiße Box) */
   background-color: var(--color-surface);
   
   /* Padding: Innere Abstände. */
@@ -817,7 +817,7 @@ body {
    ============================================================ */
 
 .checklist {
-  /* Liste: Keine Standard-Formatierung. */
+  /* <ul class="checklist">: Vertikale Liste von Checkboxen mit Labels */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -829,19 +829,19 @@ body {
 }
 
 .checklist li {
-  /* Listenitem: Flex für inline Checkbox + Label. */
+  /* <li>: Einzelnes Checklist-Item (Checkbox + Label nebeneinander) */
   display: flex;
   align-items: center;
   gap: calc(var(--spacing-unit) * 0.5);
 }
 
 .checklist input[type="checkbox"] {
-  /* Checkbox: Standard-Styling. */
+  /* <input type="checkbox">: Die Kontrollkästchen */
   cursor: pointer;
 }
 
 .checklist label {
-  /* Label: Schrift und Cursor. */
+  /* <label>: Klickbarer Text neben der Checkbox */
   font-size: 14px;
   cursor: pointer;
   
@@ -878,7 +878,7 @@ body {
    ============================================================ */
 
 .notes {
-  /* Textarea für Notizen: Mehrzeiliges Feld mit größerer Höhe. */
+  /* <textarea class="notes">: Großes Textfeld für Projekt-Notizen */
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   
@@ -907,7 +907,7 @@ body {
    ============================================================ */
 
 .project-data-section dl {
-  /* Definition List: Struktur für Metadaten. */
+  /* <dl>: Definition List mit Projekt-Metadaten (Material, Nadelstärke, etc.) */
   margin: 0;
   padding: 0;
   
@@ -917,7 +917,7 @@ body {
 }
 
 .project-data-section dt {
-  /* Term (Schlüssel): Bold für Fokus. */
+  /* <dt> (Definition Term): Der Schlüssel (z.B. "Material", "Nadelstärke") */
   font-weight: 600;
   font-size: 14px;
   
@@ -925,7 +925,7 @@ body {
 }
 
 .project-data-section dd {
-  /* Description (Wert): Sekundärttext. */
+  /* <dd> (Definition Description): Der Wert (z.B. "Schurwolle", "3.5 mm") */
   font-size: 14px;
   color: var(--color-text-light);
   
@@ -937,7 +937,7 @@ body {
    ============================================================ */
 
 .counter-display {
-  /* Anzeige der aktuellen Zahl. */
+  /* <div class="counter-display">: Anzeige-Bereich mit großer grüner Nummer */
   text-align: center;
   
   padding: var(--spacing-unit);
@@ -957,19 +957,19 @@ body {
 }
 
 #counter-value {
-  /* Zahl: Akzentfarbe für Fokus. */
+  /* <span id="counter-value">: Die grüne Zahlenwert-Anzeige */
   color: var(--color-accent);
 }
 
 .counter-buttons {
-  /* Button-Bereich: Responsive Anordnung. */
+  /* <div class="counter-buttons">: Container für alle Counter-Buttons */
   display: flex;
   flex-wrap: wrap;
   gap: calc(var(--spacing-unit) * 0.5);
 }
 
 .counter-btn {
-  /* Counter-Button: Kompakt und funktional. */
+  /* <button class="counter-btn">: Kleine grüne Buttons (+1, +10, +15, -1, Reset) */
   background-color: transparent;
   
   border: 1px solid var(--color-accent);

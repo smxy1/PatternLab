@@ -2,28 +2,25 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
+  <!-- Viewport & Google Fonts: Siehe index.html für Details -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neues Projekt - PatternLab</title>
+  <!-- Google Fonts: Open Sans von Google CDN (wie in index.html) -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
+  <!-- Container: Gleiches 2-Spalten-Layout wie Dashboard & Projektseite (Konsistenz!) -->
   <div class="container">
     
-    <!-- ============================================================
-         SIDEBAR: Vertikale Navigation und App-Header
-         ============================================================
-         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
-         ============================================================ -->
+    <!-- Sidebar: Gleiche Navigation wie alle anderen Seiten (index, project, imprint).
+         DESIGNPRINZIP: Konsistenz. Nutzer sieht überall die gleiche Sidebar.
+         Aktuelle Seite: "Neues Projekt" ist aktiv -->
     <aside class="sidebar">
-      <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
       <header>
         <h1>PatternLab</h1>
       </header>
       
-      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
       <nav>
         <ul>
           <li><a href="index.html">Dashboard</a></li>
@@ -31,7 +28,6 @@
         </ul>
       </nav>
       
-      <!-- Footer in der Sidebar: Impressum ist gesetzlich erforderlich. -->
       <footer>
         <a href="imprint.html">Impressum</a>
       </footer>
@@ -40,37 +36,113 @@
     <!-- ============================================================
          HAUPTBEREICH: Projekt-Erstellungsformular
          ============================================================
-         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         ZWECK: Erlaubt Nutzer:innen, neue Projekte zu erstellen
+         
+         ANFORDERUNG (aus requirements.md):
+         - "Die Anwendung muss das Erstellen neuer Projekte ermöglichen."
+         - "Jedes Projekt muss einen Titel und eine Kategorie besitzen."
+         - "Jedes Projekt muss optionale Metadaten speichern können."
+         - "Die Anwendung muss das Hochladen einer PDF-Anleitung ermöglichen."
+         
+         STRUKTUR DES FORMULARS:
+         3 Feldgruppen (<fieldset>) für bessere Semantik & UX:
+         1. Projektinformationen (Pflichtfelder: Titel, Kategorie)
+         2. Optionale Metadaten (Beschreibung, Material, Nadelstärke)
+         3. Anleitung (PDF-Upload)
+         
+         VERARBEITUNG (via JavaScript main.js):
+         - Form-Submit wird abgefangen (e.preventDefault)
+         - Alle Input-Werte werden in ein Objekt gesammelt
+         - LocalStorage speichert das Objekt als JSON
+         - Nutzer wird zu Dashboard (index.html) zurückgeleitet
+         
+         DATENSTRUKTUR (aus data.md):
+         {
+           id: Date.now(),
+           title: ...,
+           category: ...,
+           description: ...,
+           material: ...,
+           needleSize: ...,
+           pdf: ...,
+           counter: 0,
+           notes: "",
+           checklist: []
+         }
          ============================================================ -->
     <main class="main-content">
-      <!-- Sektion für Projekt-Erstellung: Gruppiert alle Formularinhalte. -->
       <section class="form-container">
         <h2>Neues Projekt</h2>
         
-        <!-- Formular: Semantisches Element für Benutzereingaben. Wird später mit JavaScript verarbeitet. -->
+        <!-- Form: Semantisches HTML-Element für Benutzereingaben
+             id="project-form": JavaScript greift auf dieses Element zu (main.js)
+             class="project-form": CSS stellt das Layout her (Flexbox)
+             
+             KEINE action/method: Wird mit JavaScript verarbeitet, nicht zum Server gesendet
+             (Frontend-only, localStorage) -->
         <form id="project-form" class="project-form">
           
           <!-- ============================================================
-               FELDGRUPPE 1: Pflichtfelder (Titel, Kategorie)
+               FIELDSET 1: Projektinformationen (Pflichtfelder)
+               ============================================================
+               WARUM FIELDSET + LEGEND?
+               - <fieldset>: Semantisch gruppiert zusammenhängende Felder
+               - <legend>: Titel der Gruppe (wichtig für Screenreader!)
+                 Screenreader liest: "Fieldset: Projektinformationen.
+                                     input: Projekttitel (Pflichtfeld). text..."
+               
+               ZWECK DIESER GRUPPE:
+               - Titel & Kategorie sind zwingend erforderlich
+               - Ohne diese 2 Fields kann kein Projekt erstellt werden
+               
+               CSS (.project-form fieldset):
+               - display: flex; flex-direction: column; gap: 16px
+               - Keine Border (border: none), clean Look
+               - Legend hat grüne Farbe + Unterstrich (auffällig)
                ============================================================ -->
-          <!-- <fieldset>: Gruppiert zusammenhängende Felder semantisch. <legend>: Beschreibung der Gruppe (wichtig für Screenreader und visuellen Fokus). -->
           <fieldset>
             <legend>Projektinformationen</legend>
             
-            <!-- Input-Wrapper: Jedes Feld in einem DIV für konsistente Abstände. -->
+            <!-- ============================================================
+                 FORM-GROUP: Label + Input zusammen
+                 ============================================================
+                 PATTERN: Jedes Input-Feld ist in eine .form-group gekapselt
+                 - Label für Barrierefreiheit verknüpft mit Input (for/id)
+                 - Gemeinsam styled mit gap: 8px (Abstand Label-Input)
+                 
+                 WARUM LABELS?
+                 1. Semantik: HTML-Standard für Formularfelder
+                 2. Usability: Klick auf Label fokussiert das Input-Feld
+                 3. Accessibility: Screenreader liest das Label vor Input vor
+                 4. Touch-freundlich: Größere Klick-Fläche (nicht nur Input)
+                 
+                 CSS CLASS .form-group:
+                 - display: flex; flex-direction: column
+                 - Stellt Label über dem Input dar
+                 ============================================================ -->
+            
+            <!-- Input 1: Projekttitel -->
             <div class="form-group">
-              <!-- <label>: Verknüpfung mit Input via for/id (wichtig für Usability: Klick auf Label fokussiert Input). -->
+              <!-- Label: Beschriftung + Verknüpfung mit <input id="project-title"> -->
               <label for="project-title">Projekttitel *</label>
-              <!-- type="text": Einzeiliges Textfeld. placeholder: Hilfreicher Hinweis. -->
-              <input type="text" id="project-title" name="title" placeholder="Haube" required>
+              <!-- Input: type="text" (einzeilig), required (Validierung) -->
+              <input type="text" 
+                     id="project-title" 
+                     name="title" 
+                     placeholder="z.B.: Meine erste Haube" 
+                     required>
+              <!-- name="title": Wichtig! JavaScript nutzt name um value auszulesen -->
             </div>
 
-            <!-- Kategorieauswahl: <select> mit vordefinierten Optionen. -->
+            <!-- Input 2: Kategorieauswahl -->
             <div class="form-group">
               <label for="project-category">Kategorie *</label>
-              <!-- <select> + <option>: Semantisch korrektes Auswahlfeld für Limited Choices. -->
-              <select id="project-category" name="category" required>
+              <!-- <select>: Dropdown für begrenzte Optionen (nicht frei tippbar)
+                   Anforderung (requirements.md): Kategorie: "Häkeln" oder "Stricken" oder "Andere"
+                   <option value="">: Placeholder - zwingt Nutzer zu expliziter Wahl -->
+              <select id="project-category" 
+                      name="category" 
+                      required>
                 <option value="">-- Wählen Sie eine Kategorie --</option>
                 <option value="haekeln">Häkeln</option>
                 <option value="stricken">Stricken</option>
@@ -80,53 +152,109 @@
           </fieldset>
 
           <!-- ============================================================
-               FELDGRUPPE 2: Optionale Metadaten
+               FIELDSET 2: Optionale Metadaten
+               ============================================================
+               ZWECK: Ergänzende Informationen (nicht zwingend)
+               - Beschreibung: Nutzer-Notizen zur Idee des Projekts
+               - Material: Was wird verwendet? (Wolle-Art, Qualität, etc.)
+               - Nadelstärke: Welche Nadeln/Häkelnadel?
+               
+               ANFORDERUNG (requirements.md):
+               "Jedes Projekt muss optionale Metadaten speichern können."
+               (description, material, needleSize)
+               
+               KEINE required: Diese Felder sind optional - Nutzer kann überspringen
                ============================================================ -->
           <fieldset>
             <legend>Optionale Metadaten</legend>
             
-            <!-- Textarea für Beschreibung: Mehrzeiliges Textfeld. -->
+            <!-- Beschreibung: Mehrzeiliger Text -->
             <div class="form-group">
               <label for="project-description">Beschreibung</label>
-              <!-- <textarea>: Mehrzeiliges Feld. placeholder: Beispieltext. -->
-              <textarea id="project-description" name="description" placeholder="Beschreiben Sie Ihr Projekt..."></textarea>
+              <!-- <textarea>: Mehrzeiliges Textfeld (vs. <input type="text"> = einzeilig)
+                   Nutzer kann mehrere Sätze schreiben -->
+              <textarea id="project-description" 
+                        name="description" 
+                        placeholder="Beschreiben Sie die Idee, Ziel oder Besonderheiten des Projekts..."></textarea>
             </div>
 
-            <!-- Material-Input: Freitextfeld für Materialangaben. -->
+            <!-- Material: Freitextfeld -->
             <div class="form-group">
               <label for="project-material">Material</label>
-              <input type="text" id="project-material" name="material" placeholder="Schurwolle, Garn">
+              <input type="text" 
+                     id="project-material" 
+                     name="material" 
+                     placeholder="z.B.: Schurwolle, Merinowolle, Baumwolle">
             </div>
 
-            <!-- Nadelstärke-Input: Freitextfeld für Nadelstärke/Häkelnadel-Größe. -->
+            <!-- Nadelstärke: Freitextfeld -->
             <div class="form-group">
               <label for="project-needle-size">Nadelstärke</label>
-              <input type="text" id="project-needle-size" name="needleSize" placeholder="z. B. 3.5 mm">
+              <input type="text" 
+                     id="project-needle-size" 
+                     name="needleSize" 
+                     placeholder="z.B.: 3.5 mm oder US 4">
             </div>
           </fieldset>
 
           <!-- ============================================================
-               FELDGRUPPE 3: PDF-Upload
+               FIELDSET 3: Anleitung (PDF-Upload)
+               ============================================================
+               ANFORDERUNG (requirements.md):
+               "Die Anwendung muss das Hochladen oder Einbinden einer PDF-Anleitung
+                pro Projekt ermöglichen."
+               
+               AKTUELL: type="file" - ermöglicht dem Nutzer, eine Datei auszuwählen
+               
+               TECHNISCHE REALITÄT (aus data.md):
+               - LocalStorage hat Größenlimit (~10MB für alle Sites zusammen)
+               - PDFs können > 1MB sein
+               - PROBLEMATIK: PDFs vollständig in localStorage zu speichern ist nicht praktikabel
+               
+               ZUKUNFTS-LÖSUNG: 
+               - DataURL konvertieren (Base64) - aber größer im Speicher
+               - Oder: Nur Datei-Referenz speichern (Pfad), PDF bleibt im Dateisystem
+               - Mit Backend: Auf Server hochladen, nur URL speichern
+               
+               MOMENTAN: Wir speichern document.getElementById('project-pdf').value
+                        Das ist der Dateiname der Datei (z.B.: "meine-anleitung.pdf")
                ============================================================ -->
           <fieldset>
             <legend>Anleitung</legend>
             
-            <!-- File-Input für PDF-Upload. -->
             <div class="form-group">
               <label for="project-pdf">PDF-Datei hochladen *</label>
-              <!-- type="file": Öffnet Dateiauswahl. accept="application/pdf": Nur PDF-Dateien erlaubt. -->
-              <input type="file" id="project-pdf" name="pdf" accept="application/pdf" required>
+              <!-- type="file": Öffnet Datei-Dialog
+                   accept="application/pdf": Nur PDF-Dateien in Dialog sichtbar (Filter)
+                   required: Pflichtfeld - kann nicht ohne PDF erstellen -->
+              <input type="file" 
+                     id="project-pdf" 
+                     name="pdf" 
+                     accept="application/pdf" 
+                     required>
             </div>
           </fieldset>
 
-          <!-- Submit-Button: Wird später mit JavaScript verarbeitet (LocalStorage speichern). -->
+          <!-- ============================================================
+               SUBMIT-BUTTON: Speichern & Abschließen
+               ============================================================
+               type="submit": Triggers form.addEventListener('submit', ...)
+               
+               JAVASCRIPT FLOW (main.js):
+               1. e.preventDefault() = Browser-Standard verhindert (keine Seite Reload)
+               2. Alle Input-Werte werden aufgesammelt
+               3. Wird eine Projekt-ID zugewiesen (Date.now() = Unique ID)
+               4. JSON-String wird zu localStorage['projects'] gespeichert
+               5. Alert "Projekt gespeichert!"
+               6. window.location.href = 'index.html' (zurück zum Dashboard)
+               ============================================================ -->
           <button type="submit" class="btn-primary">Projekt speichern</button>
         </form>
       </section>
     </main>
   </div>
 
-  <!-- JavaScript: wird später im Semester erklärt -->
+  <!-- JavaScript: Verarbeitet Formular-Submit & speichert zu localStorage -->
   <script src="js/main.js"></script>
 </body>
 </html>

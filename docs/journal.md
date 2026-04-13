@@ -58,3 +58,9 @@ GitHub-Repository erstellt und grundlegende Dateienstruktur angelegt.
 
 ## 08.04.2026
 Dokumentation erstellt (requirements.md, data.md, visual-design.md) und auf GitHub committed.  
+
+## 09.04.2026
+HTML-Struktur erstellen (imprint, index, new-project, project), auf GitHub committed und parallel das Tutorial dazu erstellt (Basics als .md und spezifisch als Kommentare).
+
+## 10.04.2026
+HTML-Struktur finalisiert und CSS-Layout für alle Seiten umgesetzt. README erstellt und Design-Mockups ins Repository integriert.
