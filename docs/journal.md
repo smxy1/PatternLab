@@ -70,3 +70,11 @@ Erste JavaScript-Interaktion umgesetzt.
 
 ## 13.04.2026
 Tutorial zu HTML- und CSS- Basics erstellt sowie bestehenden Code mit erklärenden Kommentaren ergänzt, Open Sans über Google Fonts eingebunden und weitere Implementierungsschritte geplant.
+
+## 14.04.2026
+Zweispaltiges Layout der Projektseite überarbeitet.
+Struktur für rechte Interaktionsspalte mit Projekt-Tools (z. B. Maschenzähler / Checkpoints) vorbereitet.
+
+## 27.04.2026
+
+Konzept für Assignment 2 (JavaScript-Erweiterung) ausgearbeitet.Geplante Funktionen definiert: Projekt per Formular anlegen und als Karte anzeigen, dynamische Checkliste, automatische Fortschrittsanzeige sowie Maschenzähler mit mehreren Buttons.

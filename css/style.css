@@ -731,7 +731,7 @@ body {
 }
 
 .pdf-placeholder {
-  /* PDF-Platzhal ter: Flexbox für zentrierten Inhalt. */
+  /* PDF-Platzhalter: Flexbox für zentrierten Inhalt. */
   flex: 1;
   
   display: flex;
