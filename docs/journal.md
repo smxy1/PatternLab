@@ -75,6 +75,20 @@ Tutorial zu HTML- und CSS- Basics erstellt sowie bestehenden Code mit erklärend
 Zweispaltiges Layout der Projektseite überarbeitet.
 Struktur für rechte Interaktionsspalte mit Projekt-Tools (z. B. Maschenzähler / Checkpoints) vorbereitet.
 
+## 16.04.2026
+
+Kommentarstruktur für HTML-, CSS- und JavaScript-Dateien überarbeitet.  
+Festgelegt, dass Kommentare kurz, verständlich und anfängerfreundlich formuliert werden sollen.
+
 ## 27.04.2026
 
 Konzept für Assignment 2 (JavaScript-Erweiterung) ausgearbeitet.Geplante Funktionen definiert: Projekt per Formular anlegen und als Karte anzeigen, dynamische Checkliste, automatische Fortschrittsanzeige sowie Maschenzähler mit mehreren Buttons.
+
+## bis 28.04.2026
+
+Konzept für Assignment 2 (JavaScript-Erweiterung) ausgearbeitet.  
+Geplante Funktionen definiert: Projekte per Formular anlegen und anzeigen, Checkliste, Fortschrittsanzeige sowie Maschen- und Reihenzähler.
+
+## 28.04.2026
+
+Feedback zum Konzept erhalten und Umfang der Anwendung reduziert, damit die JavaScript-Erweiterung den Anforderungen des Assignments entspricht.

@@ -96,3 +96,14 @@ Ein Projekt enthält:
 - Kein Mehrbenutzerbetrieb im Prototyp
 - Keine Synchronisation zwischen Geräten
 - Für Mehrbenutzerbetrieb ist ein Backend erforderlich (z. B. Firebase Spark)
+
+---
+
+## Kommentare im Code
+
+- Kommentare sollen kurz, klar und verständlich formuliert sein.
+- Kommentare sollen erklären, was ein Codeabschnitt macht, ohne jede einzelne Zeile unnötig zu wiederholen.
+- Kommentare sollen erklären, warum ein bestimmter Code verwendet wird, wenn das nicht direkt erkennbar ist.
+- Kommentare sollen die Orientierung im Code erleichtern, zum Beispiel durch kurze Abschnittsüberschriften.
+- Kommentare sollen so geschrieben sein, dass auch Personen mit sehr wenig Erfahrung in HTML, CSS und JavaScript den grundlegenden Aufbau nachvollziehen können.
+- Kommentare sollen nicht zu lang sein, damit der Code übersichtlich bleibt.
