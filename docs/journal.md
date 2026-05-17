@@ -92,3 +92,5 @@ Geplante Funktionen definiert: Projekte per Formular anlegen und anzeigen, Check
 ## 28.04.2026
 
 Feedback zum Konzept erhalten und Umfang der Anwendung reduziert, damit die JavaScript-Erweiterung den Anforderungen des Assignments entspricht.
+
+## 
