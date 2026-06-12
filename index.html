@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PatternLab Dashboard - Übersicht aller Häkel- und Strickprojekte mit Fortschritt und Projektverwaltung">
   <title>PatternLab - Dashboard</title>
   <!-- Google Fonts: Open Sans wird von Google CDN geladen (Schriftstärken: 300, 400, 600). Garantiert web-safe Schriftart auf allen Geräten. -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,10 +21,10 @@
          Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
     <aside class="sidebar">
-      <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
-      <header>
-        <h1>PatternLab</h1>
-      </header>
+      <!-- Branding: App-Titel -->
+      <div class="sidebar-header">
+        <span class="app-title">PatternLab</span>
+      </div>
       
       <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
       <nav>
@@ -48,34 +49,19 @@
     <main class="main-content">
       <!-- Dashboard-Sektion: Gruppiert die gesamte Projektübersicht semantisch. -->
       <section id="dashboard">
-        <h2>Meine Projekte</h2>
+        <h1>Meine Projekte</h1>
         
         <!-- Call-to-Action-Bereich: Prominenter Balken für schnelle Projekt-Erstellung (aus visual-design.md: "großer Balken / Call-to-Action"). -->
-        <section class="cta-section">
-          <!-- CTA-Button: Wird später mit JavaScript zu new-project.html verlinkt. Starke Farbe und großzügig dimensioniert. -->
-          <button id="new-project">+ Neues Projekt erstellen</button>
-        </section>
+        <div class="cta-section">
+          <!-- CTA-Link: Führt direkt zur Seite für neue Projekte und wird optisch wie ein Button gestaltet. -->
+          <a id="new-project" class="cta-button" href="new-project.html">+ Neues Projekt erstellen</a>
+        </div>
 
         <!-- Projektkarten-Layout: CSS-Grid für responsive Kartendarstellung. Zeigt Titel, Kategorie, Fortschritt und Öffnen-Button. -->
-        <section class="projects">
-          <!-- Projekt-Karte 1: <article> ist semantisch korrekt für eigenständige, wiederverwendbare Inhaltsblöcke. -->
-          <article class="project-card">
-            <h3>Platzhalter Projekt 1</h3>
-            <!-- Projektmetadaten: Kategorie und Fortschritt. Wird über CSS zu kompakter Darstellung formatiert. -->
-            <p><strong>Kategorie:</strong> Häkeln</p>
-            <p><strong>Fortschritt:</strong> 5 / 10</p>
-            <!-- Öffnen-Button: Wird später mit JavaScript das Projekt laden. -->
-            <button class="open-project-btn">Öffnen</button>
-          </article>
-
-          <!-- Projekt-Karte 2: Zweites Beispiel für Kartenlayout-Struktur. -->
-          <article class="project-card">
-            <h3>Platzhalter Projekt 2</h3>
-            <p><strong>Kategorie:</strong> Stricken</p>
-            <p><strong>Fortschritt:</strong> 8 / 15</p>
-            <button class="open-project-btn">Öffnen</button>
-          </article>
-        </section>
+        <!-- Container wird von JavaScript dynamisch mit Projektkarten gefüllt. -->
+        <div class="projects" id="projects-container">
+          <!-- Projektkarten werden hier von JavaScript eingefügt -->
+        </div>
       </section>
     </main>
   </div>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Neues Häkel- oder Strickprojekt erstellen - Laden Sie PDF-Anleitungen hoch und verwalten Sie Metadaten">
   <title>Neues Projekt - PatternLab</title>
   <!-- Google Fonts: Open Sans wird von Google CDN geladen (Schriftstärken: 300, 400, 600). Garantiert web-safe Schriftart auf allen Geräten. -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,10 +21,10 @@
          Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
     <aside class="sidebar">
-      <!-- Header mit App-Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
-      <header>
-        <h1>PatternLab</h1>
-      </header>
+      <!-- Branding: App-Titel -->
+      <div class="sidebar-header">
+        <span class="app-title">PatternLab</span>
+      </div>
       
       <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
       <nav>
@@ -48,7 +49,7 @@
     <main class="main-content">
       <!-- Sektion für Projekt-Erstellung: Gruppiert alle Formularinhalte. -->
       <section class="form-container">
-        <h2>Neues Projekt</h2>
+        <h1>Neues Projekt</h1>
         
         <!-- Formular: Semantisches Element für Benutzereingaben. Wird später mit JavaScript verarbeitet. -->
         <form id="project-form" class="project-form">

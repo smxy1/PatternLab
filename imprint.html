@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Impressum und rechtliche Informationen von PatternLab - Webanwendung für Häkel- und Strickprojekte">
   <title>Impressum - PatternLab</title>
   <!-- Google Fonts: Open Sans wird von Google CDN geladen (Schriftstärken: 300, 400, 600). Garantiert web-safe Schriftart auf allen Geräten. -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,10 +21,10 @@
          Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
     <aside class="sidebar">
-      <!-- Header mit Titel: Sichtbar und semantisch als Seiten-Kopfzeile. -->
-      <header>
-        <h1>PatternLab</h1>
-      </header>
+      <!-- Branding: App-Titel -->
+      <div class="sidebar-header">
+        <span class="app-title">PatternLab</span>
+      </div>
       
       <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
       <nav>
@@ -46,13 +47,12 @@
          Layout wird durch CSS-Flexbox auf dem Container gesteuert.
          ============================================================ -->
     <main class="main-content">
-      <!-- Impressum-Sektion: Gruppiert alle rechtlichen Informationen. -->
-      <section id="imprint">
-        <h2>Impressum</h2>
+      <!-- Impressum: Gruppiert alle rechtlichen Informationen. -->
+      <h1>Impressum</h1>
         
         <!-- Angaben zum Betreiber: <address> ist semantisch korrekt für Kontaktinformationen und Anschriftenangaben. -->
         <section>
-          <h3>Betreiber der Website</h3>
+          <h2>Betreiber der Website</h2>
           <address>
             PatternLab<br>
             Musterstraße 123<br>
@@ -66,7 +66,7 @@
 
         <!-- Verantwortliche Person: Pflichtangabe (z. B. für Hochschule, Projekt, Private Person). -->
         <section>
-          <h3>Verantwortliche Person</h3>
+          <h2>Verantwortliche Person</h2>
           <p>
             <strong>Name:</strong> Sarah-May Lang<br>
             <strong>Funktion:</strong> Projektentwickler:in<br>
@@ -76,7 +76,7 @@
 
         <!-- Rechtliche Hinweise: Allgemeine Haftungsausschlüsse und Nutzungsbedingungen. -->
         <section>
-          <h3>Haftungsausschluss</h3>
+          <h2>Haftungsausschluss</h2>
           <p>
             Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Der Betreiber übernimmt jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte. Die Nutzung dieser Website erfolgt auf eigenes Risiko.
           </p>
@@ -84,7 +84,7 @@
 
         <!-- Datenschutz: Verweis auf Datenschutzerklärung (wird später möglicherweise ausgelagert). -->
         <section>
-          <h3>Datenschutz</h3>
+          <h2>Datenschutz</h2>
           <p>
             Informationen zur Verarbeitung personenbezogener Daten finden Sie in unserer Datenschutzerklärung. Diese Website speichert Projektdaten lokal im Browser (LocalStorage). Es erfolgt keine automatische Übertragung von Daten an externe Server.
           </p>
@@ -92,16 +92,15 @@
 
         <!-- Urheberrecht: Hinweis auf Urheberrechte und Lizenzierung. -->
         <section>
-          <h3>Urheberrecht</h3>
+          <h2>Urheberrecht</h2>
           <p>
             Die Inhalte und die Gestaltung dieser Website sind urheberrechtlich geschützt. Eine Vervielfältigung oder Weiterverbreitung ohne ausdrückliche Genehmigung ist nicht gestattet.
           </p>
         </section>
-      </section>
     </main>
   </div>
 
   <!-- JavaScript: wird später im Semester erklärt -->
-  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

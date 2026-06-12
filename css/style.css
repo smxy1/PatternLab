@@ -103,8 +103,10 @@ body {
   margin-bottom: var(--spacing-unit);
 }
 
-.sidebar h1 {
+.sidebar h1,
+.sidebar .app-title {
   /* Überschrift: Open Sans 600 (Bold). */
+  display: block;
   font-weight: 600;
   font-size: 20px;
   
@@ -187,6 +189,7 @@ body {
   width: 100%;
 }
 
+.main-content h1,
 .main-content h2 {
   /* Überschrift Level 2: Open Sans 600 (Bold). */
   font-weight: 600;
@@ -286,24 +289,23 @@ body {
    ============================================================ */
 
 .cta-section {
-  /* <section class="cta-section">: Call-to-Action Balken (grüner "Neues Projekt" Button) */
-  background-color: var(--color-accent);
+  /* <div class="cta-section">: Call-to-Action Bereich für den "Neues Projekt" Link */
+  background-color: transparent;
   
-  /* Padding: Großzügige innere Abstände für visuellen Fokus. */
-  padding: calc(var(--spacing-unit) * 1.5);
+  /* Kein eigenes Padding, damit der Button nicht wie ein gerahmter Balken wirkt. */
+  padding: 0;
   
   /* Margin: Abstand zum nächsten Element. */
   margin-bottom: calc(var(--spacing-unit) * 2);
   
-  /* Abgerundete Ecken */
-  border-radius: 8px;
-  
-  /* Leichte Schatten für Tiefenwirkung. */
-  box-shadow: 0 4px 12px rgba(139, 159, 127, 0.2);
+  /* Keine eigene Box: Die visuelle Gestaltung liegt direkt auf dem Button-Link. */
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.cta-section button {
-  /* <button id="new-project">: Großer weißer Button im grünen Balken */
+.cta-section .cta-button {
+  /* <a id="new-project">: Großer grüner Button-Link */
+  display: block;
   width: 100%;
   
   /* Padding: Innere Abstände für Schlagfläche. */
@@ -314,26 +316,29 @@ body {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   
-  /* Hintergrund: Weiß für Kontrast zur Sidebar-Farbe. */
-  background-color: var(--color-surface);
+  /* Hintergrund: Akzentfarbe als klarer Call-to-Action. */
+  background-color: var(--color-accent);
   
-  /* Textfarbe: Akzentfarbe für Konsistenz. */
-  color: var(--color-accent);
+  /* Textfarbe: Weiß für Kontrast. */
+  color: var(--color-surface);
   
-  /* Rahmen: Dezenter Rahmen für Definition. */
-  border: 2px solid var(--color-surface);
+  /* Rahmen: Kein zusätzlicher grüner Rand. */
+  border: none;
   
   /* Abgerundete Ecken */
   border-radius: 6px;
   
   /* Cursor: Zeigt Klickbarkeit an. */
   cursor: pointer;
+
+  text-align: center;
+  text-decoration: none;
   
   /* Transition für sanfte Hover-Effekte. */
   transition: all 0.2s ease;
 }
 
-.cta-section button:hover {
+.cta-section .cta-button:hover {
   /* Hover-Effekt: Leichte Aufhellung oder Skalierung. */
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(139, 159, 127, 0.3);
@@ -848,6 +853,57 @@ body {
   margin: 0;
 }
 
+.checklist-text {
+  /* Bearbeitbarer Text eines Checklistenpunkts. */
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--color-text);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: calc(var(--spacing-unit) * 0.4) calc(var(--spacing-unit) * 0.5);
+}
+
+.checklist-text:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(139, 159, 127, 0.1);
+}
+
+.checklist-input-area {
+  /* Eingabe für neue Checklistenpunkte direkt in der Projektansicht. */
+  display: flex;
+  gap: calc(var(--spacing-unit) * 0.5);
+  margin-top: calc(var(--spacing-unit) * 0.75);
+}
+
+.checklist-input-area input {
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.checklist-input-area input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(139, 159, 127, 0.1);
+}
+
+.checklist-input-area button {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+  border: none;
+  border-radius: 4px;
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .add-checklist-item {
   /* Button zum Hinzufügen: Sekundärer Style. */
   background-color: transparent;
@@ -913,13 +969,16 @@ body {
   
   display: grid;
   grid-template-columns: 100px 1fr;
-  gap: var(--spacing-unit);
+  column-gap: var(--spacing-unit);
+  row-gap: calc(var(--spacing-unit) * 0.5);
+  align-items: start;
 }
 
 .project-data-section dt {
   /* <dt> (Definition Term): Der Schlüssel (z.B. "Material", "Nadelstärke") */
   font-weight: 600;
   font-size: 14px;
+  margin: 0;
   
   color: var(--color-text);
 }
@@ -956,7 +1015,8 @@ body {
   margin: 0;
 }
 
-#counter-value {
+#counter-value,
+#row-counter-value {
   /* <span id="counter-value">: Die grüne Zahlenwert-Anzeige */
   color: var(--color-accent);
 }
