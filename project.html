@@ -2,31 +2,28 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
+  <!-- Viewport sorgt dafür, dass die Seite auf mobilen Geräten richtig skaliert. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Projekt-Detailansicht mit PDF-Anleitung, Checkliste, Notizen und Maschenzähler für Häkel- und Strickprojekte">
   <title>Projekt - PatternLab</title>
-  <!-- Google Fonts: Open Sans wird von Google CDN geladen (Schriftstärken: 300, 400, 600). Garantiert web-safe Schriftart auf allen Geräten. -->
+  <!-- Open Sans wird als zentrale Schriftart der Anwendung geladen. -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
+  <!-- Gemeinsamer Layout-Container für Sidebar und Hauptbereich. -->
   <div class="container">
     
     <!-- ============================================================
-         SIDEBAR: Vertikale Navigation und App-Header
-         ============================================================
-         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         SIDEBAR: Navigation
          ============================================================ -->
     <aside class="sidebar">
-      <!-- Branding: App-Titel -->
+      <!-- App-Name in der Sidebar. -->
       <div class="sidebar-header">
         <span class="app-title">PatternLab</span>
       </div>
       
-      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
+      <!-- Hauptnavigation zwischen Dashboard und Projektformular. -->
       <nav>
         <ul>
           <li><a href="index.html">Dashboard</a></li>
@@ -34,21 +31,17 @@
         </ul>
       </nav>
       
-      <!-- Footer in der Sidebar: Impressum ist gesetzlich erforderlich. -->
+      <!-- Link zum Impressum. -->
       <footer>
         <a href="imprint.html">Impressum</a>
       </footer>
     </aside>
 
     <!-- ============================================================
-         HAUPTBEREICH: Projekt-Detailansicht mit PDF und Inhalte
-         ============================================================
-         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         HAUPTBEREICH: Projektansicht
          ============================================================ -->
     <main class="main-content">
-      <!-- Projekt-Header: Zeigt Titel, Kategorie und Fortschritt an. -->
-      <!-- Wird von JavaScript dynamisch gefüllt -->
+      <!-- JavaScript füllt Titel, Kategorie und Fortschritt des geöffneten Projekts. -->
       <header class="project-header" id="project-header">
         <h1 id="project-title" aria-label="Projekttitel wird von JavaScript geladen">Projekt wird geladen...</h1>
         <div class="project-meta" id="project-meta">
@@ -57,49 +50,43 @@
         </div>
       </header>
 
-      <!-- Projekt-Inhalt: Zwei-Spalten-Layout (PDF links, Inhalte rechts). -->
+      <!-- Zweispaltiger Bereich: PDF links, interaktive Projektdaten rechts. -->
       <div class="project-content">
         
         <!-- ============================================================
-             SPALTE 1: PDF-Anleitung (Links)
+             SPALTE 1: PDF-Anleitung
              ============================================================ -->
-        <!-- PDF-Bereich: Zeigt die hochgeladene Anleitung. Wird später durch JavaScript mit echtem PDF gefüllt. -->
         <section class="pdf-section">
           <h2>Anleitung</h2>
-          <!-- Platzhalter für PDF: type="application/pdf" wird später dynamisch gefüllt. -->
           <div class="pdf-placeholder">
-            <!-- <embed>: Semantisches Element zum Einbinden von Dokumenten. type: Dateiformat. -->
-            <embed type="application/pdf" src="placeholder-anleitung.pdf" width="100" height="600">
-            <!-- Fallback-Text, falls PDF nicht geladen wird (Barrierefreiheit). -->
-            <p>PDF-Datei konnte nicht geladen werden. Bitte überprüfen Sie den Datei-Upload.</p>
+            <!-- JavaScript setzt hier den gespeicherten PDF-Link ein. -->
+            <embed id="project-pdf-viewer" type="application/pdf" src="" width="100" height="600">
+            <p id="project-pdf-message" hidden>PDF-Datei konnte nicht geladen werden. Bitte überprüfen Sie den PDF-Link.</p>
           </div>
         </section>
 
         <!-- ============================================================
-             SPALTE 2: Interaktive Inhalte (Checkliste, Notizen, Daten, Zähler) (Rechts)
+             SPALTE 2: Interaktive Projektdaten
              ============================================================ -->
-        <!-- Inhalts-Wrapper: Gruppiert alle interaktiven Projektinhalte semantisch. Wird später als rechte Spalte dargestellt. -->
         <div class="interactive-content">
           
-          <!-- Checkliste: Strukturierte To-Do-Liste für die Strick- oder Häkelschritte. -->
-          <!-- Wird von JavaScript dynamisch gefüllt -->
+          <!-- Checkliste wird pro Projekt aus dem LocalStorage geladen. -->
           <section class="checklist-section">
             <h2>Checkliste</h2>
             <ol class="checklist" id="checklist-container">
               <!-- Checklistenpunkte werden hier von JavaScript eingefügt -->
             </ol>
             <button class="add-checklist-item">+ Punkt hinzufügen</button>
+            <button class="delete-last-checklist-item">Letzten Punkt löschen</button>
           </section>
 
-          <!-- Notizen: Freitextbereich für projektspezifische Notizen und Anmerkungen. -->
+          <!-- Freitextnotizen zum geöffneten Projekt. -->
           <section class="notes-section">
             <h2>Notizen</h2>
-            <!-- <textarea>: Mehrzeiliges Textfeld für längere, unstrukturierte Notizen. Wird später in LocalStorage gespeichert. -->
             <textarea id="project-notes" class="notes" placeholder="Schreiben Sie hier Ihre Notizen auf..."></textarea>
           </section>
 
-          <!-- Projektdaten: Zeigt die eingegeben Metadaten an (Material, Nadelstärke, Beschreibung). -->
-          <!-- Wird von JavaScript dynamisch gefüllt -->
+          <!-- JavaScript zeigt hier Beschreibung, Material und Nadelstärke an. -->
           <section class="project-data-section">
             <h2>Projektdaten</h2>
             <dl id="project-data-container">
@@ -107,14 +94,12 @@
             </dl>
           </section>
 
-          <!-- Maschenzähler: Optional - Zähler für gestrickte/gehäkelte Maschen (Nice-to-have). -->
+          <!-- Maschenzähler für den aktuellen Projektstand. -->
           <section class="counter-section">
             <h2>Maschenzähler</h2>
-            <!-- Anzeige aktueller Zahl: wird später dynamisch aktualisiert. -->
             <div class="counter-display">
               <p>Masche: <strong id="counter-value">0</strong></p>
             </div>
-            <!-- Counter-Buttons: Schnelle Zu- und Abnahmen. Werden später durch JavaScript verwaltet. -->
             <div class="counter-buttons">
               <button class="counter-btn stitch-counter-btn" value="-1">−1</button>
               <button class="counter-btn stitch-counter-btn" value="+1">+1</button>
@@ -124,7 +109,7 @@
             </div>
           </section>
 
-          <!-- Reihenzähler: Funktioniert wie der Maschenzähler, speichert aber Reihen statt Maschen. -->
+          <!-- Reihenzähler funktioniert wie der Maschenzähler, speichert aber einen eigenen Wert. -->
           <section class="counter-section">
             <h2>Reihenzähler</h2>
             <div class="counter-display">
@@ -143,14 +128,16 @@
 
       </div>
 
-      <!-- Zurück-Link: Navigation zurück zum Dashboard. Wird später optional auch als Button realisiert. -->
+      <!-- Aktionen für Navigation, Bearbeiten und Löschen des geöffneten Projekts. -->
       <div class="project-footer">
         <a href="index.html">← Zurück zum Dashboard</a>
+        <a id="edit-project-link" class="edit-project-link" href="#">Projekt bearbeiten</a>
+        <button type="button" id="delete-project-button" class="delete-project-button">Projekt löschen</button>
       </div>
     </main>
   </div>
 
-  <!-- JavaScript: wird später im Semester erklärt -->
+  <!-- Gemeinsame JavaScript-Datei für Dashboard, Formular und Projektansicht. -->
   <script src="js/app.js"></script>
 </body>
 </html>

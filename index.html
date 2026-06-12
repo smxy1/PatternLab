@@ -2,31 +2,28 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
+  <!-- Viewport sorgt dafür, dass die Seite auf mobilen Geräten richtig skaliert. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="PatternLab Dashboard - Übersicht aller Häkel- und Strickprojekte mit Fortschritt und Projektverwaltung">
   <title>PatternLab - Dashboard</title>
-  <!-- Google Fonts: Open Sans wird von Google CDN geladen (Schriftstärken: 300, 400, 600). Garantiert web-safe Schriftart auf allen Geräten. -->
+  <!-- Open Sans wird als zentrale Schriftart der Anwendung geladen. -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
+  <!-- Gemeinsamer Layout-Container für Sidebar und Hauptbereich. -->
   <div class="container">
     
     <!-- ============================================================
-         SIDEBAR: Vertikale Navigation und App-Header
-         ============================================================
-         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         SIDEBAR: Navigation
          ============================================================ -->
     <aside class="sidebar">
-      <!-- Branding: App-Titel -->
+      <!-- App-Name in der Sidebar. -->
       <div class="sidebar-header">
         <span class="app-title">PatternLab</span>
       </div>
       
-      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
+      <!-- Hauptnavigation zwischen Dashboard und Projektformular. -->
       <nav>
         <ul>
           <li><a href="index.html">Dashboard</a></li>
@@ -34,31 +31,37 @@
         </ul>
       </nav>
       
-      <!-- Footer in der Sidebar: Impressum ist gesetzlich erforderlich. -->
+      <!-- Link zum Impressum. -->
       <footer>
         <a href="imprint.html">Impressum</a>
       </footer>
     </aside>
 
     <!-- ============================================================
-         HAUPTBEREICH: Dashboard und Projektverwaltung
-         ============================================================
-         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         HAUPTBEREICH: Dashboard
          ============================================================ -->
     <main class="main-content">
-      <!-- Dashboard-Sektion: Gruppiert die gesamte Projektübersicht semantisch. -->
+      <!-- Übersicht über alle gespeicherten Projekte. -->
       <section id="dashboard">
         <h1>Meine Projekte</h1>
         
-        <!-- Call-to-Action-Bereich: Prominenter Balken für schnelle Projekt-Erstellung (aus visual-design.md: "großer Balken / Call-to-Action"). -->
+        <!-- Link zum Erstellen eines neuen Projekts. -->
         <div class="cta-section">
-          <!-- CTA-Link: Führt direkt zur Seite für neue Projekte und wird optisch wie ein Button gestaltet. -->
           <a id="new-project" class="cta-button" href="new-project.html">+ Neues Projekt erstellen</a>
         </div>
 
-        <!-- Projektkarten-Layout: CSS-Grid für responsive Kartendarstellung. Zeigt Titel, Kategorie, Fortschritt und Öffnen-Button. -->
-        <!-- Container wird von JavaScript dynamisch mit Projektkarten gefüllt. -->
+        <!-- Filterbereich: Suche und Kategorieauswahl für die Projektkarten. -->
+        <div class="dashboard-filters">
+          <input type="search" id="project-search" placeholder="Projekt suchen">
+          <select id="category-filter">
+            <option value="all">Alle Kategorien</option>
+            <option value="haekeln">Häkeln</option>
+            <option value="stricken">Stricken</option>
+            <option value="andere">Andere</option>
+          </select>
+        </div>
+
+        <!-- JavaScript fügt hier die Projektkarten aus dem LocalStorage ein. -->
         <div class="projects" id="projects-container">
           <!-- Projektkarten werden hier von JavaScript eingefügt -->
         </div>
@@ -66,7 +69,7 @@
     </main>
   </div>
 
-  <!-- JavaScript: wird später im Semester erklärt -->
+  <!-- Gemeinsame JavaScript-Datei für Dashboard, Formular und Projektansicht. -->
   <script src="js/app.js"></script>
 </body>
 </html>
