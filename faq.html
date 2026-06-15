@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport sorgt dafÃ¼r, dass die Seite auf mobilen GerÃ¤ten richtig skaliert. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HÃ¤ufige Fragen und Antworten rund um PatternLab, Projektverwaltung und PDF-Anleitungen">
+  <title>FAQ - PatternLab</title>
+  <!-- Open Sans wird als zentrale Schriftart der Anwendung geladen. -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Gemeinsamer Layout-Container fÃ¼r Sidebar und Hauptbereich. -->
+  <div class="container">
+    
+    <!-- ============================================================
+         SIDEBAR: Navigation
+         ============================================================ -->
+    <aside class="sidebar">
+      <!-- App-Name in der Sidebar. -->
+      <div class="sidebar-header">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Navigation Ã¶ffnen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <span class="app-title">PatternLab</span>
+      </div>
+      
+      <div class="sidebar-menu-panel">
+        <!-- Hauptnavigation zwischen Dashboard, FAQ und Projektformular. -->
+        <nav id="main-navigation">
+          <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="new-project.html">Neues Projekt</a></li>
+          </ul>
+        </nav>
+        
+        <!-- Link zum Impressum. -->
+        <footer>
+          <a href="imprint.html">Impressum</a>
+        </footer>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+         HAUPTBEREICH: FAQ
+         ============================================================ -->
+    <main class="main-content">
+      <!-- Die FAQ bleibt bewusst statisch und klar lesbar, ohne zusÃ¤tzliche Interaktion. -->
+      <section class="faq-list" aria-label="HÃ¤ufige Fragen und Antworten">
+        <header class="faq-header">
+          <h1>FAQ</h1>
+          <p>Hier finden Sie kurze Antworten auf hÃ¤ufige Fragen rund um Projekte, PDF-Anleitungen und die Nutzung von PatternLab.</p>
+        </header>
+
+        <article class="faq-item">
+          <h2>Was ist PatternLab?</h2>
+          <p>PatternLab ist eine Webanwendung zur Organisation von HÃ¤kel-, Strick- und anderen Handarbeitsprojekten mit PDF-Anleitungen, Checklisten, Notizen und Fortschritt.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Wie erstelle ich ein neues Projekt?</h2>
+          <p>Ãœber den Button â€žNeues Projekt erstellenâ€œ oder den Link â€žNeues Projektâ€œ in der Navigation gelangen Sie direkt zum Formular fÃ¼r ein neues Projekt.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Welche Angaben sind fÃ¼r ein Projekt verpflichtend?</h2>
+          <p>Pflichtfelder sind der Projekttitel, die Kategorie und ein PDF-Link zur Anleitung. Beschreibung, Material und NadelstÃ¤rke sind optional.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Kann ich eine PDF-Datei direkt hochladen?</h2>
+          <p>Aktuell wird kein Datei-Upload gespeichert. Stattdessen wird ein Link zur PDF-Anleitung hinterlegt und in der Projektansicht eingebettet angezeigt.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Wo werden meine Projektdaten gespeichert?</h2>
+          <p>Die Anwendung speichert Projektdaten lokal im Browser Ã¼ber LocalStorage. Es werden derzeit keine Daten an einen Server Ã¼bertragen.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Kann ich Projekte durchsuchen?</h2>
+          <p>Ja. Im Dashboard kÃ¶nnen Projekte nach Begriffen im Titel oder in der Beschreibung gesucht und zusÃ¤tzlich nach Kategorie gefiltert werden.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Wie funktioniert der Fortschritt eines Projekts?</h2>
+          <p>Der Fortschritt wird aus dem VerhÃ¤ltnis erledigter zu allen vorhandenen Checklistenpunkten berechnet und als Prozentwert angezeigt.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Kann ich Notizen zu einem Projekt speichern?</h2>
+          <p>Ja. Jedes Projekt besitzt einen eigenen Notizbereich, in dem projektbezogene Gedanken, Anpassungen oder Erinnerungen gespeichert werden kÃ¶nnen.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Wozu dienen Maschen- und ReihenzÃ¤hler?</h2>
+          <p>Die ZÃ¤hler helfen dabei, den aktuellen Arbeitsstand wÃ¤hrend eines Projekts festzuhalten, zum Beispiel fÃ¼r Maschen, Reihen oder Wiederholungen.</p>
+        </article>
+
+        <article class="faq-item">
+          <h2>Kann ich ein Projekt spÃ¤ter bearbeiten oder lÃ¶schen?</h2>
+          <p>Ja. In der Projektansicht stehen Aktionen zum Bearbeiten und LÃ¶schen des aktuell geÃ¶ffneten Projekts zur VerfÃ¼gung.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- Gemeinsame JavaScript-Datei fÃ¼r Navigation und Projektlogik. -->
+  <script src="js/app.js"></script>
+</body>
+</html>

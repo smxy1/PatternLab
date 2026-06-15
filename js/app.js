@@ -189,7 +189,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const filteredProjects = allProjects.filter(function(project) {
         // toLowerCase sorgt dafür, dass Groß- und Kleinschreibung bei der Suche egal sind.
-        const matchesSearch = project.title.toLowerCase().includes(searchText);
+        const projectDescription = (project.description || '').toLowerCase();
+        const matchesSearch =
+          project.title.toLowerCase().includes(searchText) ||
+          projectDescription.includes(searchText);
         const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
 
         return matchesSearch && matchesCategory;
@@ -200,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
         projectsContainer.innerHTML += `
           <article class="project-card">
             <h3>${project.title}</h3>
+            <p><strong>Beschreibung:</strong> ${project.description || 'Keine Beschreibung vorhanden'}</p>
             <p><strong>Kategorie:</strong> ${getCategoryName(project.category)}</p>
             <p><strong>Fortschritt:</strong> ${calculateProgress(project)}%</p>
             <!-- data-project-id speichert die Projekt-ID direkt am Button. -->

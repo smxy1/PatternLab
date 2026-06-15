@@ -501,6 +501,51 @@ body {
   margin-bottom: var(--spacing-unit);
 }
 
+/* ============================================================
+   FAQ
+   ============================================================
+   Fragen und Antworten bleiben bewusst schlicht und gut lesbar.
+   ============================================================ */
+
+.faq-header {
+  margin-bottom: var(--spacing-unit);
+}
+
+.faq-header h1 {
+  font-size: 30px;
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
+  color: var(--color-text);
+}
+
+.faq-header p {
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 0.75);
+}
+
+.faq-item {
+  margin-bottom: 0;
+}
+
+.faq-item h2 {
+  font-size: 18px;
+  margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
+  color: var(--color-text);
+}
+
+.faq-item p {
+  color: var(--color-text-light);
+}
+
+.faq-item p:last-child {
+  margin-bottom: 0;
+}
+
 .project-card {
   transition: all 0.2s ease;
 
@@ -985,6 +1030,16 @@ body {
   .main-content h2 {
     font-size: 28px;
     margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  /* Die FAQ behält auch auf größeren Screens eine klare Hierarchie zwischen Titel und Fragen. */
+  .faq-header h1 {
+    font-size: 34px;
+    margin-bottom: calc(var(--spacing-unit) * 0.75);
+  }
+
+  .faq-item h2 {
+    font-size: 20px;
   }
 
   .project-content {
