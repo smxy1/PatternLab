@@ -23,11 +23,17 @@
     <aside class="sidebar">
       <!-- Branding: App-Titel -->
       <div class="sidebar-header">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Navigation öffnen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <span class="app-title">PatternLab</span>
       </div>
+      <div class="sidebar-menu-panel">
       
       <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
-      <nav>
+      <nav id="main-navigation">
         <ul>
           <li><a href="index.html">Dashboard</a></li>
           <li><a href="new-project.html">Neues Projekt</a></li>
@@ -38,6 +44,7 @@
       <footer>
         <a href="imprint.html">Impressum</a>
       </footer>
+      </div>
     </aside>
 
     <!-- ============================================================

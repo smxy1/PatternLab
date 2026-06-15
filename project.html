@@ -20,21 +20,28 @@
     <aside class="sidebar">
       <!-- App-Name in der Sidebar. -->
       <div class="sidebar-header">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Navigation öffnen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <span class="app-title">PatternLab</span>
       </div>
       
       <!-- Hauptnavigation zwischen Dashboard und Projektformular. -->
-      <nav>
-        <ul>
-          <li><a href="index.html">Dashboard</a></li>
-          <li><a href="new-project.html">Neues Projekt</a></li>
-        </ul>
-      </nav>
-      
-      <!-- Link zum Impressum. -->
-      <footer>
-        <a href="imprint.html">Impressum</a>
-      </footer>
+      <div class="sidebar-menu-panel">
+        <nav id="main-navigation">
+          <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="new-project.html">Neues Projekt</a></li>
+          </ul>
+        </nav>
+        
+        <!-- Link zum Impressum. -->
+        <footer>
+          <a href="imprint.html">Impressum</a>
+        </footer>
+      </div>
     </aside>
 
     <!-- ============================================================

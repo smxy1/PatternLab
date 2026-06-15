@@ -6,6 +6,37 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectsContainer = document.querySelector('.projects');
   const projectSearch = document.getElementById('project-search');
   const categoryFilter = document.getElementById('category-filter');
+  const sidebar = document.querySelector('.sidebar');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const filterToggle = document.querySelector('.filter-toggle');
+  const dashboardFilters = document.getElementById('dashboard-filters');
+
+  // Mobile Navigation ein- und ausklappen.
+  if (sidebar && menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      const menuIsOpen = sidebar.classList.toggle('is-open');
+
+      menuToggle.setAttribute('aria-expanded', String(menuIsOpen));
+      menuToggle.setAttribute('aria-label', menuIsOpen ? 'Navigation schließen' : 'Navigation öffnen');
+    });
+
+    sidebar.querySelectorAll('nav a, footer a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        sidebar.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Navigation öffnen');
+      });
+    });
+  }
+
+  // Suche und Kategoriefilter bleiben auf kleinen Bildschirmen platzsparend einklappbar.
+  if (filterToggle && dashboardFilters) {
+    filterToggle.addEventListener('click', function() {
+      const filtersAreOpen = dashboardFilters.classList.toggle('is-open');
+
+      filterToggle.setAttribute('aria-expanded', String(filtersAreOpen));
+    });
+  }
 
   // Projekte aus dem Browser laden. Wenn noch nichts gespeichert ist, startet die App mit einer leeren Liste.
   let allProjects = JSON.parse(localStorage.getItem('projects')) || [];

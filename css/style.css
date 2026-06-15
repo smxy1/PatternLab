@@ -58,13 +58,13 @@ body {
 /* ============================================================
    HAUPTLAYOUT
    ============================================================
-   Sidebar und Hauptbereich liegen nebeneinander.
+   Mobile-first: Navigation und Inhalt stehen zuerst untereinander.
    ============================================================ */
 
 .container {
   display: flex;
 
-  flex-direction: row;
+  flex-direction: column;
 
   min-height: 100vh;
 }
@@ -76,13 +76,16 @@ body {
    ============================================================ */
 
 .sidebar {
-  width: var(--sidebar-width);
+  width: 100%;
+
+  /* Der mobile Kopf dient als Anker für das rechts ausgerichtete Pop-up-Menü. */
+  position: relative;
 
   background-color: var(--color-surface);
 
-  padding: var(--spacing-unit) calc(var(--spacing-unit) * 0.75); /* Abstand wird aus der Basis-Einheit berechnet. */
+  padding: calc(var(--spacing-unit) * 0.5);
 
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
   flex-shrink: 0;
 
@@ -97,15 +100,84 @@ body {
   margin-bottom: var(--spacing-unit);
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--spacing-unit) * 0.75);
+}
+
+/* Mobile Menü-Schaltfläche: rechts oben als Drei-Punkte-Button. */
+.menu-toggle {
+  width: 36px;
+  height: 36px;
+  order: 2;
+  margin-left: auto;
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 4px;
+  height: 4px;
+
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  border-color: var(--color-accent);
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
 .sidebar h1,
 .sidebar .app-title {
   display: block;
   font-weight: 600;
   font-size: 20px;
 
-  margin: 0 0 var(--spacing-unit) 0;
+  margin: 0;
+  order: 1;
 
   color: var(--color-accent);
+}
+
+.sidebar-menu-panel {
+  display: none;
+}
+
+/* Mobile Pop-up-Menü: erscheint gesammelt rechts unter dem Kopfbereich. */
+.sidebar.is-open .sidebar-menu-panel {
+  display: block;
+}
+
+/* Das Menü sitzt als kompakte Karte direkt unter dem Button am rechten Rand. */
+.sidebar.is-open .sidebar-menu-panel {
+  width: min(220px, calc(100vw - var(--spacing-unit)));
+  margin: calc(var(--spacing-unit) * 0.35) 0 0 auto;
+  padding: calc(var(--spacing-unit) * 0.5);
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.sidebar-menu-panel nav {
+  display: block;
 }
 
 .sidebar nav ul {
@@ -115,7 +187,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-unit);
+  gap: calc(var(--spacing-unit) * 0.75);
 }
 
 .sidebar nav a {
@@ -134,8 +206,8 @@ body {
 }
 
 .sidebar footer {
-  margin-top: auto;
-  padding-top: var(--spacing-unit);
+  margin-top: calc(var(--spacing-unit) * 0.5);
+  padding-top: calc(var(--spacing-unit) * 0.5);
 
   border-top: 1px solid var(--color-border);
 }
@@ -162,18 +234,19 @@ body {
 .main-content {
   flex: 1;
 
-  padding: calc(var(--spacing-unit) * 2);
+  /* Mobile bekommt bewusst weniger Außenabstand, damit Inhalt und PDF mehr Platz haben. */
+  padding: calc(var(--spacing-unit) * 0.5);
 
-  max-width: 1200px;
+  max-width: 100%;
   width: 100%;
 }
 
 .main-content h1,
 .main-content h2 {
   font-weight: 600;
-  font-size: 28px;
+  font-size: 24px;
 
-  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
+  margin: 0 0 var(--spacing-unit) 0;
 
   color: var(--color-text);
 }
@@ -181,9 +254,10 @@ body {
 .main-content section {
   background-color: var(--color-surface);
 
-  padding: var(--spacing-unit);
+  /* Karten und Inhaltsboxen rücken mobil enger zusammen. */
+  padding: calc(var(--spacing-unit) * 0.5);
 
-  margin-bottom: var(--spacing-unit);
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
 
   border-radius: var(--radius-sm);
 
@@ -245,7 +319,7 @@ body {
 .project-card,
 .project-header {
   background-color: var(--color-surface);
-  padding: var(--spacing-unit);
+  padding: calc(var(--spacing-unit) * 0.5);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
 }
@@ -274,7 +348,8 @@ body {
 
   padding: 0;
 
-  margin-bottom: calc(var(--spacing-unit) * 2);
+  /* Die Hauptaktion bleibt sichtbar, wirkt auf Mobile aber kompakter. */
+  margin-bottom: calc(var(--spacing-unit) * 0.75);
 
   border-radius: 0;
   box-shadow: none;
@@ -284,7 +359,7 @@ body {
   display: block;
   width: 100%;
 
-  padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
+  padding: calc(var(--spacing-unit) * 0.6) var(--spacing-unit);
 
   font-weight: 600;
   font-size: 16px;
@@ -298,6 +373,7 @@ body {
 .project-card button,
 .checklist-input-area button,
 .btn-secondary,
+.filter-toggle,
 .add-checklist-item,
 .delete-last-checklist-item,
 .counter-btn,
@@ -316,7 +392,8 @@ body {
   color: var(--color-accent);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.filter-toggle:hover {
   background-color: var(--color-accent);
   color: var(--color-surface);
 }
@@ -336,10 +413,31 @@ body {
   box-shadow: var(--shadow-hover);
 }
 
+/* Auf Mobile spart der Dashboard-Filter Platz und wird erst per Button geöffnet. */
 .dashboard-filters {
+  display: none;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 0.75);
+  margin-bottom: var(--spacing-unit);
+}
+
+.dashboard-filters.is-open {
   display: flex;
-  gap: var(--spacing-unit);
-  margin-bottom: calc(var(--spacing-unit) * 1.5);
+}
+
+.filter-toggle {
+  /* Der Toggle ersetzt mobil die immer sichtbare Filterleiste. */
+  width: 100%;
+  margin-bottom: calc(var(--spacing-unit) * 0.75);
+  padding: calc(var(--spacing-unit) * 0.6) var(--spacing-unit);
+
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 /* Gemeinsame Feldbasis: Suche, Formularfelder, Checkliste und Notizen sehen gleich aus. */
@@ -381,7 +479,8 @@ body {
 .form-group select:focus,
 .checklist-text:focus,
 .checklist-input-area input:focus,
-.notes:focus {
+.notes:focus,
+.filter-toggle:focus {
   outline: none;
   border-color: var(--color-accent);
   box-shadow: var(--focus-ring);
@@ -395,11 +494,11 @@ body {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 
-  gap: calc(var(--spacing-unit) * 1.5);
+  gap: var(--spacing-unit);
 
-  margin-bottom: calc(var(--spacing-unit) * 2);
+  margin-bottom: var(--spacing-unit);
 }
 
 .project-card {
@@ -583,9 +682,10 @@ body {
 
 .project-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
-  gap: calc(var(--spacing-unit) * 2);
+  /* Mobile stapelt PDF und Projektdaten enger untereinander. */
+  gap: calc(var(--spacing-unit) * 0.5);
 }
 
 /* ============================================================
@@ -624,19 +724,21 @@ body {
 
   border-radius: var(--radius-sm);
 
-  padding: var(--spacing-unit);
+  /* Wenig Innenabstand gibt dem eingebetteten PDF mehr nutzbare Breite. */
+  padding: calc(var(--spacing-unit) * 0.25);
 }
 
+/* Auf Mobile bekommt die PDF-Anzeige Vorrang vor Kartenabstand, damit mehr Inhalt sichtbar ist. */
 .pdf-placeholder embed {
   width: 100%;
-  height: 100%;
+  min-height: 70vh;
 }
 
 .pdf-placeholder p {
   font-size: 14px;
   color: var(--color-text-light);
   text-align: center;
-  margin: var(--spacing-unit);
+  margin: calc(var(--spacing-unit) * 0.5);
 }
 
 /* ============================================================
@@ -754,7 +856,7 @@ body {
   padding: 0;
 
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 1fr;
   column-gap: var(--spacing-unit);
   row-gap: calc(var(--spacing-unit) * 0.5);
   align-items: start;
@@ -849,12 +951,161 @@ body {
   .edit-project-link,
   .delete-project-button {
     /* Bearbeiten und Löschen nutzen .btn-secondary und verhalten sich deshalb wie Buttons. */
-    display: inline-block;
-    margin-left: var(--spacing-unit);
+    display: block;
+    width: 100%;
+    margin: var(--spacing-unit) 0 0 0;
     padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
     font-size: 14px;
     line-height: 1.5;
+    text-align: center;
     text-decoration: none;
     appearance: none;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================
+   Ab Tablet und Desktop wird der vorhandene Desktop-Look schrittweise aktiviert.
+   ============================================================ */
+
+@media (min-width: 768px) {
+  /* Ab Tablet werden Abstände und Filterdarstellung wieder großzügiger. */
+  .main-content {
+    padding: calc(var(--spacing-unit) * 1.5);
+  }
+
+  .main-content section,
+  .project-card,
+  .project-header {
+    padding: var(--spacing-unit);
+  }
+
+  .main-content h1,
+  .main-content h2 {
+    font-size: 28px;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .project-content {
+    gap: var(--spacing-unit);
+  }
+
+  .pdf-placeholder {
+    padding: var(--spacing-unit);
+  }
+
+  .pdf-placeholder embed {
+    min-height: 360px;
+  }
+
+  .cta-section {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .cta-section .cta-button {
+    padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
+  }
+
+  .filter-toggle {
+    display: none;
+  }
+
+  .dashboard-filters {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-unit);
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--spacing-unit) * 1.5);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .project-data-section dl {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .project-footer {
+    text-align: center;
+
+    .edit-project-link,
+    .delete-project-button {
+      display: inline-block;
+      width: auto;
+      margin: 0 0 0 var(--spacing-unit);
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Ab Desktop kehrt die Seite zum klassischen Sidebar-Layout zurück. */
+  .container {
+    flex-direction: row;
+  }
+
+  .sidebar-header {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .sidebar {
+    width: var(--sidebar-width);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .sidebar-menu-panel {
+    /* Das mobile Pop-up wird hier wieder zum normalen Sidebar-Inhalt. */
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .sidebar nav,
+  .sidebar footer {
+    display: block;
+  }
+
+  .sidebar h1,
+  .sidebar .app-title {
+    margin: 0 0 var(--spacing-unit) 0;
+  }
+
+  .sidebar nav ul {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: var(--spacing-unit);
+  }
+
+  .sidebar footer {
+    margin-top: auto;
+    padding-top: var(--spacing-unit);
+  }
+
+  .main-content {
+    padding: calc(var(--spacing-unit) * 2);
+    max-width: 1200px;
+  }
+
+  .project-content {
+    flex-direction: row;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+
+  .pdf-placeholder embed {
+    min-height: 0;
+    height: 100%;
   }
 }
