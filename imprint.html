@@ -6,22 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Impressum und rechtliche Informationen von PatternLab - Webanwendung für Häkel- und Strickprojekte">
   <title>Impressum - PatternLab</title>
-  <!-- Google Fonts: Open Sans wird von Google CDN geladen (Schriftstärken: 300, 400, 600). Garantiert web-safe Schriftart auf allen Geräten. -->
+  <!-- Open Sans wird als zentrale Schriftart der Anwendung geladen. -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Container: Umhüllt Sidebar und Main-Content für flexibles Zwei-Spalten-Layout. Wird mit CSS zu Flexbox gemacht. -->
+  <!-- Gemeinsamer Layout-Container für Sidebar und Hauptbereich. -->
   <div class="container">
     
     <!-- ============================================================
-         SIDEBAR: Vertikale Navigation und Header
-         ============================================================
-         Die Sidebar bleibt beim Scrollen sichtbar und hat eine feste Breite.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         SIDEBAR: Navigation
          ============================================================ -->
     <aside class="sidebar">
-      <!-- Branding: App-Titel -->
+      <!-- App-Name in der Sidebar. -->
       <div class="sidebar-header">
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Navigation öffnen">
           <span></span>
@@ -30,9 +27,9 @@
         </button>
         <span class="app-title">PatternLab</span>
       </div>
-      <div class="sidebar-menu-panel">
       
-      <!-- Navigation: <nav> kennzeichnet Navigationslinks semantisch. -->
+      <div class="sidebar-menu-panel">
+        <!-- Hauptnavigation zwischen Dashboard, FAQ und Projektformular. -->
         <nav id="main-navigation">
           <ul>
             <li><a href="index.html">Dashboard</a></li>
@@ -40,75 +37,47 @@
             <li><a href="new-project.html">Neues Projekt</a></li>
           </ul>
         </nav>
-      
-      <!-- Footer in der Sidebar: Impressum ist derzeit aktive Seite, daher kein Link nötig. -->
-      <footer>
-        <a href="imprint.html">Impressum</a>
-      </footer>
+        
+        <!-- Link zum Impressum. -->
+        <footer>
+          <a href="imprint.html">Impressum</a>
+        </footer>
       </div>
     </aside>
 
     <!-- ============================================================
-         HAUPTBEREICH: Impressum-Seite
-         ============================================================
-         Der Hauptbereich nimmt nach der Sidebar den verbleibenden Platz ein.
-         Layout wird durch CSS-Flexbox auf dem Container gesteuert.
+         HAUPTBEREICH: Impressum
          ============================================================ -->
     <main class="main-content">
-      <!-- Impressum: Gruppiert alle rechtlichen Informationen. -->
-      <h1>Impressum</h1>
-        
-        <!-- Angaben zum Betreiber: <address> ist semantisch korrekt für Kontaktinformationen und Anschriftenangaben. -->
-        <section>
-          <h2>Betreiber der Website</h2>
-          <address>
-            PatternLab<br>
-            Musterstraße 123<br>
-            12345 Musterstadt<br>
-            Deutschland<br>
-            <br>
-            E-Mail: <a href="mailto:info@patternlab.de">info@patternlab.at</a><br>
-            Telefon: <a href="tel:+491234567890">+49 123 45678900</a>
-          </address>
-        </section>
+      <!-- Das Impressum nutzt denselben ruhigen Inhaltsrahmen wie die FAQ-Seite. -->
+      <section class="imprint-list" aria-label="Impressum und rechtliche Informationen">
+        <header class="imprint-header">
+          <h1>Impressum</h1>
+          <p>PatternLab wurde im Rahmen einer Lehrveranstaltung an der Universität Graz entwickelt und dient ausschließlich zu Lernzwecken.</p>
+        </header>
 
-        <!-- Verantwortliche Person: Pflichtangabe (z. B. für Hochschule, Projekt, Private Person). -->
-        <section>
-          <h2>Verantwortliche Person</h2>
+        <article class="imprint-item">
+          <h2>Projektverantwortliche</h2>
           <p>
-            <strong>Name:</strong> Sarah-May Lang<br>
-            <strong>Funktion:</strong> Projektentwickler:in<br>
-            <strong>Hochschule:</strong> Universität Graz
+            Sarah-May Lang<br>
+            Universität Graz
           </p>
-        </section>
+        </article>
 
-        <!-- Rechtliche Hinweise: Allgemeine Haftungsausschlüsse und Nutzungsbedingungen. -->
-        <section>
-          <h2>Haftungsausschluss</h2>
-          <p>
-            Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Der Betreiber übernimmt jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte. Die Nutzung dieser Website erfolgt auf eigenes Risiko.
-          </p>
-        </section>
-
-        <!-- Datenschutz: Verweis auf Datenschutzerklärung (wird später möglicherweise ausgelagert). -->
-        <section>
+        <article class="imprint-item">
           <h2>Datenschutz</h2>
-          <p>
-            Informationen zur Verarbeitung personenbezogener Daten finden Sie in unserer Datenschutzerklärung. Diese Website speichert Projektdaten lokal im Browser (LocalStorage). Es erfolgt keine automatische Übertragung von Daten an externe Server.
-          </p>
-        </section>
+          <p>Aktuell werden Projektdaten ausschließlich lokal im Browser des verwendeten Geräts (LocalStorage) gespeichert. Es erfolgt keine automatische Übertragung von Daten an externe Server.</p>
+        </article>
 
-        <!-- Urheberrecht: Hinweis auf Urheberrechte und Lizenzierung. -->
-        <section>
-          <h2>Urheberrecht</h2>
-          <p>
-            Die Inhalte und die Gestaltung dieser Website sind urheberrechtlich geschützt. Eine Vervielfältigung oder Weiterverbreitung ohne ausdrückliche Genehmigung ist nicht gestattet.
-          </p>
-        </section>
+        <article class="imprint-item">
+          <h2>Haftungsausschluss</h2>
+          <p>Dieses Projekt wurde zu Lernzwecken entwickelt. Es wird keine Gewähr für die Richtigkeit, Vollständigkeit oder Aktualität der bereitgestellten Informationen übernommen.</p>
+        </article>
+      </section>
     </main>
   </div>
 
-  <!-- JavaScript: wird später im Semester erklärt -->
+  <!-- Gemeinsame JavaScript-Datei für Navigation und Projektlogik. -->
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -546,6 +546,53 @@ body {
   margin-bottom: 0;
 }
 
+/* ============================================================
+   IMPRESSUM
+   ============================================================
+   Das Impressum nutzt denselben ruhigen Lesefluss wie die FAQ.
+   ============================================================ */
+
+.imprint-header {
+  margin-bottom: var(--spacing-unit);
+}
+
+.imprint-header h1 {
+  font-size: 30px;
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
+  color: var(--color-text);
+}
+
+.imprint-header p {
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.imprint-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 0.75);
+}
+
+.imprint-item {
+  margin-bottom: 0;
+}
+
+.imprint-item h2 {
+  font-size: 18px;
+  margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
+  color: var(--color-text);
+}
+
+.imprint-item p,
+.imprint-item address {
+  color: var(--color-text-light);
+}
+
+.imprint-item p:last-child,
+.imprint-item address:last-child {
+  margin-bottom: 0;
+}
+
 .project-card {
   transition: all 0.2s ease;
 
@@ -1039,6 +1086,15 @@ body {
   }
 
   .faq-item h2 {
+    font-size: 20px;
+  }
+
+  .imprint-header h1 {
+    font-size: 34px;
+    margin-bottom: calc(var(--spacing-unit) * 0.75);
+  }
+
+  .imprint-item h2 {
     font-size: 20px;
   }
 
