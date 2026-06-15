@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p><strong>Kategorie:</strong> ${getCategoryName(project.category)}</p>
             <p><strong>Fortschritt:</strong> ${calculateProgress(project)}%</p>
             <!-- data-project-id speichert die Projekt-ID direkt am Button. -->
-            <button class="open-project-btn" data-project-id="${project.id}">Öffnen</button>
+            <button class="btn-secondary open-project-btn" data-project-id="${project.id}">Öffnen</button>
           </article>
         `;
       });
