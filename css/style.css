@@ -9,8 +9,8 @@
   /* Farbpalette: Diese Werte werden auf allen Seiten wiederverwendet. */
   --color-bg: #f5f1ed;        /* Creme / Off-White (Hintergrund) */
   --color-surface: #ffffff;   /* Weiß (Flächen, Boxen) */
-  --color-accent: #8b9f7f;    /* Salbeigrün (Akzente, Links) */
-  --color-accent-dark: #6d7f61; /* Dunkleres Grün für Hover-Zustände */
+  --color-accent: #8b9f7f;    /* Salbeigrün für Flächen, Konturen und weiche Akzente. */
+  --color-accent-dark: #6d7f61; /* Dunkleres Grün für Text auf hellen Hintergründen und Hover-Zustände. */
   --color-text: #3a3a3a;      /* Dunkelgrau (Fließtext) */
   --color-text-light: #666666; /* Helleres Grau (sekundär) */
   --color-border: #ddd;       /* Standard-Rahmen */
@@ -111,6 +111,26 @@ body.menu-open {
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
+/* Logo und App-Name bilden gemeinsam die Markenfläche links im Sidebar-Kopf. */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 0.5);
+  order: 1;
+  min-width: 0;
+}
+
+.sidebar-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  /* Das Logo sitzt minimal höher, damit es optisch mit dem Schriftzug abschließt. */
+  transform: translateY(-4px);
+}
+
 /* Mobile Menü-Schaltfläche: rechts oben als Hamburger-Icon. */
 .menu-toggle {
   width: 36px;
@@ -154,9 +174,9 @@ body.menu-open {
   font-size: 20px;
 
   margin: 0;
-  order: 1;
 
-  color: var(--color-accent);
+  /* Text auf weißem Hintergrund nutzt das dunklere Grün für besseren Kontrast. */
+  color: var(--color-accent-dark);
 }
 
 .sidebar-menu-panel {
@@ -212,7 +232,7 @@ body.menu-open {
 }
 
 .sidebar nav a {
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 
   text-decoration: none;
 
@@ -244,7 +264,7 @@ body.menu-open {
 }
 
 .sidebar footer a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
   text-decoration: underline;
 }
 
@@ -312,7 +332,7 @@ body.menu-open {
 }
 
 .main-content address a {
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
   text-decoration: none;
 
   transition: color 0.2s ease;
@@ -412,7 +432,7 @@ body.menu-open {
 .btn-secondary {
   background-color: transparent;
   border: 1px solid var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 }
 
 .btn-secondary:hover,
@@ -456,7 +476,7 @@ body.menu-open {
 
   background-color: transparent;
   border: 1px solid var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
@@ -698,7 +718,7 @@ body.menu-open {
 
   padding: 0 0 calc(var(--spacing-unit) * 0.5) 0;
 
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 
   border-bottom: 2px solid var(--color-accent);
 
@@ -787,7 +807,7 @@ body.menu-open {
 
 .progress-value {
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 }
 
 /* ============================================================
@@ -1021,7 +1041,7 @@ body.menu-open {
 
 #counter-value,
 #row-counter-value {
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 }
 
 .counter-buttons {
@@ -1062,7 +1082,7 @@ body.menu-open {
 
   > a:not(.btn-secondary) {
     /* Der Zurück-Link bleibt ein normaler Textlink und kein Button. */
-    color: var(--color-accent);
+    color: var(--color-accent-dark);
     text-decoration: none;
     font-size: 14px;
     transition: color 0.2s ease;
