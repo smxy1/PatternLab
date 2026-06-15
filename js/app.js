@@ -8,24 +8,53 @@ document.addEventListener('DOMContentLoaded', function() {
   const categoryFilter = document.getElementById('category-filter');
   const sidebar = document.querySelector('.sidebar');
   const menuToggle = document.querySelector('.menu-toggle');
+  const sidebarMenuPanel = document.querySelector('.sidebar-menu-panel');
   const filterToggle = document.querySelector('.filter-toggle');
   const dashboardFilters = document.getElementById('dashboard-filters');
+
+  function setMenuState(menuIsOpen) {
+    if (!sidebar || !menuToggle) {
+      return;
+    }
+
+    sidebar.classList.toggle('is-open', menuIsOpen);
+    document.body.classList.toggle('menu-open', menuIsOpen);
+    menuToggle.setAttribute('aria-expanded', String(menuIsOpen));
+    menuToggle.setAttribute('aria-label', menuIsOpen ? 'Navigation schließen' : 'Navigation öffnen');
+  }
 
   // Mobile Navigation ein- und ausklappen.
   if (sidebar && menuToggle) {
     menuToggle.addEventListener('click', function() {
-      const menuIsOpen = sidebar.classList.toggle('is-open');
-
-      menuToggle.setAttribute('aria-expanded', String(menuIsOpen));
-      menuToggle.setAttribute('aria-label', menuIsOpen ? 'Navigation schließen' : 'Navigation öffnen');
+      const menuIsOpen = !sidebar.classList.contains('is-open');
+      setMenuState(menuIsOpen);
     });
 
     sidebar.querySelectorAll('nav a, footer a').forEach(function(link) {
       link.addEventListener('click', function() {
-        sidebar.classList.remove('is-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Navigation öffnen');
+        setMenuState(false);
       });
+    });
+  }
+
+  if (sidebar && menuToggle) {
+    document.addEventListener('click', function(event) {
+      if (!sidebar.classList.contains('is-open')) {
+        return;
+      }
+
+      const clickInsideMenu = sidebarMenuPanel && sidebarMenuPanel.contains(event.target);
+      const clickOnToggle = menuToggle.contains(event.target);
+
+      if (!clickInsideMenu && !clickOnToggle) {
+        setMenuState(false);
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        setMenuState(false);
+      }
     });
   }
 

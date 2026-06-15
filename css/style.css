@@ -55,6 +55,10 @@ body {
   color: var(--color-text);
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 /* ============================================================
    HAUPTLAYOUT
    ============================================================
@@ -107,7 +111,7 @@ body {
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
-/* Mobile Menü-Schaltfläche: rechts oben als Drei-Punkte-Button. */
+/* Mobile Menü-Schaltfläche: rechts oben als Hamburger-Icon. */
 .menu-toggle {
   width: 36px;
   height: 36px;
@@ -115,11 +119,11 @@ body {
   margin-left: auto;
 
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  gap: 3px;
+  gap: 4px;
 
   background-color: transparent;
   border: 1px solid var(--color-border);
@@ -129,11 +133,11 @@ body {
 }
 
 .menu-toggle span {
-  width: 4px;
-  height: 4px;
+  width: 18px;
+  height: 2px;
 
   background-color: var(--color-accent);
-  border-radius: 50%;
+  border-radius: 999px;
 }
 
 .menu-toggle:hover,
@@ -164,10 +168,15 @@ body {
   display: block;
 }
 
-/* Das Menü sitzt als kompakte Karte direkt unter dem Button am rechten Rand. */
+/* Das Menü liegt mobil als festes Overlay über dem Seiteninhalt. */
 .sidebar.is-open .sidebar-menu-panel {
-  width: min(220px, calc(100vw - var(--spacing-unit)));
-  margin: calc(var(--spacing-unit) * 0.35) 0 0 auto;
+  position: fixed;
+  top: calc(var(--spacing-unit) * 3.5);
+  right: calc(var(--spacing-unit) * 0.5);
+  z-index: 1001;
+
+  width: min(240px, calc(100vw - var(--spacing-unit)));
+  margin: 0;
   padding: calc(var(--spacing-unit) * 0.5);
 
   background-color: var(--color-surface);
@@ -176,8 +185,20 @@ body {
   box-shadow: var(--shadow-card);
 }
 
+/* Der halbtransparente Hintergrund trennt das geöffnete Menü klar vom Rest der Seite. */
+.sidebar.is-open::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  background-color: rgba(58, 58, 58, 0.22);
+}
+
 .sidebar-menu-panel nav {
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .sidebar nav ul {
@@ -210,6 +231,8 @@ body {
   padding-top: calc(var(--spacing-unit) * 0.5);
 
   border-top: 1px solid var(--color-border);
+  position: relative;
+  z-index: 1;
 }
 
 .sidebar footer a {
@@ -736,7 +759,8 @@ body {
    ============================================================ */
 
 .project-header {
-  margin-bottom: calc(var(--spacing-unit) * 2);
+  /* Mobile nutzt denselben Grundabstand wie die nachfolgenden Projektboxen. */
+  margin-bottom: calc(var(--spacing-unit) * 0.75);
 }
 
 .project-header h2 {
@@ -776,8 +800,8 @@ body {
   display: flex;
   flex-direction: column;
 
-  /* Mobile stapelt PDF und Projektdaten enger untereinander. */
-  gap: calc(var(--spacing-unit) * 0.5);
+  /* Zwischen linker und rechter Projektsäule gilt mobil derselbe Takt wie zwischen den Boxen. */
+  gap: calc(var(--spacing-unit) * 0.75);
 }
 
 /* ============================================================
@@ -845,7 +869,8 @@ body {
   display: flex;
   flex-direction: column;
 
-  gap: var(--spacing-unit);
+  /* Checkliste, Notizen, Projektdaten und Zähler teilen sich mobil einen einheitlichen Abstand. */
+  gap: calc(var(--spacing-unit) * 0.75);
 
   background-color: transparent;
 }
@@ -1027,6 +1052,14 @@ body {
   text-align: center;
   border-top: 1px solid var(--color-border-light);
 
+  .project-footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: calc(var(--spacing-unit) * 0.75);
+    margin-bottom: var(--spacing-unit);
+  }
+
   > a:not(.btn-secondary) {
     /* Der Zurück-Link bleibt ein normaler Textlink und kein Button. */
     color: var(--color-accent);
@@ -1043,9 +1076,9 @@ body {
   .edit-project-link,
   .delete-project-button {
     /* Bearbeiten und Löschen nutzen .btn-secondary und verhalten sich deshalb wie Buttons. */
-    display: block;
-    width: 100%;
-    margin: var(--spacing-unit) 0 0 0;
+    display: inline-block;
+    width: auto;
+    margin: 0;
     padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
     font-size: 14px;
     line-height: 1.5;
@@ -1142,11 +1175,8 @@ body {
   .project-footer {
     text-align: center;
 
-    .edit-project-link,
-    .delete-project-button {
-      display: inline-block;
-      width: auto;
-      margin: 0 0 0 var(--spacing-unit);
+    .project-footer-actions {
+      gap: var(--spacing-unit);
     }
   }
 }
