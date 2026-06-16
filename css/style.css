@@ -16,6 +16,7 @@
   --color-border: #ddd;       /* Standard-Rahmen */
   --color-border-light: #eee; /* Dezenter Rahmen */
   --color-muted-bg: #f9f9f9;  /* Heller Hintergrund innerhalb von Boxen */
+  --font-scale: 1;
 
   /* Layout- und UI-Werte: Einheitliche Maße für Abstände, Rundungen und Schatten. */
   --sidebar-width: 250px;     /* Feste Breite der Sidebar. */
@@ -47,7 +48,7 @@ html, body {
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400; /* Normale Schriftstärke für Fließtext. */
-  font-size: 16px;
+  font-size: calc(1rem * var(--font-scale));
   line-height: 1.5;
 
   background-color: var(--color-bg);
@@ -66,6 +67,18 @@ body.high-contrast {
   --color-border-light: #777777;
   --color-muted-bg: #f1f1f1;
   --focus-ring: 0 0 0 3px rgba(35, 65, 31, 0.35);
+}
+
+body.text-size-125 {
+  --font-scale: 1.25;
+}
+
+body.text-size-150 {
+  --font-scale: 1.5;
+}
+
+body.text-size-200 {
+  --font-scale: 2;
 }
 
 body.menu-open {
@@ -196,7 +209,7 @@ body.menu-open {
 .sidebar .app-title {
   display: block;
   font-weight: 600;
-  font-size: 20px;
+  font-size: calc(1.25rem * var(--font-scale));
 
   margin: 0;
 
@@ -282,7 +295,7 @@ body.menu-open {
 .sidebar footer a {
   color: var(--color-text-light);
   text-decoration: none;
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
 
   transition: color 0.2s ease;
 }
@@ -292,10 +305,17 @@ body.menu-open {
   text-decoration: underline;
 }
 
-.contrast-toggle {
+.accessibility-controls {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 0.5);
+  margin-top: var(--spacing-unit);
+}
+
+.contrast-toggle,
+.text-size-toggle {
   width: 32px;
   height: 32px;
-  margin-top: var(--spacing-unit);
   padding: 0;
 
   display: inline-flex;
@@ -310,12 +330,23 @@ body.menu-open {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.text-size-toggle {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
 .contrast-toggle span {
   display: none;
 }
 
 .contrast-toggle:hover,
-.contrast-toggle:focus {
+.contrast-toggle:focus,
+.text-size-toggle:hover,
+.text-size-toggle:focus {
   border-color: var(--color-accent);
   outline: none;
   box-shadow: var(--focus-ring);
@@ -348,7 +379,7 @@ body.high-contrast .contrast-toggle {
 .main-content h1,
 .main-content h2 {
   font-weight: 600;
-  font-size: 24px;
+  font-size: calc(1.5rem * var(--font-scale));
 
   margin: 0 0 var(--spacing-unit) 0;
 
@@ -370,7 +401,7 @@ body.high-contrast .contrast-toggle {
 
 .main-content section h3 {
   font-weight: 600;
-  font-size: 18px;
+  font-size: calc(1.125rem * var(--font-scale));
 
   margin: 0 0 var(--spacing-unit) 0;
 
@@ -466,7 +497,7 @@ body.high-contrast .contrast-toggle {
   padding: calc(var(--spacing-unit) * 0.6) var(--spacing-unit);
 
   font-weight: 600;
-  font-size: 16px;
+  font-size: calc(1rem * var(--font-scale));
 
   text-align: center;
   text-decoration: none;
@@ -541,7 +572,7 @@ body.high-contrast .contrast-toggle {
 
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
 }
 
 /* Gemeinsame Feldbasis: Suche, Formularfelder, Checkliste und Notizen sehen gleich aus. */
@@ -554,7 +585,7 @@ body.high-contrast .contrast-toggle {
 .checklist-input-area input,
 .notes {
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background-color: var(--color-surface);
@@ -616,7 +647,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .faq-header h1 {
-  font-size: 30px;
+  font-size: calc(1.875rem * var(--font-scale));
   margin-bottom: calc(var(--spacing-unit) * 0.5);
   color: var(--color-text);
 }
@@ -637,7 +668,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .faq-item h2 {
-  font-size: 18px;
+  font-size: calc(1.125rem * var(--font-scale));
   margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
   color: var(--color-text);
 }
@@ -661,7 +692,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .imprint-header h1 {
-  font-size: 30px;
+  font-size: calc(1.875rem * var(--font-scale));
   margin-bottom: calc(var(--spacing-unit) * 0.5);
   color: var(--color-text);
 }
@@ -682,7 +713,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .imprint-item h2 {
-  font-size: 18px;
+  font-size: calc(1.125rem * var(--font-scale));
   margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
   color: var(--color-text);
 }
@@ -714,7 +745,7 @@ body.high-contrast .contrast-toggle {
 .project-card h2,
 .project-card h3 {
   font-weight: 600;
-  font-size: 18px;
+  font-size: calc(1.125rem * var(--font-scale));
 
   margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
 
@@ -722,7 +753,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .project-card p {
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
 
   margin: 0;
@@ -733,7 +764,7 @@ body.high-contrast .contrast-toggle {
   padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
 
   font-weight: 500;
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
 
   margin-top: auto;
 }
@@ -750,7 +781,7 @@ body.high-contrast .contrast-toggle {
 
 .form-container h2 {
   font-weight: 600;
-  font-size: 28px;
+  font-size: calc(1.75rem * var(--font-scale));
 
   margin: 0 0 calc(var(--spacing-unit) * 2) 0;
 
@@ -776,7 +807,7 @@ body.high-contrast .contrast-toggle {
 
 .project-form legend {
   font-weight: 600;
-  font-size: 16px;
+  font-size: calc(1rem * var(--font-scale));
 
   padding: 0 0 calc(var(--spacing-unit) * 0.5) 0;
 
@@ -803,7 +834,7 @@ body.high-contrast .contrast-toggle {
 
 .form-group label {
   font-weight: 500;
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   font-family: 'Open Sans', sans-serif;
 
   color: var(--color-text);
@@ -829,7 +860,7 @@ body.high-contrast .contrast-toggle {
   padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
 
   font-weight: 600;
-  font-size: 16px;
+  font-size: calc(1rem * var(--font-scale));
 
   margin-top: var(--spacing-unit);
 }
@@ -847,7 +878,7 @@ body.high-contrast .contrast-toggle {
 
 .project-header h2 {
   font-weight: 600;
-  font-size: 28px;
+  font-size: calc(1.75rem * var(--font-scale));
 
   margin: 0 0 var(--spacing-unit) 0;
 
@@ -861,7 +892,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .project-meta p {
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
 
   margin: 0;
@@ -901,7 +932,7 @@ body.high-contrast .contrast-toggle {
 
 .pdf-section h3 {
   font-weight: 600;
-  font-size: 18px;
+  font-size: calc(1.125rem * var(--font-scale));
 
   margin: 0 0 var(--spacing-unit) 0;
 
@@ -933,7 +964,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .pdf-placeholder p {
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
   text-align: center;
   margin: calc(var(--spacing-unit) * 0.5);
@@ -959,7 +990,7 @@ body.high-contrast .contrast-toggle {
 
 .interactive-content h3 {
   font-weight: 600;
-  font-size: 16px;
+  font-size: calc(1rem * var(--font-scale));
 
   margin: 0 0 calc(var(--spacing-unit) * 0.75) 0;
 
@@ -994,7 +1025,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .checklist label {
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   cursor: pointer;
 
   margin: 0;
@@ -1018,7 +1049,7 @@ body.high-contrast .contrast-toggle {
 
 .checklist-input-area button {
   padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   font-weight: 500;
 }
 
@@ -1027,7 +1058,7 @@ body.high-contrast .contrast-toggle {
   padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
 
   font-weight: 500;
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
 
   margin-top: calc(var(--spacing-unit) * 0.5);
 }
@@ -1063,14 +1094,14 @@ body.high-contrast .contrast-toggle {
 
 .project-data-section dt {
   font-weight: 600;
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   margin: 0;
 
   color: var(--color-text);
 }
 
 .project-data-section dd {
-  font-size: 14px;
+  font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
 
   margin: 0;
@@ -1094,7 +1125,7 @@ body.high-contrast .contrast-toggle {
 }
 
 .counter-display p {
-  font-size: 18px;
+  font-size: calc(1.125rem * var(--font-scale));
   font-weight: 600;
   color: var(--color-text);
 
@@ -1116,7 +1147,7 @@ body.high-contrast .contrast-toggle {
   padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 0.75);
 
   font-weight: 500;
-  font-size: 13px;
+  font-size: calc(0.8125rem * var(--font-scale));
 
   flex: 1;
   min-width: 60px;
@@ -1146,7 +1177,7 @@ body.high-contrast .contrast-toggle {
     /* Der Zurück-Link bleibt ein normaler Textlink und kein Button. */
     color: var(--color-accent);
     text-decoration: none;
-    font-size: 14px;
+    font-size: calc(0.875rem * var(--font-scale));
     transition: color 0.2s ease;
 
     &:hover {
@@ -1162,7 +1193,7 @@ body.high-contrast .contrast-toggle {
     width: auto;
     margin: 0;
     padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
-    font-size: 14px;
+    font-size: calc(0.875rem * var(--font-scale));
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
@@ -1190,27 +1221,27 @@ body.high-contrast .contrast-toggle {
 
   .main-content h1,
   .main-content h2 {
-    font-size: 28px;
+    font-size: calc(1.75rem * var(--font-scale));
     margin-bottom: calc(var(--spacing-unit) * 2);
   }
 
   /* Die FAQ behält auch auf größeren Screens eine klare Hierarchie zwischen Titel und Fragen. */
   .faq-header h1 {
-    font-size: 34px;
+    font-size: calc(2.125rem * var(--font-scale));
     margin-bottom: calc(var(--spacing-unit) * 0.75);
   }
 
   .faq-item h2 {
-    font-size: 20px;
+    font-size: calc(1.25rem * var(--font-scale));
   }
 
   .imprint-header h1 {
-    font-size: 34px;
+    font-size: calc(2.125rem * var(--font-scale));
     margin-bottom: calc(var(--spacing-unit) * 0.75);
   }
 
   .imprint-item h2 {
-    font-size: 20px;
+    font-size: calc(1.25rem * var(--font-scale));
   }
 
   .project-content {
@@ -1332,3 +1363,4 @@ body.high-contrast .contrast-toggle {
     height: 100%;
   }
 }
+

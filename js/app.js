@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const filterToggle = document.querySelector('.filter-toggle');
   const dashboardFilters = document.getElementById('dashboard-filters');
   const contrastToggle = document.querySelector('.contrast-toggle');
+  const textSizeToggle = document.querySelector('.text-size-toggle');
+  const textSizeSteps = [100, 125, 150, 200];
 
   function setContrastState(highContrastIsActive) {
     document.body.classList.toggle('high-contrast', highContrastIsActive);
@@ -30,6 +32,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
       localStorage.setItem('highContrast', String(highContrastIsActive));
       setContrastState(highContrastIsActive);
+    });
+  }
+
+  function setTextSizeState(textSize) {
+    document.body.classList.remove('text-size-125', 'text-size-150', 'text-size-200');
+
+    if (textSize !== 100) {
+      document.body.classList.add('text-size-' + textSize);
+    }
+
+    if (textSizeToggle) {
+      textSizeToggle.setAttribute('aria-label', 'Schriftgröße erhöhen, aktuell ' + textSize + ' Prozent');
+    }
+  }
+
+  let currentTextSize = Number(localStorage.getItem('textSize')) || 100;
+
+  if (!textSizeSteps.includes(currentTextSize)) {
+    currentTextSize = 100;
+  }
+
+  setTextSizeState(currentTextSize);
+
+  if (textSizeToggle) {
+    textSizeToggle.addEventListener('click', function() {
+      const currentIndex = textSizeSteps.indexOf(currentTextSize);
+      const nextIndex = (currentIndex + 1) % textSizeSteps.length;
+
+      currentTextSize = textSizeSteps[nextIndex];
+      localStorage.setItem('textSize', String(currentTextSize));
+      setTextSizeState(currentTextSize);
     });
   }
 
