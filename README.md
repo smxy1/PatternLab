@@ -1,6 +1,4 @@
-# PatternLab
-
-![PatternLab Logo](design/logo.png)
+# <img src="design/logo.png" alt="PatternLab Logo" width="32"> PatternLab
 
 ## Überblick
 
