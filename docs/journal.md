@@ -1,3 +1,9 @@
+# Journal
+
+Dieses Journal dokumentiert die Planung, Konzeption und Umsetzung des Projekts PatternLab. Neben den einzelnen Entwicklungsschritten werden auch technische Entscheidungen, aufgetretene Probleme und deren Lösungen festgehalten.
+
+---
+
 ## bis 20.03.2026
 Projektidee „PatternLab“ entwickelt: Webanwendung zur Organisation von Häkel- und Strickprojekten mit Fokus auf Anleitungen, Notizen, Fortschritt und integriertem Maschenzähler.
 
@@ -59,38 +65,58 @@ GitHub-Repository erstellt und grundlegende Dateienstruktur angelegt.
 ## 08.04.2026
 Dokumentation erstellt (requirements.md, data.md, visual-design.md) und auf GitHub committed.  
 
+---
+
 ## 09.04.2026
 HTML-Struktur erstellen (imprint, index, new-project, project), auf GitHub committed und parallel das Tutorial dazu erstellt (Basics als .md und spezifisch als Kommentare).
+
+---
 
 ## 10.04.2026
 HTML-Struktur finalisiert und CSS-Layout für alle Seiten umgesetzt. README erstellt und Design-Mockups ins Repository integriert.
 
+---
+
 ## 12.04.2026
 Erste JavaScript-Interaktion umgesetzt.
+
+---
 
 ## 13.04.2026
 Tutorial zu HTML- und CSS- Basics erstellt sowie bestehenden Code mit erklärenden Kommentaren ergänzt, Open Sans über Google Fonts eingebunden und weitere Implementierungsschritte geplant.
 
+---
+
 ## 14.04.2026
 Zweispaltiges Layout der Projektseite überarbeitet.
 Struktur für rechte Interaktionsspalte mit Projekt-Tools (z. B. Maschenzähler / Checkpoints) vorbereitet.
+
+---
 
 ## 16.04.2026
 
 Kommentarstruktur für HTML-, CSS- und JavaScript-Dateien überarbeitet.  
 Festgelegt, dass Kommentare kurz, verständlich und anfängerfreundlich formuliert werden sollen.
 
+---
+
 ## 27.04.2026
 
 Konzept für Assignment 2 (JavaScript-Erweiterung) ausgearbeitet.Geplante Funktionen definiert: Projekt per Formular anlegen und als Karte anzeigen, dynamische Checkliste, automatische Fortschrittsanzeige sowie Maschenzähler mit mehreren Buttons.
+
+---
 
 ## bis 28.04.2026
 
 Konzept für Assignment 2 (JavaScript-Erweiterung) ausgearbeitet.  
 Geplante Funktionen definiert: Projekte per Formular anlegen und anzeigen, Checkliste, Fortschrittsanzeige sowie Maschen- und Reihenzähler.
 
+---
+
 ## 28.04.2026
 
 Feedback zum Konzept erhalten und Umfang der Anwendung reduziert, damit die JavaScript-Erweiterung den Anforderungen des Assignments entspricht.
+
+---
 
 ## 
