@@ -39,6 +39,16 @@ https://smxy1.github.io/PatternLab/
 
 ---
 
+## Lizenz
+
+Dieses Projekt steht unter der GNU General Public License v3.0 (GPL-3.0). Weitere Informationen befinden sich in der Datei `LICENSE.md`.
+
+### Begründung der Lizenzwahl
+
+Für PatternLab wurde die GNU General Public License v3.0 gewählt. Die Lizenz erlaubt die freie Nutzung, Weitergabe und Anpassung des Quellcodes. Gleichzeitig stellt sie sicher, dass veränderte oder weiterentwickelte Versionen des Projekts ebenfalls unter derselben Lizenz veröffentlicht werden müssen. Dadurch soll gewährleistet werden, dass PatternLab und seine Weiterentwicklungen langfristig frei zugänglich und Open Source bleiben.
+
+---
+
 ## Language Support
 
 PatternLab is currently available in German. We are working on an English version of the application and documentation.
