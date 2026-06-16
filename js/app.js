@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
       filteredProjects.forEach(function(project) {
         projectsContainer.innerHTML += `
           <article class="project-card">
-            <h3>${project.title}</h3>
+            <h2>${project.title}</h2>
             <p><strong>Beschreibung:</strong> ${project.description || 'Keine Beschreibung vorhanden'}</p>
             <p><strong>Kategorie:</strong> ${getCategoryName(project.category)}</p>
             <p><strong>Fortschritt:</strong> ${calculateProgress(project)}%</p>
