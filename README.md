@@ -1,5 +1,7 @@
 # PatternLab
 
+![PatternLab Logo](design/logo.png)
+
 ## Überblick
 
 PatternLab ist eine Webanwendung zur Organisation von Häkel-, Strick- und anderen Handarbeitsprojekten. Verwalte Anleitungen, halte Notizen fest und behalte deinen Fortschritt im Blick. Alles an einem Ort. So lassen sich auch mehrere Projekte gleichzeitig einfach organisieren und verfolgen.

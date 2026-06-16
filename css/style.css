@@ -178,8 +178,8 @@ body.menu-open {
   background-color: var(--color-surface);
   border-radius: 50%;
   flex-shrink: 0;
-  /* Das Logo sitzt minimal höher, damit es optisch mit dem Schriftzug abschließt. */
-  transform: translateY(-4px);
+  /* Das Logo sitzt minimal tiefer, damit es optisch mittig neben dem Schriftzug steht. */
+  transform: translateY(0);
 }
 
 /* Mobile Menü-Schaltfläche: rechts oben als Hamburger-Icon. */
