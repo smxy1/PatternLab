@@ -1,38 +1,38 @@
-/* ============================================================
+﻿/* ============================================================
    FARBEN & TYPOGRAFIE
    ============================================================
    Zentrale Designwerte aus visual-design.md.
-   Wenn sich Farben, Abstände oder Rundungen ändern, passiert das zuerst hier.
+   Wenn sich Farben, AbstÃ¤nde oder Rundungen Ã¤ndern, passiert das zuerst hier.
    ============================================================ */
 
 :root {
   /* Farbpalette: Diese Werte werden auf allen Seiten wiederverwendet. */
   --color-bg: #f5f1ed;        /* Creme / Off-White (Hintergrund) */
-  --color-surface: #ffffff;   /* Weiß (Flächen, Boxen) */
-  --color-accent: #8b9f7f;    /* Salbeigrün (Akzente, Links) */
-  --color-accent-dark: #6d7f61; /* Dunkleres Grün für Hover-Zustände */
-  --color-text: #3a3a3a;      /* Dunkelgrau (Fließtext) */
-  --color-text-light: #666666; /* Helleres Grau (sekundär) */
+  --color-surface: #ffffff;   /* WeiÃŸ (FlÃ¤chen, Boxen) */
+  --color-accent: #8b9f7f;    /* SalbeigrÃ¼n (Akzente, Links) */
+  --color-accent-dark: #6d7f61; /* Dunkleres GrÃ¼n fÃ¼r Hover-ZustÃ¤nde */
+  --color-text: #3a3a3a;      /* Dunkelgrau (FlieÃŸtext) */
+  --color-text-light: #666666; /* Helleres Grau (sekundÃ¤r) */
   --color-border: #ddd;       /* Standard-Rahmen */
   --color-border-light: #eee; /* Dezenter Rahmen */
   --color-muted-bg: #f9f9f9;  /* Heller Hintergrund innerhalb von Boxen */
   --font-scale: 1;
 
-  /* Layout- und UI-Werte: Einheitliche Maße für Abstände, Rundungen und Schatten. */
+  /* Layout- und UI-Werte: Einheitliche MaÃŸe fÃ¼r AbstÃ¤nde, Rundungen und Schatten. */
   --sidebar-width: 250px;     /* Feste Breite der Sidebar. */
-  --spacing-unit: 16px;       /* Basis-Einheit für Abstände (padding, margin, gap). */
-  --radius-sm: 4px;           /* Kleine Rundung für Buttons und Eingabefelder. */
-  --radius-md: 8px;           /* Größere Rundung für Karten und Bereiche. */
+  --spacing-unit: 16px;       /* Basis-Einheit fÃ¼r AbstÃ¤nde (padding, margin, gap). */
+  --radius-sm: 4px;           /* Kleine Rundung fÃ¼r Buttons und Eingabefelder. */
+  --radius-md: 8px;           /* GrÃ¶ÃŸere Rundung fÃ¼r Karten und Bereiche. */
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06); /* Dezenter Standardschatten. */
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08); /* Etwas stärkerer Kartenschatten. */
-  --shadow-hover: 0 4px 12px rgba(139, 159, 127, 0.3); /* Hover-Schatten für wichtige Buttons. */
-  --focus-ring: 0 0 0 3px rgba(139, 159, 127, 0.1); /* Sichtbarer Fokus für Tastaturbedienung. */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08); /* Etwas stÃ¤rkerer Kartenschatten. */
+  --shadow-hover: 0 4px 12px rgba(139, 159, 127, 0.3); /* Hover-Schatten fÃ¼r wichtige Buttons. */
+  --focus-ring: 0 0 0 3px rgba(139, 159, 127, 0.1); /* Sichtbarer Fokus fÃ¼r Tastaturbedienung. */
 }
 
 /* ============================================================
    RESET & GLOBALE STILE
    ============================================================
-   Grundregeln, die für alle Seiten gelten.
+   Grundregeln, die fÃ¼r alle Seiten gelten.
    ============================================================ */
 
 * {
@@ -47,7 +47,7 @@ html, body {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400; /* Normale Schriftstärke für Fließtext. */
+  font-weight: 400; /* Normale SchriftstÃ¤rke fÃ¼r FlieÃŸtext. */
   font-size: calc(1rem * var(--font-scale));
   line-height: 1.5;
 
@@ -120,7 +120,7 @@ body.menu-open {
 .sidebar {
   width: 100%;
 
-  /* Der mobile Kopf dient als Anker für das rechts ausgerichtete Pop-up-Menü. */
+  /* Der mobile Kopf dient als Anker fÃ¼r das rechts ausgerichtete Pop-up-MenÃ¼. */
   position: relative;
 
   background-color: var(--color-surface);
@@ -138,10 +138,6 @@ body.menu-open {
 }
 
 
-.sidebar header {
-  margin-bottom: var(--spacing-unit);
-}
-
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -149,7 +145,7 @@ body.menu-open {
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
-/* Logo und App-Name bilden gemeinsam die Markenfläche links im Sidebar-Kopf. */
+/* Logo und App-Name bilden gemeinsam die MarkenflÃ¤che links im Sidebar-Kopf. */
 .sidebar-brand {
   display: flex;
   align-items: center;
@@ -163,13 +159,13 @@ body.menu-open {
   height: 32px;
   object-fit: contain;
   background-color: var(--color-surface);
-  border-radius: var(--radius-sm);
+  border-radius: 50%;
   flex-shrink: 0;
-  /* Das Logo sitzt minimal höher, damit es optisch mit dem Schriftzug abschließt. */
+  /* Das Logo sitzt minimal hÃ¶her, damit es optisch mit dem Schriftzug abschlieÃŸt. */
   transform: translateY(-4px);
 }
 
-/* Mobile Menü-Schaltfläche: rechts oben als Hamburger-Icon. */
+/* Mobile MenÃ¼-SchaltflÃ¤che: rechts oben als Hamburger-Icon. */
 .menu-toggle {
   width: 36px;
   height: 36px;
@@ -220,12 +216,12 @@ body.menu-open {
   display: none;
 }
 
-/* Mobile Pop-up-Menü: erscheint gesammelt rechts unter dem Kopfbereich. */
+/* Mobile Pop-up-MenÃ¼: erscheint gesammelt rechts unter dem Kopfbereich. */
 .sidebar.is-open .sidebar-menu-panel {
   display: block;
 }
 
-/* Das Menü liegt mobil als festes Overlay über dem Seiteninhalt. */
+/* Das MenÃ¼ liegt mobil als festes Overlay Ã¼ber dem Seiteninhalt. */
 .sidebar.is-open .sidebar-menu-panel {
   position: fixed;
   top: calc(var(--spacing-unit) * 3.5);
@@ -242,7 +238,7 @@ body.menu-open {
   box-shadow: var(--shadow-card);
 }
 
-/* Der halbtransparente Hintergrund trennt das geöffnete Menü klar vom Rest der Seite. */
+/* Der halbtransparente Hintergrund trennt das geÃ¶ffnete MenÃ¼ klar vom Rest der Seite. */
 .sidebar.is-open::after {
   content: '';
   position: fixed;
@@ -305,6 +301,7 @@ body.menu-open {
   text-decoration: underline;
 }
 
+/* Barrierefreiheitsoptionen: Kontrast und SchriftgrÃ¶ÃŸe liegen direkt unter der Navigation. */
 .accessibility-controls {
   display: flex;
   align-items: center;
@@ -339,10 +336,6 @@ body.menu-open {
   background: var(--color-surface);
 }
 
-.contrast-toggle span {
-  display: none;
-}
-
 .contrast-toggle:hover,
 .contrast-toggle:focus,
 .text-size-toggle:hover,
@@ -352,10 +345,6 @@ body.menu-open {
   box-shadow: var(--focus-ring);
 }
 
-body.high-contrast .contrast-toggle span {
-  display: none;
-}
-
 body.high-contrast .contrast-toggle {
   background: linear-gradient(90deg, var(--color-surface) 0 50%, var(--color-accent) 50% 100%);
 }
@@ -363,13 +352,13 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    HAUPTBEREICH
    ============================================================
-   Gemeinsame Typografie und Grundflächen im Inhaltsbereich.
+   Gemeinsame Typografie und GrundflÃ¤chen im Inhaltsbereich.
    ============================================================ */
 
 .main-content {
   flex: 1;
 
-  /* Mobile bekommt bewusst weniger Außenabstand, damit Inhalt und PDF mehr Platz haben. */
+  /* Mobile bekommt bewusst weniger AuÃŸenabstand, damit Inhalt und PDF mehr Platz haben. */
   padding: calc(var(--spacing-unit) * 0.5);
 
   max-width: 100%;
@@ -389,7 +378,7 @@ body.high-contrast .contrast-toggle {
 .main-content section {
   background-color: var(--color-surface);
 
-  /* Karten und Inhaltsboxen rücken mobil enger zusammen. */
+  /* Karten und Inhaltsboxen rÃ¼cken mobil enger zusammen. */
   padding: calc(var(--spacing-unit) * 0.5);
 
   margin-bottom: calc(var(--spacing-unit) * 0.5);
@@ -450,7 +439,7 @@ body.high-contrast .contrast-toggle {
   margin: 0 0 calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
 }
 
-/* Gemeinsame Kartenfläche: Projektkarten und der Projektkopf nutzen dieselbe Basis. */
+/* Gemeinsame KartenflÃ¤che: Projektkarten und der Projektkopf nutzen dieselbe Basis. */
 .project-card,
 .project-header {
   background-color: var(--color-surface);
@@ -475,7 +464,7 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    DASHBOARD
    ============================================================
-   Übersicht, Suchbereich und Projektkarten.
+   Ãœbersicht, Suchbereich und Projektkarten.
    ============================================================ */
 
 .cta-section {
@@ -520,7 +509,7 @@ body.high-contrast .contrast-toggle {
   transition: all 0.2s ease;
 }
 
-/* Sekundäre Buttons: transparenter Hintergrund, grüne Kontur, grün beim Hover. */
+/* SekundÃ¤re Buttons: transparenter Hintergrund, grÃ¼ne Kontur, grÃ¼n beim Hover. */
 .btn-secondary {
   background-color: transparent;
   border: 1px solid var(--color-accent);
@@ -533,7 +522,7 @@ body.high-contrast .contrast-toggle {
   color: var(--color-surface);
 }
 
-/* Primäre Buttons: gefüllte grüne Fläche für wichtige Aktionen wie Speichern. */
+/* PrimÃ¤re Buttons: gefÃ¼llte grÃ¼ne FlÃ¤che fÃ¼r wichtige Aktionen wie Speichern. */
 .cta-section .cta-button,
 .btn-primary,
 .checklist-input-area button {
@@ -548,7 +537,7 @@ body.high-contrast .contrast-toggle {
   box-shadow: var(--shadow-hover);
 }
 
-/* Auf Mobile spart der Dashboard-Filter Platz und wird erst per Button geöffnet. */
+/* Auf Mobile spart der Dashboard-Filter Platz und wird erst per Button geÃ¶ffnet. */
 .dashboard-filters {
   display: none;
   flex-direction: column;
@@ -592,7 +581,7 @@ body.high-contrast .contrast-toggle {
   color: var(--color-text);
 }
 
-/* Größere Eingabefelder bekommen einheitliches Innenpadding. */
+/* GrÃ¶ÃŸere Eingabefelder bekommen einheitliches Innenpadding. */
 .dashboard-filters input,
 .dashboard-filters select,
 .form-group input,
@@ -742,8 +731,7 @@ body.high-contrast .contrast-toggle {
   transform: translateY(-2px);
 }
 
-.project-card h2,
-.project-card h3 {
+.project-card h2 {
   font-weight: 600;
   font-size: calc(1.125rem * var(--font-scale));
 
@@ -779,15 +767,6 @@ body.high-contrast .contrast-toggle {
   margin-bottom: var(--spacing-unit);
 }
 
-.form-container h2 {
-  font-weight: 600;
-  font-size: calc(1.75rem * var(--font-scale));
-
-  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
-
-  color: var(--color-text);
-}
-
 .project-form {
   display: flex;
   flex-direction: column;
@@ -798,6 +777,7 @@ body.high-contrast .contrast-toggle {
   border: none;
   padding: 0;
   margin: 0;
+  min-width: 0;
 
   display: flex;
   flex-direction: column;
@@ -818,6 +798,8 @@ body.high-contrast .contrast-toggle {
   margin: 0;
 
   width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 /* ============================================================
@@ -830,6 +812,7 @@ body.high-contrast .contrast-toggle {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing-unit) * 0.5);
+  min-width: 0;
 }
 
 .form-group label {
@@ -843,6 +826,8 @@ body.high-contrast .contrast-toggle {
 .form-group input,
 .form-group textarea,
 .form-group select {
+  width: 100%;
+  min-width: 0;
   font-weight: 400;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -868,21 +853,12 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    PROJEKTSEITE: Header
    ============================================================
-   Titel, Kategorie und Fortschritt des geöffneten Projekts.
+   Titel, Kategorie und Fortschritt des geÃ¶ffneten Projekts.
    ============================================================ */
 
 .project-header {
   /* Mobile nutzt denselben Grundabstand wie die nachfolgenden Projektboxen. */
   margin-bottom: calc(var(--spacing-unit) * 0.75);
-}
-
-.project-header h2 {
-  font-weight: 600;
-  font-size: calc(1.75rem * var(--font-scale));
-
-  margin: 0 0 var(--spacing-unit) 0;
-
-  color: var(--color-text);
 }
 
 .project-meta {
@@ -913,7 +889,7 @@ body.high-contrast .contrast-toggle {
   display: flex;
   flex-direction: column;
 
-  /* Zwischen linker und rechter Projektsäule gilt mobil derselbe Takt wie zwischen den Boxen. */
+  /* Zwischen linker und rechter ProjektsÃ¤ule gilt mobil derselbe Takt wie zwischen den Boxen. */
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
@@ -928,15 +904,6 @@ body.high-contrast .contrast-toggle {
 
   display: flex;
   flex-direction: column;
-}
-
-.pdf-section h3 {
-  font-weight: 600;
-  font-size: calc(1.125rem * var(--font-scale));
-
-  margin: 0 0 var(--spacing-unit) 0;
-
-  color: var(--color-text);
 }
 
 .pdf-placeholder {
@@ -973,7 +940,7 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    INTERAKTIVE PROJEKTDATEN
    ============================================================
-   Rechte Spalte mit Checkliste, Notizen, Projektdaten und Zählern.
+   Rechte Spalte mit Checkliste, Notizen, Projektdaten und ZÃ¤hlern.
    ============================================================ */
 
 .interactive-content {
@@ -982,19 +949,10 @@ body.high-contrast .contrast-toggle {
   display: flex;
   flex-direction: column;
 
-  /* Checkliste, Notizen, Projektdaten und Zähler teilen sich mobil einen einheitlichen Abstand. */
+  /* Checkliste, Notizen, Projektdaten und ZÃ¤hler teilen sich mobil einen einheitlichen Abstand. */
   gap: calc(var(--spacing-unit) * 0.75);
 
   background-color: transparent;
-}
-
-.interactive-content h3 {
-  font-weight: 600;
-  font-size: calc(1rem * var(--font-scale));
-
-  margin: 0 0 calc(var(--spacing-unit) * 0.75) 0;
-
-  color: var(--color-text);
 }
 
 /* ============================================================
@@ -1065,7 +1023,7 @@ body.high-contrast .contrast-toggle {
 
 /* ============================================================
    NOTIZEN
-   Freies Textfeld für projektbezogene Notizen.
+   Freies Textfeld fÃ¼r projektbezogene Notizen.
    ============================================================ */
 
 .notes {
@@ -1078,7 +1036,7 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    PROJEKTDATEN
    ============================================================
-   Definition List für Beschreibung, Material und Nadelstärke.
+   Definition List fÃ¼r Beschreibung, Material und NadelstÃ¤rke.
    ============================================================ */
 
 .project-data-section dl {
@@ -1108,9 +1066,9 @@ body.high-contrast .contrast-toggle {
 }
 
 /* ============================================================
-   ZÄHLER
+   ZÃ„HLER
    ============================================================
-   Gemeinsames Styling für Maschen- und Reihenzähler.
+   Gemeinsames Styling fÃ¼r Maschen- und ReihenzÃ¤hler.
    ============================================================ */
 
 .counter-display {
@@ -1156,7 +1114,7 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    PROJEKT-FOOTER
    ============================================================
-   Navigation zurück sowie Bearbeiten- und Löschen-Aktionen.
+   Navigation zurÃ¼ck sowie Bearbeiten- und LÃ¶schen-Aktionen.
    ============================================================ */
 
 .project-footer {
@@ -1164,41 +1122,39 @@ body.high-contrast .contrast-toggle {
   padding-top: var(--spacing-unit);
   text-align: center;
   border-top: 1px solid var(--color-border-light);
+}
 
-  .project-footer-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: calc(var(--spacing-unit) * 0.75);
-    margin-bottom: var(--spacing-unit);
-  }
+.project-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: calc(var(--spacing-unit) * 0.75);
+  margin-bottom: var(--spacing-unit);
+}
 
-  > a:not(.btn-secondary) {
-    /* Der Zurück-Link bleibt ein normaler Textlink und kein Button. */
-    color: var(--color-accent);
-    text-decoration: none;
-    font-size: calc(0.875rem * var(--font-scale));
-    transition: color 0.2s ease;
+.project-footer > a:not(.btn-secondary) {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: calc(0.875rem * var(--font-scale));
+  transition: color 0.2s ease;
+}
 
-    &:hover {
-      color: var(--color-accent);
-      text-decoration: underline;
-    }
-  }
+.project-footer > a:not(.btn-secondary):hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
 
-  .edit-project-link,
-  .delete-project-button {
-    /* Bearbeiten und Löschen nutzen .btn-secondary und verhalten sich deshalb wie Buttons. */
-    display: inline-block;
-    width: auto;
-    margin: 0;
-    padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
-    font-size: calc(0.875rem * var(--font-scale));
-    line-height: 1.5;
-    text-align: center;
-    text-decoration: none;
-    appearance: none;
-  }
+.project-footer .edit-project-link,
+.project-footer .delete-project-button {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+  font-size: calc(0.875rem * var(--font-scale));
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  appearance: none;
 }
 
 /* ============================================================
@@ -1207,8 +1163,48 @@ body.high-contrast .contrast-toggle {
    Ab Tablet und Desktop wird der vorhandene Desktop-Look schrittweise aktiviert.
    ============================================================ */
 
+@media (max-width: 767px) {
+  /* Bei groÃŸer Schrift brechen mobile Inhalte frueher um, damit nichts aus Boxen herausragt. */
+  body.text-size-150,
+  body.text-size-200 {
+    overflow-wrap: anywhere;
+  }
+
+  body.text-size-150 :is(input, select, textarea, button, a),
+  body.text-size-200 :is(input, select, textarea, button, a) {
+    max-width: 100%;
+  }
+
+  body.text-size-150 :is(.dashboard-filters, .checklist-input-area, .counter-buttons, .project-footer-actions),
+  body.text-size-200 :is(.dashboard-filters, .checklist-input-area, .counter-buttons, .project-footer-actions) {
+    flex-direction: column;
+  }
+
+  body.text-size-150 :is(.counter-btn, .edit-project-link, .delete-project-button),
+  body.text-size-200 :is(.counter-btn, .edit-project-link, .delete-project-button) {
+    width: 100%;
+  }
+
+  body.text-size-150 .project-meta,
+  body.text-size-200 .project-meta {
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 0.5);
+  }
+
+  body.text-size-150 .checklist li,
+  body.text-size-200 .checklist li {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  body.text-size-150 .checklist-text,
+  body.text-size-200 .checklist-text {
+    flex-basis: 100%;
+  }
+}
+
 @media (min-width: 768px) {
-  /* Ab Tablet werden Abstände und Filterdarstellung wieder großzügiger. */
+  /* Ab Tablet werden AbstÃ¤nde und Filterdarstellung wieder groÃŸzÃ¼giger. */
   .main-content {
     padding: calc(var(--spacing-unit) * 1.5);
   }
@@ -1225,7 +1221,7 @@ body.high-contrast .contrast-toggle {
     margin-bottom: calc(var(--spacing-unit) * 2);
   }
 
-  /* Die FAQ behält auch auf größeren Screens eine klare Hierarchie zwischen Titel und Fragen. */
+  /* Die FAQ behÃ¤lt auch auf grÃ¶ÃŸeren Screens eine klare Hierarchie zwischen Titel und Fragen. */
   .faq-header h1 {
     font-size: calc(2.125rem * var(--font-scale));
     margin-bottom: calc(var(--spacing-unit) * 0.75);
@@ -1295,13 +1291,14 @@ body.high-contrast .contrast-toggle {
 }
 
 @media (min-width: 1024px) {
-  /* Ab Desktop kehrt die Seite zum klassischen Sidebar-Layout zurück. */
+  /* Ab Desktop kehrt die Seite zum klassischen Sidebar-Layout zurÃ¼ck. */
   .container {
     flex-direction: row;
   }
 
   .sidebar-header {
     display: block;
+    margin-bottom: var(--spacing-unit);
   }
 
   .menu-toggle {
@@ -1338,7 +1335,7 @@ body.high-contrast .contrast-toggle {
 
   .sidebar h1,
   .sidebar .app-title {
-    margin: 0 0 var(--spacing-unit) 0;
+    margin: 0;
   }
 
   .sidebar nav ul {
@@ -1367,4 +1364,5 @@ body.high-contrast .contrast-toggle {
     height: 100%;
   }
 }
+
 
