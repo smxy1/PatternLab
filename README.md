@@ -2,8 +2,9 @@
 
 ## Überblick
 
-PatternLab ist eine Webanwendung zur Organisation von Häkel- und Strickprojekten.  
-Sie bündelt Anleitungen, Notizen und Fortschritt an einem Ort und erleichtert so das Arbeiten an mehreren Projekten.
+PatternLab ist eine Webanwendung zur Organisation von Häkel-, Strick- und anderen Handarbeitsprojekten. Verwalte Anleitungen, halte Notizen fest und behalte deinen Fortschritt im Blick. Alles an einem Ort. So lassen sich auch mehrere Projekte gleichzeitig einfach organisieren und verfolgen.
+
+---
 
 ## Funktionen
 
@@ -11,16 +12,16 @@ Sie bündelt Anleitungen, Notizen und Fortschritt an einem Ort und erleichtert s
 - PDF-Anleitungen anzeigen  
 - Notizen und Projektdetails speichern  
 - Fortschritt über Checklisten verfolgen  
-- Maschenzähler nutzen  
+- Maschen- und Reihenzähler nutzen  
+
+---
 
 ## Nutzung
 
-### Lokal (empfohlen)
+### Online (empfohlen)
 
-1. Repository klonen oder als ZIP herunterladen  
-2. Projekt in Visual Studio Code öffnen  
-3. „Live Server“ installieren  
-4. `index.html` mit Live Server starten  
+Die Anwendung ist über GitHub Pages erreichbar:  
+https://smxy1.github.io/PatternLab/
 
 ### Direkt im Browser
 
@@ -28,7 +29,29 @@ Sie bündelt Anleitungen, Notizen und Fortschritt an einem Ort und erleichtert s
 2. entpacken  
 3. `index.html` öffnen  
 
-### Online
 
-Die Anwendung ist über GitHub Pages erreichbar:  
-https://smxy1.github.io/PatternLab/
+### Lokal 
+
+1. Repository klonen oder als ZIP herunterladen  
+2. Projekt in Visual Studio Code öffnen  
+3. „Live Server“ installieren  
+4. `index.html` mit Live Server starten  
+
+---
+
+## Language Support
+
+PatternLab is currently available in German. We are working on an English version of the application and documentation.
+
+---
+
+## Quellen
+
+Google. (o. D.). *Open Sans*. Google Fonts. https://fonts.google.com/specimen/Open+Sans
+
+World Wide Web Consortium. (2018). *Web Content Accessibility Guidelines (WCAG) 2.1*. https://www.w3.org/TR/WCAG21/
+
+WebAIM. (o. D.). *WAVE Web Accessibility Evaluation Tool*. https://wave.webaim.org/
+
+Eigene Erstellung. (2026). *Mockups, Dokumentation und Beispielinhalte für das Projekt PatternLab*.
+
