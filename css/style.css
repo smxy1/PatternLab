@@ -1310,6 +1310,10 @@ body.high-contrast .contrast-toggle {
 
   .sidebar {
     width: var(--sidebar-width);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
   }
 
