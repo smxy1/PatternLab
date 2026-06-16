@@ -11,6 +11,27 @@ document.addEventListener('DOMContentLoaded', function() {
   const sidebarMenuPanel = document.querySelector('.sidebar-menu-panel');
   const filterToggle = document.querySelector('.filter-toggle');
   const dashboardFilters = document.getElementById('dashboard-filters');
+  const contrastToggle = document.querySelector('.contrast-toggle');
+
+  function setContrastState(highContrastIsActive) {
+    document.body.classList.toggle('high-contrast', highContrastIsActive);
+
+    if (contrastToggle) {
+      contrastToggle.setAttribute('aria-pressed', String(highContrastIsActive));
+      contrastToggle.setAttribute('aria-label', highContrastIsActive ? 'Normalen Kontrast aktivieren' : 'Kontrast erhöhen');
+    }
+  }
+
+  setContrastState(localStorage.getItem('highContrast') === 'true');
+
+  if (contrastToggle) {
+    contrastToggle.addEventListener('click', function() {
+      const highContrastIsActive = !document.body.classList.contains('high-contrast');
+
+      localStorage.setItem('highContrast', String(highContrastIsActive));
+      setContrastState(highContrastIsActive);
+    });
+  }
 
   function setMenuState(menuIsOpen) {
     if (!sidebar || !menuToggle) {

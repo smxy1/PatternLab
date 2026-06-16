@@ -55,6 +55,19 @@ body {
   color: var(--color-text);
 }
 
+body.high-contrast {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-accent: #23411f;
+  --color-accent-dark: #142812;
+  --color-text: #111111;
+  --color-text-light: #2f2f2f;
+  --color-border: #555555;
+  --color-border-light: #777777;
+  --color-muted-bg: #f1f1f1;
+  --focus-ring: 0 0 0 3px rgba(35, 65, 31, 0.35);
+}
+
 body.menu-open {
   overflow: hidden;
 }
@@ -277,6 +290,43 @@ body.menu-open {
 .sidebar footer a:hover {
   color: var(--color-accent);
   text-decoration: underline;
+}
+
+.contrast-toggle {
+  width: 32px;
+  height: 32px;
+  margin-top: var(--spacing-unit);
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(90deg, var(--color-surface) 0 50%, var(--color-text) 50% 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contrast-toggle span {
+  display: none;
+}
+
+.contrast-toggle:hover,
+.contrast-toggle:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+body.high-contrast .contrast-toggle span {
+  display: none;
+}
+
+body.high-contrast .contrast-toggle {
+  background: linear-gradient(90deg, var(--color-surface) 0 50%, var(--color-accent) 50% 100%);
 }
 
 /* ============================================================
