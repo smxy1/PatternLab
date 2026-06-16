@@ -1,7 +1,8 @@
-﻿// JavaScript erst starten, wenn die HTML-Seite geladen ist.
+// JavaScript erst starten, wenn die HTML-Seite geladen ist.
 document.addEventListener('DOMContentLoaded', function() {
 
   // Zentrale Elemente suchen, die je nach Seite vorhanden sind.
+  // getElementById findet ein Element über id="...", querySelector über einen CSS-Selektor wie ".projects".
   const projectForm = document.getElementById('project-form');
   const projectsContainer = document.querySelector('.projects');
   const projectSearch = document.getElementById('project-search');
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const contrastToggle = document.querySelector('.contrast-toggle');
   const textSizeToggle = document.querySelector('.text-size-toggle');
   const textSizeSteps = [100, 125, 150, 200];
+  // Diese Schlüssel sind die Namen, unter denen Werte im LocalStorage abgelegt werden.
   const contrastStorageKey = 'highContrast';
   const textSizeStorageKey = 'textSize';
 
@@ -23,17 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Der Kontrastmodus nutzt eine Body-Klasse, damit alle Farben zentral im CSS wechseln.
   function setContrastState(highContrastIsActive) {
+    // classList.toggle fügt die Klasse hinzu, wenn der zweite Wert true ist, und entfernt sie bei false.
     document.body.classList.toggle('high-contrast', highContrastIsActive);
 
     if (contrastToggle) {
       contrastToggle.setAttribute('aria-pressed', String(highContrastIsActive));
-      contrastToggle.setAttribute('aria-label', highContrastIsActive ? 'Normalen Kontrast aktivieren' : 'Kontrast erhÃ¶hen');
+      contrastToggle.setAttribute('aria-label', highContrastIsActive ? 'Normalen Kontrast aktivieren' : 'Kontrast erhöhen');
     }
   }
 
+  // Beim Laden der Seite wird der zuletzt gespeicherte Kontrastzustand wiederhergestellt.
   setContrastState(localStorage.getItem(contrastStorageKey) === 'true');
 
+  // Wenn der Kontrast-Button existiert, bekommt er eine Klickfunktion zum Umschalten.
   if (contrastToggle) {
+    // addEventListener reagiert hier auf Klicks der Nutzerin.
     contrastToggle.addEventListener('click', function() {
       const highContrastIsActive = !document.body.classList.contains('high-contrast');
 
@@ -42,8 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Die SchriftgrÃ¶ÃŸe rotiert durch mehrere Stufen bis 200 Prozent.
+  // Die Schriftgröße rotiert durch mehrere Stufen bis 200 Prozent.
   function setTextSizeState(textSize) {
+    // Erst alle möglichen Schriftgrößen-Klassen entfernen, damit immer nur eine Stufe aktiv ist.
     textSizeSteps.forEach(function(step) {
       document.body.classList.remove('text-size-' + step);
     });
@@ -53,18 +60,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (textSizeToggle) {
-      textSizeToggle.setAttribute('aria-label', 'SchriftgrÃ¶ÃŸe erhÃ¶hen, aktuell ' + textSize + ' Prozent');
+      textSizeToggle.setAttribute('aria-label', 'Schriftgröße erhöhen, aktuell ' + textSize + ' Prozent');
     }
   }
 
+  // Beim Laden wird die gespeicherte Schriftgröße gelesen; ohne gespeicherten Wert startet sie bei 100 Prozent.
   let currentTextSize = Number(localStorage.getItem(textSizeStorageKey)) || 100;
 
+  // Falls im Speicher ein ungültiger Wert steht, wird sicherheitshalber wieder 100 Prozent genutzt.
   if (!textSizeSteps.includes(currentTextSize)) {
     currentTextSize = 100;
   }
 
+  // Die gelesene oder korrigierte Schriftgröße wird direkt auf die Seite angewendet.
   setTextSizeState(currentTextSize);
 
+  // Wenn der Schriftgrößen-Button existiert, schaltet ein Klick zur nächsten Größenstufe.
   if (textSizeToggle) {
     textSizeToggle.addEventListener('click', function() {
       const currentIndex = textSizeSteps.indexOf(currentTextSize);
@@ -80,24 +91,28 @@ document.addEventListener('DOMContentLoaded', function() {
   // TEIL 1: Navigation und mobile Filter
   // ============================================================
 
+  // Menüstatus setzen: true klappt die Navigation aus, false klappt sie wieder ein.
   function setMenuState(menuIsOpen) {
     if (!sidebar || !menuToggle) {
       return;
     }
 
+    // is-open steuert im CSS, ob das mobile Menü sichtbar ist.
     sidebar.classList.toggle('is-open', menuIsOpen);
+    // menu-open verhindert, dass der Seiteninhalt hinter dem geöffneten Menü scrollt.
     document.body.classList.toggle('menu-open', menuIsOpen);
     menuToggle.setAttribute('aria-expanded', String(menuIsOpen));
-    menuToggle.setAttribute('aria-label', menuIsOpen ? 'Navigation schlieÃŸen' : 'Navigation Ã¶ffnen');
+    menuToggle.setAttribute('aria-label', menuIsOpen ? 'Navigation schließen' : 'Navigation öffnen');
   }
 
-  // Mobile Navigation ein- und ausklappen.
+  // Mobile Navigation ein- und ausklappen: Der Hamburger-Button öffnet oder schließt das Menü.
   if (sidebar && menuToggle) {
     menuToggle.addEventListener('click', function() {
       const menuIsOpen = !sidebar.classList.contains('is-open');
       setMenuState(menuIsOpen);
     });
 
+    // Wenn ein Navigationslink angeklickt wird, schließt sich das mobile Menü wieder.
     sidebar.querySelectorAll('nav a, footer a').forEach(function(link) {
       link.addEventListener('click', function() {
         setMenuState(false);
@@ -105,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Zusätzlich wird das mobile Menü geschlossen, wenn außerhalb geklickt oder Escape gedrückt wird.
   if (sidebar && menuToggle) {
     document.addEventListener('click', function(event) {
       if (!sidebar.classList.contains('is-open')) {
@@ -127,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Suche und Kategoriefilter bleiben auf kleinen Bildschirmen platzsparend einklappbar.
+  // Der Button blendet den Filterbereich ein oder aus.
   if (filterToggle && dashboardFilters) {
     filterToggle.addEventListener('click', function() {
       const filtersAreOpen = dashboardFilters.classList.toggle('is-open');
@@ -136,9 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Projekte aus dem Browser laden. Wenn noch nichts gespeichert ist, startet die App mit einer leeren Liste.
+  // JSON.parse wandelt den gespeicherten Text wieder in ein JavaScript-Array um.
   let allProjects = JSON.parse(localStorage.getItem('projects')) || [];
 
-  // Projekte zentral speichern, damit nicht Ã¼berall derselbe LocalStorage-Code steht.
+  // Projekte zentral speichern, damit nicht überall derselbe LocalStorage-Code steht.
   function saveProjects() {
     // JSON.stringify macht aus dem Array einen Text, den LocalStorage speichern kann.
     localStorage.setItem('projects', JSON.stringify(allProjects));
@@ -148,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function getCategoryName(category) {
     // Die Werte kommen aus den value-Attributen im Formular.
     if (category === 'haekeln') {
-      return 'HÃ¤keln';
+      return 'Häkeln';
     }
 
     if (category === 'stricken') {
@@ -178,9 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
     return Math.round(doneItems.length / project.checklist.length * 100);
   }
 
-  // GitHub-Ansichtslinks werden fÃ¼r die PDF-Anzeige in direkte Datei-Links umgewandelt.
+  // GitHub-Ansichtslinks werden für die PDF-Anzeige in direkte Datei-Links umgewandelt.
   function getPdfDisplayUrl(pdfUrl) {
-    // GitHub-Links mit /blob/ zeigen eine Webseite. FÃ¼r <embed> brauchen wir die direkte Datei.
+    // GitHub-Links mit /blob/ zeigen eine Webseite. Für <embed> brauchen wir die direkte Datei.
     if (pdfUrl.includes('github.com') && pdfUrl.includes('/blob/')) {
       return pdfUrl
         .replace('https://github.com/', 'https://raw.githubusercontent.com/')
@@ -194,17 +212,20 @@ document.addEventListener('DOMContentLoaded', function() {
   // TEIL 2: Neues Projekt erstellen und speichern
   // ============================================================
 
-  // Dieser Teil lÃ¤uft nur auf der Formularseite.
+  // Dieser Teil läuft nur auf der Formularseite.
+  // Formularlogik nur ausführen, wenn auf der aktuellen Seite wirklich ein Projektformular vorhanden ist.
   if (projectForm) {
+    // URLSearchParams liest Werte aus der Adresse, zum Beispiel die id in new-project.html?id=123.
     const formUrlParams = new URLSearchParams(window.location.search);
     const editProjectId = Number(formUrlParams.get('id'));
 
+    // Beim Bearbeiten wird das Projekt gesucht, dessen ID in der URL steht.
     const projectToEdit = allProjects.find(function(project) {
-      // find gibt das erste Projekt zurÃ¼ck, dessen ID zur URL-ID passt.
+      // find gibt das erste Projekt zurück, dessen ID zur URL-ID passt.
       return project.id === editProjectId;
     });
 
-    // Wenn eine Projekt-ID in der URL steht, wird das Formular zum Bearbeiten gefÃ¼llt.
+    // Wenn eine Projekt-ID in der URL steht, wird das Formular zum Bearbeiten gefüllt.
     if (projectToEdit) {
       document.getElementById('project-title').value = projectToEdit.title || '';
       document.getElementById('project-category').value = projectToEdit.category || '';
@@ -214,7 +235,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('project-pdf-url').value = projectToEdit.pdfUrl || '';
     }
 
-    // Mit Enter springt der Fokus im Formular zum nÃ¤chsten Feld.
+    // Mit Enter springt der Fokus im Formular zum nächsten Feld.
+    // Tastatursteuerung im Formular: Enter springt zum nächsten Feld statt direkt zu speichern.
     projectForm.addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
         const formFields = Array.from(projectForm.querySelectorAll('input, textarea, select, button'));
@@ -227,12 +249,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
+    // Beim Absenden werden die Formularwerte gesammelt und gespeichert.
     projectForm.addEventListener('submit', function(event) {
       
       // Das Formular wird mit JavaScript verarbeitet, deshalb darf die Seite nicht automatisch neu laden.
       event.preventDefault();
 
       // Alle Formularwerte werden in einem Projektobjekt gesammelt.
+      // Dieses Objekt ist die Datenstruktur, die später im LocalStorage gespeichert wird.
       const projectData = {
         id: Date.now(),
 
@@ -245,8 +269,8 @@ document.addEventListener('DOMContentLoaded', function() {
       };
 
       if (projectToEdit) {
-        // Beim Bearbeiten werden nur die Grunddaten Ã¼berschrieben.
-        // Checkliste, Notizen und ZÃ¤hler bleiben erhalten.
+        // Beim Bearbeiten werden nur die Grunddaten überschrieben.
+        // Checkliste, Notizen und Zähler bleiben erhalten.
         projectToEdit.title = projectData.title;
         projectToEdit.category = projectData.category;
         projectToEdit.description = projectData.description;
@@ -254,14 +278,14 @@ document.addEventListener('DOMContentLoaded', function() {
         projectToEdit.needleSize = projectData.needleSize;
         projectToEdit.pdfUrl = projectData.pdfUrl;
       } else {
-        // Neues Projekt zur Liste hinzufÃ¼gen
+        // Neues Projekt zur Liste hinzufügen
         allProjects.push(projectData);
       }
 
       // Projekte im LocalStorage speichern
       saveProjects();
 
-      // ZurÃ¼ck zum Dashboard oder zur bearbeiteten Projektseite
+      // Zurück zum Dashboard oder zur bearbeiteten Projektseite
       if (projectToEdit) {
         window.location.href = 'project.html?id=' + projectToEdit.id;
       } else {
@@ -274,10 +298,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // TEIL 3: Projekte im Dashboard anzeigen und filtern
   // ============================================================
 
-  // Dieser Teil lÃ¤uft nur auf dem Dashboard.
+  // Dieser Teil läuft nur auf dem Dashboard.
+  // Dashboardlogik nur ausführen, wenn der Container für Projektkarten vorhanden ist.
   if (projectsContainer) {
 
+    // Erstellt eine einzelne Textzeile für die Projektkarte, zum Beispiel "Fortschritt: 50%".
     function createProjectInfo(label, value) {
+      // Diese Hilfsfunktion baut eine Zeile wie "Kategorie: Häkeln" für eine Projektkarte.
       const paragraph = document.createElement('p');
       const strong = document.createElement('strong');
 
@@ -287,7 +314,9 @@ document.addEventListener('DOMContentLoaded', function() {
       return paragraph;
     }
 
+    // Erstellt die komplette Projektkarte im Dashboard inklusive Öffnen-Button.
     function createProjectCard(project) {
+      // createElement erzeugt HTML-Elemente mit JavaScript, ohne sie als HTML-String zu schreiben.
       const card = document.createElement('article');
       const title = document.createElement('h2');
       const openButton = document.createElement('button');
@@ -297,6 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       openButton.className = 'btn-secondary open-project-btn';
       openButton.type = 'button';
+      // dataset.projectId wird im HTML zu data-project-id und merkt sich, welches Projekt geöffnet wird.
       openButton.dataset.projectId = project.id;
       openButton.textContent = 'Öffnen';
 
@@ -312,14 +342,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Projektkarten passend zu Suche und Kategorie anzeigen.
+    // Dieser Block läuft beim ersten Laden und später bei jeder Filteränderung.
     function showProjectCards() {
       projectsContainer.replaceChildren();
 
       const searchText = projectSearch ? projectSearch.value.toLowerCase() : '';
       const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
 
+      // Aus allen Projekten bleiben nur die übrig, die zur Suche und Kategorie passen.
       const filteredProjects = allProjects.filter(function(project) {
-        // toLowerCase sorgt dafÃ¼r, dass GroÃŸ- und Kleinschreibung bei der Suche egal sind.
+        // filter behält nur die Projekte, bei denen am Ende true zurückgegeben wird.
+        // toLowerCase sorgt dafür, dass Groß- und Kleinschreibung bei der Suche egal sind.
         const projectTitleText = (project.title || '').toLowerCase();
         const projectDescription = (project.description || '').toLowerCase();
         const matchesSearch =
@@ -330,12 +363,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return matchesSearch && matchesCategory;
       });
 
-      // FÃ¼r jedes gefilterte Projekt wird eine Karte erstellt.
+      // Für jedes gefilterte Projekt wird eine Karte erstellt.
       filteredProjects.forEach(function(project) {
         projectsContainer.appendChild(createProjectCard(project));
       });
 
-      // Die Projekt-ID wird beim Ã–ffnen in der URL mitgegeben.
+      // Die Projekt-ID wird beim Öffnen in der URL mitgegeben.
       document.querySelectorAll('.open-project-btn').forEach(function(button) {
         button.addEventListener('click', function() {
           // dataset.projectId liest den Wert aus data-project-id.
@@ -344,14 +377,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
+    // Dashboard direkt beim Laden einmal mit allen passenden Projekten füllen.
     showProjectCards();
 
+    // Bei jeder Eingabe im Suchfeld werden die Projektkarten neu gefiltert.
     if (projectSearch) {
       projectSearch.addEventListener('input', function() {
         showProjectCards();
       });
     }
 
+    // Bei jeder Änderung der Kategorie werden die Projektkarten neu gefiltert.
     if (categoryFilter) {
       categoryFilter.addEventListener('change', function() {
         showProjectCards();
@@ -382,7 +418,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const deleteProjectButton = document.getElementById('delete-project-button');
   const editProjectLink = document.getElementById('edit-project-link');
 
-  // Dieser Teil lÃ¤uft nur auf der Projektseite.
+  // Dieser Teil läuft nur auf der Projektseite.
+  // Projektseitenlogik nur ausführen, wenn die wichtigsten Elemente der Detailseite vorhanden sind.
   if (projectTitle && projectCategory && projectDataContainer) {
 
     // Die Projekt-ID aus der URL lesen, zum Beispiel aus project.html?id=123.
@@ -394,7 +431,9 @@ document.addEventListener('DOMContentLoaded', function() {
       return project.id === projectId;
     });
 
+    // Fügt einen einzelnen Projektdaten-Eintrag in die Begriff-Wert-Liste ein.
     function appendProjectData(term, value) {
+      // dt und dd gehören zusammen: dt ist die Bezeichnung, dd der dazugehörige Inhalt.
       const termElement = document.createElement('dt');
       const valueElement = document.createElement('dd');
 
@@ -404,7 +443,9 @@ document.addEventListener('DOMContentLoaded', function() {
       projectDataContainer.append(termElement, valueElement);
     }
 
+    // Erstellt einen sichtbaren Checklistenpunkt mit Checkbox und bearbeitbarem Textfeld.
     function createChecklistItem(item) {
+      // Jeder Checklistenpunkt wird dynamisch gebaut, weil die Anzahl je Projekt unterschiedlich ist.
       const listItem = document.createElement('li');
       const checkbox = document.createElement('input');
       const textInput = document.createElement('input');
@@ -429,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
       projectTitle.textContent = currentProject.title;
       projectCategory.textContent = getCategoryName(currentProject.category);
 
-      // Der Bearbeiten-Link Ã¶ffnet das bestehende Formular mit dieser Projekt-ID.
+      // Der Bearbeiten-Link öffnet das bestehende Formular mit dieser Projekt-ID.
       if (editProjectLink) {
         editProjectLink.href = 'new-project.html?id=' + currentProject.id;
       }
@@ -440,7 +481,8 @@ document.addEventListener('DOMContentLoaded', function() {
       appendProjectData('Material', currentProject.material || 'Kein Material angegeben');
       appendProjectData('Nadelstärke', currentProject.needleSize || 'Keine Nadelstärke angegeben');
 
-      // Die PDF wird Ã¼ber den gespeicherten Link in die Projektansicht eingebunden.
+      // Die PDF wird über den gespeicherten Link in die Projektansicht eingebunden.
+      // Wenn ein PDF-Link vorhanden ist, wird er in den PDF-Viewer geschrieben.
       if (projectPdfViewer && currentProject.pdfUrl) {
         if (projectPdfMessage) {
           projectPdfMessage.hidden = true;
@@ -463,10 +505,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // ============================================================
-      // TEIL 5: Checkliste anzeigen und neue Punkte hinzufÃ¼gen
+      // TEIL 5: Checkliste anzeigen und neue Punkte hinzufügen
       // ============================================================
 
-      // Ã„ltere Projekte bekommen beim Ã–ffnen eine leere Checkliste.
+      // Ältere Projekte bekommen beim Öffnen eine leere Checkliste.
       if (!currentProject.checklist) {
         currentProject.checklist = [];
       }
@@ -477,8 +519,9 @@ document.addEventListener('DOMContentLoaded', function() {
         projectProgress.textContent = progress + '%';
       }
 
-      // Checklistenpunkte anzeigen und ihre Ã„nderungen speichern.
+      // Checklistenpunkte anzeigen und ihre Änderungen speichern.
       function showChecklist() {
+        // replaceChildren leert die Liste, bevor sie aus den aktuellen Daten neu aufgebaut wird.
         checklistContainer.replaceChildren();
 
         currentProject.checklist.forEach(function(item) {
@@ -512,10 +555,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
       }
 
+      // Checklistenlogik nur aktivieren, wenn Liste und Hinzufügen-Button vorhanden sind.
       if (checklistContainer && addChecklistButton) {
         showChecklist();
 
-        // Eingabefeld fÃ¼r neue Arbeitsschritte erstellen und Ã¼ber dem Button einfÃ¼gen.
+        // Eingabefeld für neue Arbeitsschritte erstellen und über dem Button einfügen.
         const checklistInputArea = document.createElement('div');
         const newChecklistInput = document.createElement('input');
         const saveChecklistButton = document.createElement('button');
@@ -536,13 +580,15 @@ document.addEventListener('DOMContentLoaded', function() {
         addChecklistButton.before(checklistInputArea);
         checklistInputArea.style.display = 'none';
 
-        // Eingabefeld einblenden, wenn ein neuer Punkt hinzugefÃ¼gt werden soll.
+        // Eingabefeld einblenden, wenn ein neuer Punkt hinzugefügt werden soll.
+        // Klick auf "+ Punkt hinzufügen": Eingabefeld für einen neuen Arbeitsschritt anzeigen.
         addChecklistButton.addEventListener('click', function() {
           checklistInputArea.style.display = 'flex';
           newChecklistInput.focus();
         });
 
         // Neuen Arbeitsschritt speichern und direkt anzeigen.
+        // Klick auf "Speichern": neuen Checklistenpunkt in das aktuelle Projekt übernehmen.
         saveChecklistButton.addEventListener('click', function() {
           const newItemText = newChecklistInput.value;
 
@@ -561,6 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Enter speichert den neuen Checklistenpunkt.
+        // Enter im neuen Checklistenfeld löst denselben Speichern-Vorgang aus wie der Button.
         newChecklistInput.addEventListener('keydown', function(event) {
           if (event.key === 'Enter') {
             event.preventDefault();
@@ -569,6 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Der letzte Checklistenpunkt kann wieder entfernt werden.
+        // Falls der Löschen-Button vorhanden ist, entfernt er immer den letzten Checklistenpunkt.
         if (deleteLastChecklistButton) {
           deleteLastChecklistButton.addEventListener('click', function() {
             currentProject.checklist.pop();
@@ -583,7 +631,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // TEIL 6: Notizen speichern
       // ============================================================
 
-      // Gespeicherte Notizen laden und jede Ã„nderung direkt speichern.
+      // Gespeicherte Notizen laden und jede Änderung direkt speichern.
+      // Notizen werden geladen und bei jeder Eingabe sofort im Projekt gespeichert.
       if (projectNotes) {
         projectNotes.value = currentProject.notes || '';
 
@@ -594,10 +643,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // ============================================================
-      // TEIL 7: MaschenzÃ¤hler und ReihenzÃ¤hler speichern
+      // TEIL 7: Maschenzähler und Reihenzähler speichern
       // ============================================================
 
-      // Gemeinsame Logik fÃ¼r Maschen- und ReihenzÃ¤hler.
+      // Gemeinsame Logik für Maschen- und Reihenzähler.
       function setupCounter(valueElement, buttons, storageName) {
         if (!valueElement || buttons.length === 0) {
           return;
@@ -611,6 +660,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         buttons.forEach(function(button) {
           button.addEventListener('click', function() {
+            // button.value kommt aus dem value-Attribut im HTML, zum Beispiel "+10" oder "reset".
             if (button.value === 'reset') {
               currentProject[storageName] = 0;
             } else {
@@ -623,16 +673,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
 
+      // Maschenzähler einrichten: Wert wird im Projekt unter "counter" gespeichert.
       setupCounter(counterValue, counterButtons, 'counter');
+      // Reihenzähler einrichten: Wert wird im Projekt unter "rowCounter" gespeichert.
       setupCounter(rowCounterValue, rowCounterButtons, 'rowCounter');
 
       // ============================================================
-      // TEIL 8: Projekt lÃ¶schen
+      // TEIL 8: Projekt löschen
       // ============================================================
 
+      // Löschen-Button nur aktivieren, wenn er auf der Seite vorhanden ist.
       if (deleteProjectButton) {
         deleteProjectButton.addEventListener('click', function() {
-          const shouldDelete = confirm('Soll dieses Projekt wirklich gelÃ¶scht werden?');
+          const shouldDelete = confirm('Soll dieses Projekt wirklich gelöscht werden?');
 
           if (shouldDelete) {
             allProjects = allProjects.filter(function(project) {
@@ -647,13 +700,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       showProgress();
     } else {
-      // Falls die ID nicht existiert, bekommt die Nutzerin eine klare RÃ¼ckmeldung.
+      // Falls die ID nicht existiert, bekommt die Nutzerin eine klare Rückmeldung.
       projectTitle.textContent = 'Projekt nicht gefunden';
     }
   }
 
 });
-
-
-
-

@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <!-- UTF-8 erlaubt deutsche Umlaute wie ä, ö, ü und ß im Dokument. -->
   <!-- Viewport sorgt dafür, dass die Seite auf mobilen Geräten richtig skaliert. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Neues Häkel- oder Strickprojekt erstellen - Laden Sie PDF-Anleitungen hoch und verwalten Sie Metadaten">
@@ -42,7 +43,8 @@
           </ul>
         </nav>
 
-        <!-- Schaltflächen für Kontrastmodus und Schriftgröße. -->
+        <!-- Schaltflächen für Kontrastmodus und Schriftgröße.
+             Die Klassen werden von CSS gestaltet und von JavaScript mit Klickfunktionen verbunden. -->
         <div class="accessibility-controls">
           <button class="contrast-toggle" type="button" aria-pressed="false" aria-label="Kontrast erhöhen"></button>
           <button class="text-size-toggle" type="button" aria-label="Schriftgröße erhöhen, aktuell 100 Prozent">A</button>
@@ -69,6 +71,7 @@
           <!-- ============================================================
                FELDGRUPPE 1: Pflichtfelder (Titel, Kategorie)
                ============================================================ -->
+          <!-- fieldset gruppiert zusammengehörige Formularfelder; legend ist die sichtbare Überschrift dazu. -->
           <fieldset>
             <legend>Projektinformationen</legend>
             
@@ -91,6 +94,7 @@
           <!-- ============================================================
                FELDGRUPPE 2: Optionale Metadaten
                ============================================================ -->
+          <!-- Optionale Felder dürfen leer bleiben und werden später mit Ersatztext angezeigt. -->
           <fieldset>
             <legend>Optionale Metadaten</legend>
             
@@ -113,6 +117,7 @@
           <!-- ============================================================
                FELDGRUPPE 3: PDF-Link
                ============================================================ -->
+          <!-- Der PDF-Link muss online erreichbar sein, weil die Projektseite ihn in einem embed-Element anzeigt. -->
           <fieldset>
             <legend>Anleitung</legend>
             

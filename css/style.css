@@ -1,53 +1,58 @@
-﻿/* ============================================================
+/* ============================================================
    FARBEN & TYPOGRAFIE
    ============================================================
    Zentrale Designwerte aus visual-design.md.
-   Wenn sich Farben, AbstÃ¤nde oder Rundungen Ã¤ndern, passiert das zuerst hier.
+   Wenn sich Farben, Abstände oder Rundungen ändern, passiert das zuerst hier.
    ============================================================ */
 
 :root {
+  /* :root ist die oberste Ebene des Dokuments.
+     CSS-Variablen, die hier stehen, können später überall mit var(...) benutzt werden. */
   /* Farbpalette: Diese Werte werden auf allen Seiten wiederverwendet. */
   --color-bg: #f5f1ed;        /* Creme / Off-White (Hintergrund) */
-  --color-surface: #ffffff;   /* WeiÃŸ (FlÃ¤chen, Boxen) */
-  --color-accent: #8b9f7f;    /* SalbeigrÃ¼n (Akzente, Links) */
-  --color-accent-dark: #6d7f61; /* Dunkleres GrÃ¼n fÃ¼r Hover-ZustÃ¤nde */
-  --color-text: #3a3a3a;      /* Dunkelgrau (FlieÃŸtext) */
-  --color-text-light: #666666; /* Helleres Grau (sekundÃ¤r) */
+  --color-surface: #ffffff;   /* Weiß (Flächen, Boxen) */
+  --color-accent: #8b9f7f;    /* Salbeigrün (Akzente, Links) */
+  --color-accent-dark: #6d7f61; /* Dunkleres Grün für Hover-Zustände */
+  --color-text: #3a3a3a;      /* Dunkelgrau (Fließtext) */
+  --color-text-light: #666666; /* Helleres Grau (sekundär) */
   --color-border: #ddd;       /* Standard-Rahmen */
   --color-border-light: #eee; /* Dezenter Rahmen */
   --color-muted-bg: #f9f9f9;  /* Heller Hintergrund innerhalb von Boxen */
   --font-scale: 1;
 
-  /* Layout- und UI-Werte: Einheitliche MaÃŸe fÃ¼r AbstÃ¤nde, Rundungen und Schatten. */
+  /* Layout- und UI-Werte: Einheitliche Maße für Abstände, Rundungen und Schatten. */
   --sidebar-width: 250px;     /* Feste Breite der Sidebar. */
-  --spacing-unit: 16px;       /* Basis-Einheit fÃ¼r AbstÃ¤nde (padding, margin, gap). */
-  --radius-sm: 4px;           /* Kleine Rundung fÃ¼r Buttons und Eingabefelder. */
-  --radius-md: 8px;           /* GrÃ¶ÃŸere Rundung fÃ¼r Karten und Bereiche. */
+  --spacing-unit: 16px;       /* Basis-Einheit für Abstände (padding, margin, gap). */
+  --radius-sm: 4px;           /* Kleine Rundung für Buttons und Eingabefelder. */
+  --radius-md: 8px;           /* Größere Rundung für Karten und Bereiche. */
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06); /* Dezenter Standardschatten. */
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08); /* Etwas stÃ¤rkerer Kartenschatten. */
-  --shadow-hover: 0 4px 12px rgba(139, 159, 127, 0.3); /* Hover-Schatten fÃ¼r wichtige Buttons. */
-  --focus-ring: 0 0 0 3px rgba(139, 159, 127, 0.1); /* Sichtbarer Fokus fÃ¼r Tastaturbedienung. */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08); /* Etwas stärkerer Kartenschatten. */
+  --shadow-hover: 0 4px 12px rgba(139, 159, 127, 0.3); /* Hover-Schatten für wichtige Buttons. */
+  --focus-ring: 0 0 0 3px rgba(139, 159, 127, 0.1); /* Sichtbarer Fokus für Tastaturbedienung. */
 }
 
 /* ============================================================
    RESET & GLOBALE STILE
    ============================================================
-   Grundregeln, die fÃ¼r alle Seiten gelten.
+   Grundregeln, die für alle Seiten gelten.
    ============================================================ */
 
+/* Alle Elemente rechnen padding und border in ihre Breite ein; das verhindert viele Layout-Überraschungen. */
 * {
   box-sizing: border-box;
 }
 
+/* html und body füllen die Höhe des Browserfensters und starten ohne Standardabstände. */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+/* Grundgestaltung für die gesamte Seite: Schrift, Hintergrundfarbe und Textfarbe. */
 body {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400; /* Normale SchriftstÃ¤rke fÃ¼r FlieÃŸtext. */
+  font-weight: 400; /* Normale Schriftstärke für Fließtext. */
   font-size: calc(1rem * var(--font-scale));
   line-height: 1.5;
 
@@ -57,6 +62,7 @@ body {
 }
 
 body.high-contrast {
+  /* Diese Werte ersetzen die normalen Farben, sobald JavaScript die Klasse high-contrast setzt. */
   --color-bg: #ffffff;
   --color-surface: #ffffff;
   --color-accent: #23411f;
@@ -70,22 +76,29 @@ body.high-contrast {
 }
 
 body.text-size-125 {
+  /* Die Schriftgrößen-Klassen ändern nur --font-scale.
+     Alle Schriftgrößen, die mit var(--font-scale) rechnen, passen sich dadurch automatisch an. */
   --font-scale: 1.25;
 }
 
+/* Mittlere Schriftvergrößerung für bessere Lesbarkeit. */
 body.text-size-150 {
   --font-scale: 1.5;
 }
 
+/* Größte Schriftvergrößerung für Nutzerinnen, die sehr große Schrift brauchen. */
 body.text-size-200 {
   --font-scale: 2;
 }
 
+/* Wenn das mobile Menü offen ist, soll die Seite dahinter nicht scrollen. */
 body.menu-open {
   overflow: hidden;
 }
 
 .visually-hidden {
+  /* Inhalt bleibt für Screenreader erreichbar, ist aber visuell nicht sichtbar.
+     Das wird zum Beispiel für Labels genutzt, die das Layout nicht stören sollen. */
   position: absolute;
   width: 1px;
   height: 1px;
@@ -103,6 +116,7 @@ body.menu-open {
    Mobile-first: Navigation und Inhalt stehen zuerst untereinander.
    ============================================================ */
 
+/* Hauptcontainer: hält Sidebar und Inhaltsbereich zusammen. */
 .container {
   display: flex;
 
@@ -117,10 +131,11 @@ body.menu-open {
    Feste Navigation mit App-Titel, Seitenlinks und Impressum.
    ============================================================ */
 
+/* Sidebar: enthält Logo, Navigation, Barrierefreiheitsbuttons und Impressum-Link. */
 .sidebar {
   width: 100%;
 
-  /* Der mobile Kopf dient als Anker fÃ¼r das rechts ausgerichtete Pop-up-MenÃ¼. */
+  /* Der mobile Kopf dient als Anker für das rechts ausgerichtete Pop-up-Menü. */
   position: relative;
 
   background-color: var(--color-surface);
@@ -138,6 +153,7 @@ body.menu-open {
 }
 
 
+/* Oberer Sidebar-Bereich: Logo/App-Name und mobiler Menübutton stehen nebeneinander. */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -145,7 +161,7 @@ body.menu-open {
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
-/* Logo und App-Name bilden gemeinsam die MarkenflÃ¤che links im Sidebar-Kopf. */
+/* Logo und App-Name bilden gemeinsam die Markenfläche links im Sidebar-Kopf. */
 .sidebar-brand {
   display: flex;
   align-items: center;
@@ -154,6 +170,7 @@ body.menu-open {
   min-width: 0;
 }
 
+/* Logo-Bild in der Sidebar. */
 .sidebar-logo {
   width: 32px;
   height: 32px;
@@ -161,11 +178,11 @@ body.menu-open {
   background-color: var(--color-surface);
   border-radius: 50%;
   flex-shrink: 0;
-  /* Das Logo sitzt minimal hÃ¶her, damit es optisch mit dem Schriftzug abschlieÃŸt. */
+  /* Das Logo sitzt minimal höher, damit es optisch mit dem Schriftzug abschließt. */
   transform: translateY(-4px);
 }
 
-/* Mobile MenÃ¼-SchaltflÃ¤che: rechts oben als Hamburger-Icon. */
+/* Mobile Menü-Schaltfläche: rechts oben als Hamburger-Icon. */
 .menu-toggle {
   width: 36px;
   height: 36px;
@@ -186,6 +203,7 @@ body.menu-open {
   cursor: pointer;
 }
 
+/* Die drei Linien im Hamburger-Button. */
 .menu-toggle span {
   width: 18px;
   height: 2px;
@@ -194,6 +212,7 @@ body.menu-open {
   border-radius: 999px;
 }
 
+/* Hover- und Fokuszustand für den Menübutton, damit er bei Maus und Tastatur sichtbar reagiert. */
 .menu-toggle:hover,
 .menu-toggle:focus {
   border-color: var(--color-accent);
@@ -201,6 +220,7 @@ body.menu-open {
   outline: none;
 }
 
+/* App-Titel in der Sidebar. */
 .sidebar h1,
 .sidebar .app-title {
   display: block;
@@ -213,15 +233,16 @@ body.menu-open {
 }
 
 .sidebar-menu-panel {
+  /* Auf Mobile ist das Menü zuerst versteckt und wird erst durch .sidebar.is-open sichtbar. */
   display: none;
 }
 
-/* Mobile Pop-up-MenÃ¼: erscheint gesammelt rechts unter dem Kopfbereich. */
+/* Mobile Pop-up-Menü: erscheint gesammelt rechts unter dem Kopfbereich. */
 .sidebar.is-open .sidebar-menu-panel {
   display: block;
 }
 
-/* Das MenÃ¼ liegt mobil als festes Overlay Ã¼ber dem Seiteninhalt. */
+/* Das Menü liegt mobil als festes Overlay über dem Seiteninhalt. */
 .sidebar.is-open .sidebar-menu-panel {
   position: fixed;
   top: calc(var(--spacing-unit) * 3.5);
@@ -238,7 +259,7 @@ body.menu-open {
   box-shadow: var(--shadow-card);
 }
 
-/* Der halbtransparente Hintergrund trennt das geÃ¶ffnete MenÃ¼ klar vom Rest der Seite. */
+/* Der halbtransparente Hintergrund trennt das geöffnete Menü klar vom Rest der Seite. */
 .sidebar.is-open::after {
   content: '';
   position: fixed;
@@ -248,12 +269,14 @@ body.menu-open {
   background-color: rgba(58, 58, 58, 0.22);
 }
 
+/* Navigationsbereich innerhalb des mobilen Pop-up-Menüs. */
 .sidebar-menu-panel nav {
   display: block;
   position: relative;
   z-index: 1;
 }
 
+/* Liste der Navigationslinks ohne Browser-Standardpunkte. */
 .sidebar nav ul {
   list-style: none;
   margin: 0;
@@ -264,6 +287,7 @@ body.menu-open {
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
+/* Normale Navigationslinks in der Sidebar. */
 .sidebar nav a {
   color: var(--color-accent);
 
@@ -274,11 +298,13 @@ body.menu-open {
   transition: color 0.2s ease;
 }
 
+/* Hover-Zustand der Navigationslinks: Beim Darüberfahren werden sie unterstrichen. */
 .sidebar nav a:hover {
   color: var(--color-accent);
   text-decoration: underline;
 }
 
+/* Fußbereich der Sidebar mit Trennlinie über dem Impressum-Link. */
 .sidebar footer {
   margin-top: calc(var(--spacing-unit) * 0.5);
   padding-top: calc(var(--spacing-unit) * 0.5);
@@ -288,6 +314,7 @@ body.menu-open {
   z-index: 1;
 }
 
+/* Impressum-Link in der Sidebar. */
 .sidebar footer a {
   color: var(--color-text-light);
   text-decoration: none;
@@ -296,12 +323,13 @@ body.menu-open {
   transition: color 0.2s ease;
 }
 
+/* Hover-Zustand des Impressum-Links. */
 .sidebar footer a:hover {
   color: var(--color-accent);
   text-decoration: underline;
 }
 
-/* Barrierefreiheitsoptionen: Kontrast und SchriftgrÃ¶ÃŸe liegen direkt unter der Navigation. */
+/* Barrierefreiheitsoptionen: Kontrast und Schriftgröße liegen direkt unter der Navigation. */
 .accessibility-controls {
   display: flex;
   align-items: center;
@@ -309,6 +337,7 @@ body.menu-open {
   margin-top: var(--spacing-unit);
 }
 
+/* Runde Buttons für Kontrast und Schriftgröße. */
 .contrast-toggle,
 .text-size-toggle {
   width: 32px;
@@ -327,6 +356,7 @@ body.menu-open {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Der Schriftgrößen-Button zeigt ein sichtbares A. */
 .text-size-toggle {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
@@ -336,6 +366,7 @@ body.menu-open {
   background: var(--color-surface);
 }
 
+/* Gemeinsamer Hover- und Fokuszustand der Barrierefreiheitsbuttons. */
 .contrast-toggle:hover,
 .contrast-toggle:focus,
 .text-size-toggle:hover,
@@ -345,6 +376,7 @@ body.menu-open {
   box-shadow: var(--focus-ring);
 }
 
+/* Im aktiven Kontrastmodus zeigt der Kontrastbutton die Akzentfarbe. */
 body.high-contrast .contrast-toggle {
   background: linear-gradient(90deg, var(--color-surface) 0 50%, var(--color-accent) 50% 100%);
 }
@@ -352,19 +384,21 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    HAUPTBEREICH
    ============================================================
-   Gemeinsame Typografie und GrundflÃ¤chen im Inhaltsbereich.
+   Gemeinsame Typografie und Grundflächen im Inhaltsbereich.
    ============================================================ */
 
+/* Hauptbereich rechts bzw. unter der Sidebar: Hier steht der eigentliche Seiteninhalt. */
 .main-content {
   flex: 1;
 
-  /* Mobile bekommt bewusst weniger AuÃŸenabstand, damit Inhalt und PDF mehr Platz haben. */
+  /* Mobile bekommt bewusst weniger Außenabstand, damit Inhalt und PDF mehr Platz haben. */
   padding: calc(var(--spacing-unit) * 0.5);
 
   max-width: 100%;
   width: 100%;
 }
 
+/* Überschriften im Hauptbereich. */
 .main-content h1,
 .main-content h2 {
   font-weight: 600;
@@ -375,10 +409,11 @@ body.high-contrast .contrast-toggle {
   color: var(--color-text);
 }
 
+/* Inhaltsabschnitte im Hauptbereich bekommen eine helle Kartenfläche. */
 .main-content section {
   background-color: var(--color-surface);
 
-  /* Karten und Inhaltsboxen rÃ¼cken mobil enger zusammen. */
+  /* Karten und Inhaltsboxen rücken mobil enger zusammen. */
   padding: calc(var(--spacing-unit) * 0.5);
 
   margin-bottom: calc(var(--spacing-unit) * 0.5);
@@ -388,6 +423,7 @@ body.high-contrast .contrast-toggle {
   box-shadow: var(--shadow-soft);
 }
 
+/* Kleinere Abschnittsüberschriften innerhalb von Inhaltsboxen. */
 .main-content section h3 {
   font-weight: 600;
   font-size: calc(1.125rem * var(--font-scale));
@@ -397,6 +433,7 @@ body.high-contrast .contrast-toggle {
   color: var(--color-text);
 }
 
+/* Absätze im Hauptbereich: ruhige Zeilenhöhe und Abstand nach unten. */
 .main-content section p {
   font-weight: 400;
 
@@ -405,6 +442,7 @@ body.high-contrast .contrast-toggle {
   margin: 0 0 calc(var(--spacing-unit) * 0.75) 0;
 }
 
+/* Adressblock im Impressum ohne kursive Standardschrift. */
 .main-content address {
   font-style: normal;
 
@@ -412,34 +450,25 @@ body.high-contrast .contrast-toggle {
   line-height: 1.8;
 }
 
-.main-content address a {
-  color: var(--color-accent);
-  text-decoration: none;
-
-  transition: color 0.2s ease;
-}
-
-.main-content address a:hover {
-  color: var(--color-accent);
-  text-decoration: underline;
-}
-
+/* Definition-Listen starten ohne Standardabstände. */
 .main-content dl {
   margin: 0;
   padding: 0;
 }
 
+/* Begriff in einer Definition-List, zum Beispiel "Material". */
 .main-content dt {
   font-weight: 600;
   margin-top: calc(var(--spacing-unit) * 0.75);
 }
 
+/* Wert in einer Definition-List, zum Beispiel "Baumwolle". */
 .main-content dd {
   color: var(--color-text-light);
   margin: 0 0 calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
 }
 
-/* Gemeinsame KartenflÃ¤che: Projektkarten und der Projektkopf nutzen dieselbe Basis. */
+/* Gemeinsame Kartenfläche: Projektkarten und der Projektkopf nutzen dieselbe Basis. */
 .project-card,
 .project-header {
   background-color: var(--color-surface);
@@ -454,9 +483,11 @@ body.high-contrast .contrast-toggle {
 .notes-section,
 .project-data-section,
 .counter-section {
+  /* Diese Inhaltsboxen bekommen dieselbe Rundung wie Karten. */
   border-radius: var(--radius-md);
 }
 
+/* Projektkarten bekommen einen etwas stärkeren Schatten als normale Inhaltsboxen. */
 .project-card {
   box-shadow: var(--shadow-card);
 }
@@ -464,9 +495,10 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    DASHBOARD
    ============================================================
-   Ãœbersicht, Suchbereich und Projektkarten.
+   Übersicht, Suchbereich und Projektkarten.
    ============================================================ */
 
+/* Bereich für die Hauptaktion "Neues Projekt erstellen". */
 .cta-section {
   background-color: transparent;
 
@@ -479,6 +511,7 @@ body.high-contrast .contrast-toggle {
   box-shadow: none;
 }
 
+/* Link in der CTA-Section wird optisch wie ein großer Button dargestellt. */
 .cta-section .cta-button {
   display: block;
   width: 100%;
@@ -503,26 +536,28 @@ body.high-contrast .contrast-toggle {
 .counter-btn,
 .edit-project-link,
 .delete-project-button {
+  /* Gemeinsame Button-Basis: Dadurch müssen Schrift, Rundung und Hover-Übergang nicht mehrfach definiert werden. */
   font-family: 'Open Sans', sans-serif;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* SekundÃ¤re Buttons: transparenter Hintergrund, grÃ¼ne Kontur, grÃ¼n beim Hover. */
+/* Sekundäre Buttons: transparenter Hintergrund, grüne Kontur, grün beim Hover. */
 .btn-secondary {
   background-color: transparent;
   border: 1px solid var(--color-accent);
   color: var(--color-accent);
 }
 
+/* Hover-Zustand für sekundäre Buttons und den mobilen Filterbutton. */
 .btn-secondary:hover,
 .filter-toggle:hover {
   background-color: var(--color-accent);
   color: var(--color-surface);
 }
 
-/* PrimÃ¤re Buttons: gefÃ¼llte grÃ¼ne FlÃ¤che fÃ¼r wichtige Aktionen wie Speichern. */
+/* Primäre Buttons: gefüllte grüne Fläche für wichtige Aktionen wie Speichern. */
 .cta-section .cta-button,
 .btn-primary,
 .checklist-input-area button {
@@ -531,13 +566,14 @@ body.high-contrast .contrast-toggle {
   border: none;
 }
 
+/* Hover-Zustand für primäre Aktionen: leichtes Anheben und Schatten. */
 .cta-section .cta-button:hover,
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
 
-/* Auf Mobile spart der Dashboard-Filter Platz und wird erst per Button geÃ¶ffnet. */
+/* Auf Mobile spart der Dashboard-Filter Platz und wird erst per Button geöffnet. */
 .dashboard-filters {
   display: none;
   flex-direction: column;
@@ -545,6 +581,7 @@ body.high-contrast .contrast-toggle {
   margin-bottom: var(--spacing-unit);
 }
 
+/* Wenn JavaScript is-open setzt, wird der mobile Filterbereich sichtbar. */
 .dashboard-filters.is-open {
   display: flex;
 }
@@ -573,6 +610,7 @@ body.high-contrast .contrast-toggle {
 .checklist-text,
 .checklist-input-area input,
 .notes {
+  /* Gemeinsame Feld-Basis: Suche, Formular, Checkliste und Notizen bekommen denselben Grundstil. */
   font-family: 'Open Sans', sans-serif;
   font-size: calc(0.875rem * var(--font-scale));
   border: 1px solid var(--color-border);
@@ -581,7 +619,7 @@ body.high-contrast .contrast-toggle {
   color: var(--color-text);
 }
 
-/* GrÃ¶ÃŸere Eingabefelder bekommen einheitliches Innenpadding. */
+/* Größere Eingabefelder bekommen einheitliches Innenpadding. */
 .dashboard-filters input,
 .dashboard-filters select,
 .form-group input,
@@ -591,6 +629,7 @@ body.high-contrast .contrast-toggle {
   padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
 }
 
+/* Das Suchfeld darf den verfügbaren Platz in der Filterzeile ausfüllen. */
 .dashboard-filters input {
   flex: 1;
 }
@@ -616,6 +655,7 @@ body.high-contrast .contrast-toggle {
    Karten im Dashboard. Inhalte kommen aus JavaScript.
    ============================================================ */
 
+/* Grid-Container für alle Projektkarten im Dashboard. */
 .projects {
   display: grid;
   grid-template-columns: 1fr;
@@ -631,41 +671,49 @@ body.high-contrast .contrast-toggle {
    Fragen und Antworten bleiben bewusst schlicht und gut lesbar.
    ============================================================ */
 
+/* Kopfbereich der FAQ-Seite mit Titel und kurzem Einleitungstext. */
 .faq-header {
   margin-bottom: var(--spacing-unit);
 }
 
+/* Große FAQ-Hauptüberschrift. */
 .faq-header h1 {
   font-size: calc(1.875rem * var(--font-scale));
   margin-bottom: calc(var(--spacing-unit) * 0.5);
   color: var(--color-text);
 }
 
+/* Einleitungstext der FAQ etwas zurückhaltender färben. */
 .faq-header p {
   color: var(--color-text-light);
   margin: 0;
 }
 
+/* FAQ-Liste: alle Fragen stehen untereinander mit gleichmäßigem Abstand. */
 .faq-list {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
+/* Einzelne FAQ-Box ohne zusätzlichen Außenabstand, weil der Abstand über .faq-list kommt. */
 .faq-item {
   margin-bottom: 0;
 }
 
+/* Frage-Überschrift innerhalb eines FAQ-Eintrags. */
 .faq-item h2 {
   font-size: calc(1.125rem * var(--font-scale));
   margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
   color: var(--color-text);
 }
 
+/* Antworttext in der FAQ. */
 .faq-item p {
   color: var(--color-text-light);
 }
 
+/* Beim letzten Absatz in einer FAQ-Box wird der untere Abstand entfernt. */
 .faq-item p:last-child {
   margin-bottom: 0;
 }
@@ -676,47 +724,56 @@ body.high-contrast .contrast-toggle {
    Das Impressum nutzt denselben ruhigen Lesefluss wie die FAQ.
    ============================================================ */
 
+/* Kopfbereich der Impressumsseite. */
 .imprint-header {
   margin-bottom: var(--spacing-unit);
 }
 
+/* Impressums-Hauptüberschrift. */
 .imprint-header h1 {
   font-size: calc(1.875rem * var(--font-scale));
   margin-bottom: calc(var(--spacing-unit) * 0.5);
   color: var(--color-text);
 }
 
+/* Einleitungstext im Impressum etwas heller darstellen. */
 .imprint-header p {
   color: var(--color-text-light);
   margin: 0;
 }
 
+/* Impressumsblöcke stehen untereinander mit gleichmäßigem Abstand. */
 .imprint-list {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
+/* Einzelner Impressumsblock ohne zusätzlichen Außenabstand. */
 .imprint-item {
   margin-bottom: 0;
 }
 
+/* Überschrift eines Impressumsblocks. */
 .imprint-item h2 {
   font-size: calc(1.125rem * var(--font-scale));
   margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
   color: var(--color-text);
 }
 
+/* Text im Impressum nutzt die sekundäre Textfarbe. */
 .imprint-item p,
 .imprint-item address {
   color: var(--color-text-light);
 }
 
+/* Letztes Textelement in einem Impressumsblock braucht keinen unteren Abstand. */
 .imprint-item p:last-child,
 .imprint-item address:last-child {
   margin-bottom: 0;
 }
 
+/* Einzelne Projektkarte: Inhalte stehen untereinander und der Button wandert nach unten. */
 .project-card {
   transition: all 0.2s ease;
 
@@ -726,11 +783,13 @@ body.high-contrast .contrast-toggle {
   gap: calc(var(--spacing-unit) * 0.5);
 }
 
+/* Hover-Zustand der Projektkarte: Karte hebt sich optisch leicht an. */
 .project-card:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   transform: translateY(-2px);
 }
 
+/* Projekttitel innerhalb einer Dashboard-Karte. */
 .project-card h2 {
   font-weight: 600;
   font-size: calc(1.125rem * var(--font-scale));
@@ -740,6 +799,7 @@ body.high-contrast .contrast-toggle {
   color: var(--color-text);
 }
 
+/* Projektinformationen innerhalb einer Karte. */
 .project-card p {
   font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
@@ -748,6 +808,7 @@ body.high-contrast .contrast-toggle {
   line-height: 1.4;
 }
 
+/* Öffnen-Button innerhalb einer Projektkarte. */
 .project-card button {
   padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
 
@@ -763,16 +824,19 @@ body.high-contrast .contrast-toggle {
    Das Formular wird zum Erstellen und Bearbeiten von Projekten genutzt.
    ============================================================ */
 
+/* Formularbox mit Abstand zum nächsten Inhalt. */
 .form-container {
   margin-bottom: var(--spacing-unit);
 }
 
+/* Formularfelder werden untereinander angeordnet. */
 .project-form {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing-unit) * 1.5);
 }
 
+/* fieldset gruppiert zusammengehörige Formularfelder ohne sichtbaren Rahmen. */
 .project-form fieldset {
   border: none;
   padding: 0;
@@ -785,6 +849,7 @@ body.high-contrast .contrast-toggle {
   gap: var(--spacing-unit);
 }
 
+/* legend ist die Überschrift einer Feldgruppe im Formular. */
 .project-form legend {
   font-weight: 600;
   font-size: calc(1rem * var(--font-scale));
@@ -808,6 +873,7 @@ body.high-contrast .contrast-toggle {
    Labels und Feldgruppen im Projektformular.
    ============================================================ */
 
+/* Eine Formulargruppe besteht aus Label und Eingabefeld untereinander. */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -815,6 +881,7 @@ body.high-contrast .contrast-toggle {
   min-width: 0;
 }
 
+/* Beschriftung eines Formularfelds. */
 .form-group label {
   font-weight: 500;
   font-size: calc(0.875rem * var(--font-scale));
@@ -823,6 +890,7 @@ body.high-contrast .contrast-toggle {
   color: var(--color-text);
 }
 
+/* Eingabefelder im Formular füllen die komplette Breite der Gruppe. */
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -832,6 +900,7 @@ body.high-contrast .contrast-toggle {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Textarea für längere Beschreibung: vertikal vergrößerbar. */
 .form-group textarea {
   resize: vertical;
   min-height: 100px;
@@ -841,6 +910,7 @@ body.high-contrast .contrast-toggle {
    FORMULAR: Speichern-Button
    ============================================================ */
 
+/* Primärer Speichern-Button im Formular. */
 .btn-primary {
   padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
 
@@ -853,20 +923,23 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    PROJEKTSEITE: Header
    ============================================================
-   Titel, Kategorie und Fortschritt des geÃ¶ffneten Projekts.
+   Titel, Kategorie und Fortschritt des geöffneten Projekts.
    ============================================================ */
 
+/* Kopfkarte der Projektseite mit Titel, Kategorie und Fortschritt. */
 .project-header {
   /* Mobile nutzt denselben Grundabstand wie die nachfolgenden Projektboxen. */
   margin-bottom: calc(var(--spacing-unit) * 0.75);
 }
 
+/* Kategorie und Fortschritt stehen nebeneinander und dürfen umbrechen. */
 .project-meta {
   display: flex;
   gap: calc(var(--spacing-unit) * 2);
   flex-wrap: wrap;
 }
 
+/* Einzelne Meta-Information im Projektkopf. */
 .project-meta p {
   font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
@@ -874,6 +947,7 @@ body.high-contrast .contrast-toggle {
   margin: 0;
 }
 
+/* Prozentwert des Projektfortschritts wird hervorgehoben. */
 .progress-value {
   font-weight: 600;
   color: var(--color-accent);
@@ -885,11 +959,12 @@ body.high-contrast .contrast-toggle {
    PDF-Bereich und interaktive Inhalte stehen nebeneinander.
    ============================================================ */
 
+/* Hauptbereich der Projektseite: PDF und interaktive Inhalte stehen mobil untereinander. */
 .project-content {
   display: flex;
   flex-direction: column;
 
-  /* Zwischen linker und rechter ProjektsÃ¤ule gilt mobil derselbe Takt wie zwischen den Boxen. */
+  /* Zwischen linker und rechter Projektsäule gilt mobil derselbe Takt wie zwischen den Boxen. */
   gap: calc(var(--spacing-unit) * 0.75);
 }
 
@@ -899,6 +974,7 @@ body.high-contrast .contrast-toggle {
    Anzeige der verlinkten PDF-Anleitung.
    ============================================================ */
 
+/* Linke bzw. obere Projektspalte für die PDF-Anleitung. */
 .pdf-section {
   flex: 1;
 
@@ -906,6 +982,7 @@ body.high-contrast .contrast-toggle {
   flex-direction: column;
 }
 
+/* Rahmenbereich, in dem die PDF angezeigt oder eine Fehlermeldung gezeigt wird. */
 .pdf-placeholder {
   flex: 1;
 
@@ -925,11 +1002,13 @@ body.high-contrast .contrast-toggle {
 }
 
 /* Auf Mobile bekommt die PDF-Anzeige Vorrang vor Kartenabstand, damit mehr Inhalt sichtbar ist. */
+/* Das eingebettete PDF nutzt die volle Breite und auf Mobile viel Höhe. */
 .pdf-placeholder embed {
   width: 100%;
   min-height: 70vh;
 }
 
+/* Fehlermeldung im PDF-Bereich, falls die PDF nicht geladen werden kann. */
 .pdf-placeholder p {
   font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
@@ -940,16 +1019,17 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    INTERAKTIVE PROJEKTDATEN
    ============================================================
-   Rechte Spalte mit Checkliste, Notizen, Projektdaten und ZÃ¤hlern.
+   Rechte Spalte mit Checkliste, Notizen, Projektdaten und Zählern.
    ============================================================ */
 
+/* Rechte bzw. untere Projektspalte mit allen interaktiven Werkzeugen. */
 .interactive-content {
   flex: 1;
 
   display: flex;
   flex-direction: column;
 
-  /* Checkliste, Notizen, Projektdaten und ZÃ¤hler teilen sich mobil einen einheitlichen Abstand. */
+  /* Checkliste, Notizen, Projektdaten und Zähler teilen sich mobil einen einheitlichen Abstand. */
   gap: calc(var(--spacing-unit) * 0.75);
 
   background-color: transparent;
@@ -961,6 +1041,7 @@ body.high-contrast .contrast-toggle {
    Bearbeitbare Arbeitsschritte mit erledigt/unerledigt-Status.
    ============================================================ */
 
+/* Checkliste ohne Standard-Listenpunkte, weil Checkboxen den Status zeigen. */
 .checklist {
   list-style: none;
   padding: 0;
@@ -971,17 +1052,20 @@ body.high-contrast .contrast-toggle {
   gap: calc(var(--spacing-unit) * 0.5);
 }
 
+/* Einzelner Checklistenpunkt: Checkbox und Textfeld stehen nebeneinander. */
 .checklist li {
   display: flex;
   align-items: center;
   gap: calc(var(--spacing-unit) * 0.5);
 }
 
+/* Checkboxen bekommen die Akzentfarbe des Designs. */
 .checklist input[type="checkbox"] {
   cursor: pointer;
   accent-color: var(--color-accent);
 }
 
+/* Label-Stil für Checklisten, falls Labels verwendet werden. */
 .checklist label {
   font-size: calc(0.875rem * var(--font-scale));
   cursor: pointer;
@@ -989,28 +1073,33 @@ body.high-contrast .contrast-toggle {
   margin: 0;
 }
 
+/* Bearbeitbares Textfeld eines Checklistenpunkts. */
 .checklist-text {
   flex: 1;
   padding: calc(var(--spacing-unit) * 0.4) calc(var(--spacing-unit) * 0.5);
 }
 
+/* Eingabebereich, der erscheint, wenn ein neuer Checklistenpunkt angelegt wird. */
 .checklist-input-area {
   display: flex;
   gap: calc(var(--spacing-unit) * 0.5);
   margin-top: calc(var(--spacing-unit) * 0.75);
 }
 
+/* Textfeld für einen neuen Checklistenpunkt. */
 .checklist-input-area input {
   flex: 1;
   padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
 }
 
+/* Speichern-Button neben dem neuen Checklistenfeld. */
 .checklist-input-area button {
   padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
   font-size: calc(0.875rem * var(--font-scale));
   font-weight: 500;
 }
 
+/* Buttons zum Hinzufügen und Entfernen von Checklistenpunkten. */
 .add-checklist-item,
 .delete-last-checklist-item {
   padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
@@ -1023,9 +1112,10 @@ body.high-contrast .contrast-toggle {
 
 /* ============================================================
    NOTIZEN
-   Freies Textfeld fÃ¼r projektbezogene Notizen.
+   Freies Textfeld für projektbezogene Notizen.
    ============================================================ */
 
+/* Notizfeld auf der Projektseite. */
 .notes {
   width: 100%;
   resize: vertical;
@@ -1036,9 +1126,10 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    PROJEKTDATEN
    ============================================================
-   Definition List fÃ¼r Beschreibung, Material und NadelstÃ¤rke.
+   Definition List für Beschreibung, Material und Nadelstärke.
    ============================================================ */
 
+/* Projektdaten werden als Begriff-Wert-Raster dargestellt. */
 .project-data-section dl {
   margin: 0;
   padding: 0;
@@ -1050,6 +1141,7 @@ body.high-contrast .contrast-toggle {
   align-items: start;
 }
 
+/* Bezeichnung eines Projektdaten-Felds, zum Beispiel "Nadelstärke". */
 .project-data-section dt {
   font-weight: 600;
   font-size: calc(0.875rem * var(--font-scale));
@@ -1058,6 +1150,7 @@ body.high-contrast .contrast-toggle {
   color: var(--color-text);
 }
 
+/* Wert eines Projektdaten-Felds. */
 .project-data-section dd {
   font-size: calc(0.875rem * var(--font-scale));
   color: var(--color-text-light);
@@ -1066,11 +1159,12 @@ body.high-contrast .contrast-toggle {
 }
 
 /* ============================================================
-   ZÃ„HLER
+   ZÄHLER
    ============================================================
-   Gemeinsames Styling fÃ¼r Maschen- und ReihenzÃ¤hler.
+   Gemeinsames Styling für Maschen- und Reihenzähler.
    ============================================================ */
 
+/* Anzeige des aktuellen Maschen- oder Reihenzähler-Werts. */
 .counter-display {
   text-align: center;
 
@@ -1082,6 +1176,7 @@ body.high-contrast .contrast-toggle {
   margin-bottom: var(--spacing-unit);
 }
 
+/* Text in der Zähleranzeige. */
 .counter-display p {
   font-size: calc(1.125rem * var(--font-scale));
   font-weight: 600;
@@ -1090,17 +1185,20 @@ body.high-contrast .contrast-toggle {
   margin: 0;
 }
 
+/* Die eigentlichen Zahlenwerte der beiden Zähler werden farblich hervorgehoben. */
 #counter-value,
 #row-counter-value {
   color: var(--color-accent);
 }
 
+/* Buttonreihe der Zähler; sie darf auf mehrere Zeilen umbrechen. */
 .counter-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: calc(var(--spacing-unit) * 0.5);
 }
 
+/* Einzelner Button eines Zählers, zum Beispiel +1, +10 oder Reset. */
 .counter-btn {
   padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 0.75);
 
@@ -1114,9 +1212,10 @@ body.high-contrast .contrast-toggle {
 /* ============================================================
    PROJEKT-FOOTER
    ============================================================
-   Navigation zurÃ¼ck sowie Bearbeiten- und LÃ¶schen-Aktionen.
+   Navigation zurück sowie Bearbeiten- und Löschen-Aktionen.
    ============================================================ */
 
+/* Unterer Bereich der Projekt-, FAQ- und Impressumsseiten mit Zurück-Link und Aktionen. */
 .project-footer {
   margin-top: calc(var(--spacing-unit) * 2);
   padding-top: var(--spacing-unit);
@@ -1124,6 +1223,7 @@ body.high-contrast .contrast-toggle {
   border-top: 1px solid var(--color-border-light);
 }
 
+/* Aktionsgruppe im Projekt-Footer, zum Beispiel Bearbeiten und Löschen. */
 .project-footer-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1132,18 +1232,26 @@ body.high-contrast .contrast-toggle {
   margin-bottom: var(--spacing-unit);
 }
 
-.project-footer > a:not(.btn-secondary) {
+/* Normale Textlinks:
+   Der Zurück-Link im Footer sowie die Mail-Links in FAQ und Impressum sehen gleich aus. */
+.project-footer > a:not(.btn-secondary),
+.faq-item a,
+.imprint-item a {
   color: var(--color-accent);
   text-decoration: none;
   font-size: calc(0.875rem * var(--font-scale));
   transition: color 0.2s ease;
 }
 
-.project-footer > a:not(.btn-secondary):hover {
+/* Hover-Zustand für normale Textlinks: Beim Darüberfahren werden sie unterstrichen. */
+.project-footer > a:not(.btn-secondary):hover,
+.faq-item a:hover,
+.imprint-item a:hover {
   color: var(--color-accent);
   text-decoration: underline;
 }
 
+/* Bearbeiten-Link und Löschen-Button werden gleich groß und buttonartig dargestellt. */
 .project-footer .edit-project-link,
 .project-footer .delete-project-button {
   display: inline-block;
@@ -1164,39 +1272,45 @@ body.high-contrast .contrast-toggle {
    ============================================================ */
 
 @media (max-width: 767px) {
-  /* Bei groÃŸer Schrift brechen mobile Inhalte frueher um, damit nichts aus Boxen herausragt. */
+  /* Bei großer Schrift brechen mobile Inhalte früher um, damit nichts aus Boxen herausragt. */
   body.text-size-150,
   body.text-size-200 {
     overflow-wrap: anywhere;
   }
 
+  /* Bei großer Schrift dürfen Formularelemente und Links nicht breiter als der Bildschirm werden. */
   body.text-size-150 :is(input, select, textarea, button, a),
   body.text-size-200 :is(input, select, textarea, button, a) {
     max-width: 100%;
   }
 
+  /* Mehrspaltige Bedienbereiche werden bei großer Schrift untereinander gestapelt. */
   body.text-size-150 :is(.dashboard-filters, .checklist-input-area, .counter-buttons, .project-footer-actions),
   body.text-size-200 :is(.dashboard-filters, .checklist-input-area, .counter-buttons, .project-footer-actions) {
     flex-direction: column;
   }
 
+  /* Wichtige Buttons nutzen bei großer Schrift die volle Breite. */
   body.text-size-150 :is(.counter-btn, .edit-project-link, .delete-project-button),
   body.text-size-200 :is(.counter-btn, .edit-project-link, .delete-project-button) {
     width: 100%;
   }
 
+  /* Projekt-Metadaten stehen bei großer Schrift untereinander. */
   body.text-size-150 .project-meta,
   body.text-size-200 .project-meta {
     flex-direction: column;
     gap: calc(var(--spacing-unit) * 0.5);
   }
 
+  /* Checklistenpunkte dürfen bei großer Schrift umbrechen. */
   body.text-size-150 .checklist li,
   body.text-size-200 .checklist li {
     flex-wrap: wrap;
     align-items: flex-start;
   }
 
+  /* Das Checklisten-Textfeld nimmt nach dem Umbruch die ganze Zeile ein. */
   body.text-size-150 .checklist-text,
   body.text-size-200 .checklist-text {
     flex-basis: 100%;
@@ -1204,24 +1318,28 @@ body.high-contrast .contrast-toggle {
 }
 
 @media (min-width: 768px) {
-  /* Ab Tablet werden AbstÃ¤nde und Filterdarstellung wieder groÃŸzÃ¼giger. */
+  /* min-width bedeutet: Diese Regeln gelten ab dieser Bildschirmbreite und größer. */
+  /* Ab Tablet werden Abstände und Filterdarstellung wieder großzügiger. */
+  /* Tablet: Hauptinhalt bekommt mehr Außenabstand. */
   .main-content {
     padding: calc(var(--spacing-unit) * 1.5);
   }
 
+  /* Tablet: Karten und Inhaltsboxen bekommen mehr Innenabstand. */
   .main-content section,
   .project-card,
   .project-header {
     padding: var(--spacing-unit);
   }
 
+  /* Tablet: Überschriften werden etwas größer. */
   .main-content h1,
   .main-content h2 {
     font-size: calc(1.75rem * var(--font-scale));
     margin-bottom: calc(var(--spacing-unit) * 2);
   }
 
-  /* Die FAQ behÃ¤lt auch auf grÃ¶ÃŸeren Screens eine klare Hierarchie zwischen Titel und Fragen. */
+  /* Die FAQ behält auch auf größeren Screens eine klare Hierarchie zwischen Titel und Fragen. */
   .faq-header h1 {
     font-size: calc(2.125rem * var(--font-scale));
     margin-bottom: calc(var(--spacing-unit) * 0.75);
@@ -1240,30 +1358,37 @@ body.high-contrast .contrast-toggle {
     font-size: calc(1.25rem * var(--font-scale));
   }
 
+  /* Tablet: Abstand zwischen PDF- und Interaktionsbereich wird größer. */
   .project-content {
     gap: var(--spacing-unit);
   }
 
+  /* Tablet: PDF-Rahmen bekommt wieder mehr Innenabstand. */
   .pdf-placeholder {
     padding: var(--spacing-unit);
   }
 
+  /* Tablet: PDF-Anzeige bekommt eine feste Mindesthöhe. */
   .pdf-placeholder embed {
     min-height: 360px;
   }
 
+  /* Tablet: CTA-Bereich bekommt mehr Abstand nach unten. */
   .cta-section {
     margin-bottom: calc(var(--spacing-unit) * 2);
   }
 
+  /* Tablet: CTA-Button bekommt mehr Innenabstand. */
   .cta-section .cta-button {
     padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit);
   }
 
+  /* Tablet und größer: Der mobile Filterbutton wird nicht mehr gebraucht. */
   .filter-toggle {
     display: none;
   }
 
+  /* Tablet und größer: Suchfeld und Kategorieauswahl sind dauerhaft nebeneinander sichtbar. */
   .dashboard-filters {
     display: flex;
     flex-direction: row;
@@ -1271,16 +1396,19 @@ body.high-contrast .contrast-toggle {
     margin-bottom: calc(var(--spacing-unit) * 1.5);
   }
 
+  /* Tablet: Projektkarten werden zweispaltig angezeigt. */
   .projects {
     grid-template-columns: repeat(2, 1fr);
     gap: calc(var(--spacing-unit) * 1.5);
     margin-bottom: calc(var(--spacing-unit) * 2);
   }
 
+  /* Tablet: Projektdaten bekommen zwei Spalten, links Begriff und rechts Wert. */
   .project-data-section dl {
     grid-template-columns: 100px 1fr;
   }
 
+  /* Tablet: Footer bleibt zentriert, Aktionen bekommen etwas mehr Abstand. */
   .project-footer {
     text-align: center;
 
@@ -1291,20 +1419,25 @@ body.high-contrast .contrast-toggle {
 }
 
 @media (min-width: 1024px) {
-  /* Ab Desktop kehrt die Seite zum klassischen Sidebar-Layout zurÃ¼ck. */
+  /* Desktop-Layout: Ab hier steht die Sidebar links neben dem Inhalt. */
+  /* Ab Desktop kehrt die Seite zum klassischen Sidebar-Layout zurück. */
+  /* Desktop: Sidebar und Inhalt stehen nebeneinander statt untereinander. */
   .container {
     flex-direction: row;
   }
 
+  /* Desktop: Sidebar-Kopf wird wieder normal gestapelt. */
   .sidebar-header {
     display: block;
     margin-bottom: var(--spacing-unit);
   }
 
+  /* Desktop: Hamburger-Button wird ausgeblendet, weil die Sidebar dauerhaft sichtbar ist. */
   .menu-toggle {
     display: none;
   }
 
+  /* Desktop: Sidebar bekommt feste Breite und bleibt beim Scrollen sichtbar. */
   .sidebar {
     width: var(--sidebar-width);
     position: sticky;
@@ -1328,41 +1461,46 @@ body.high-contrast .contrast-toggle {
     box-shadow: none;
   }
 
+  /* Desktop: Navigation und Footer sind dauerhaft sichtbar. */
   .sidebar nav,
   .sidebar footer {
     display: block;
   }
 
+  /* Desktop: App-Titel braucht keinen extra Abstand. */
   .sidebar h1,
   .sidebar .app-title {
     margin: 0;
   }
 
+  /* Desktop: Navigationslinks bleiben untereinander. */
   .sidebar nav ul {
     flex-direction: column;
     flex-wrap: nowrap;
     gap: var(--spacing-unit);
   }
 
+  /* Desktop: Impressum-Link wandert ans untere Ende der Sidebar. */
   .sidebar footer {
     margin-top: auto;
     padding-top: var(--spacing-unit);
   }
 
+  /* Desktop: Hauptinhalt bekommt großzügigen Abstand und eine maximale Breite. */
   .main-content {
     padding: calc(var(--spacing-unit) * 2);
     max-width: 1200px;
   }
 
+  /* Desktop: PDF und interaktive Inhalte stehen nebeneinander. */
   .project-content {
     flex-direction: row;
     gap: calc(var(--spacing-unit) * 2);
   }
 
+  /* Desktop: PDF füllt die verfügbare Höhe des PDF-Bereichs. */
   .pdf-placeholder embed {
     min-height: 0;
     height: 100%;
   }
 }
-
-

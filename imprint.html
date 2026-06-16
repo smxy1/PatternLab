@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <!-- UTF-8 erlaubt deutsche Umlaute wie ä, ö, ü und ß im Dokument. -->
   <!-- Viewport-Meta: Stellt sicher, dass die Seite auf mobilen Geräten korrekt skaliert wird. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Impressum und rechtliche Informationen von PatternLab - Webanwendung für Häkel- und Strickprojekte">
@@ -42,7 +43,8 @@
           </ul>
         </nav>
 
-        <!-- Schaltflächen für Kontrastmodus und Schriftgröße. -->
+        <!-- Schaltflächen für Kontrastmodus und Schriftgröße.
+             Die Buttons brauchen keine sichtbare Beschriftung, weil aria-label sie für Screenreader erklärt. -->
         <div class="accessibility-controls">
           <button class="contrast-toggle" type="button" aria-pressed="false" aria-label="Kontrast erhöhen"></button>
           <button class="text-size-toggle" type="button" aria-label="Schriftgröße erhöhen, aktuell 100 Prozent">A</button>
@@ -66,11 +68,13 @@
           <p>PatternLab wurde im Rahmen einer Lehrveranstaltung an der Universität Graz entwickelt und dient ausschließlich zu Lernzwecken.</p>
         </header>
 
+        <!-- Einzelne Impressumsblöcke sind article-Elemente, weil jeder Block ein eigenes kleines Thema hat. -->
         <article class="imprint-item">
           <h2>Projektverantwortliche</h2>
           <p>
             Sarah-May Lang<br>
-            Universität Graz
+            Universität Graz<br>
+            E-Mail: <a href="mailto:patternlab@gmx.at">patternlab@gmx.at</a>
           </p>
         </article>
 

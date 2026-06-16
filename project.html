@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <!-- UTF-8 erlaubt deutsche Umlaute wie ä, ö, ü und ß im Dokument. -->
   <!-- Viewport sorgt dafür, dass die Seite auf mobilen Geräten richtig skaliert. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Projekt-Detailansicht mit PDF-Anleitung, Checkliste, Notizen und Maschenzähler für Häkel- und Strickprojekte">
@@ -42,7 +43,8 @@
           </ul>
         </nav>
 
-        <!-- Schaltflächen für Kontrastmodus und Schriftgröße. -->
+        <!-- Schaltflächen für Kontrastmodus und Schriftgröße.
+             Beide Buttons wirken seitenübergreifend, weil JavaScript Klassen am body-Element setzt. -->
         <div class="accessibility-controls">
           <button class="contrast-toggle" type="button" aria-pressed="false" aria-label="Kontrast erhöhen"></button>
           <button class="text-size-toggle" type="button" aria-label="Schriftgröße erhöhen, aktuell 100 Prozent">A</button>
@@ -77,7 +79,8 @@
         <section class="pdf-section">
           <h2>Anleitung</h2>
           <div class="pdf-placeholder">
-            <!-- JavaScript setzt hier den gespeicherten PDF-Link ein. -->
+            <!-- JavaScript setzt hier den gespeicherten PDF-Link ein.
+                 embed zeigt die PDF direkt in der Seite an, wenn der Browser sie laden kann. -->
             <embed id="project-pdf-viewer" type="application/pdf" width="100" height="600">
             <p id="project-pdf-message" hidden>PDF-Datei konnte nicht geladen werden. Bitte überprüfen Sie den PDF-Link.</p>
           </div>
@@ -92,7 +95,8 @@
           <section class="checklist-section">
             <h2>Checkliste</h2>
             <ol class="checklist" id="checklist-container">
-              <!-- Checklistenpunkte werden hier von JavaScript eingefügt -->
+              <!-- Checklistenpunkte werden hier von JavaScript eingefügt.
+                   Jeder Punkt besteht später aus Checkbox und Textfeld. -->
             </ol>
             <button class="btn-secondary add-checklist-item">+ Punkt hinzufügen</button>
             <button class="btn-secondary delete-last-checklist-item">Letzten Punkt löschen</button>
@@ -108,7 +112,8 @@
           <section class="project-data-section">
             <h2>Projektdaten</h2>
             <dl id="project-data-container">
-              <!-- Projektdaten werden hier von JavaScript eingefügt -->
+              <!-- Projektdaten werden hier von JavaScript eingefügt.
+                   dl steht für eine Begriff-Wert-Liste: dt ist der Begriff, dd der Wert. -->
             </dl>
           </section>
 
