@@ -220,12 +220,13 @@ body.menu-open {
   outline: none;
 }
 
-/* App-Titel in der Sidebar. */
+/* App-Titel in der Sidebar.
+   Der Markenname bleibt bewusst gleich groß, auch wenn die Schriftvergrößerung aktiv ist. */
 .sidebar h1,
 .sidebar .app-title {
   display: block;
   font-weight: 600;
-  font-size: calc(1.25rem * var(--font-scale));
+  font-size: 1.25rem;
 
   margin: 0;
 

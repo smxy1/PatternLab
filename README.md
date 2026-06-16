@@ -47,11 +47,11 @@ PatternLab is currently available in German. We are working on an English versio
 
 ## Quellen
 
-Google. (o. D.). *Open Sans*. Google Fonts. https://fonts.google.com/specimen/Open+Sans
+Google. *Open Sans*. Google Fonts. https://fonts.google.com/specimen/Open+Sans
 
 World Wide Web Consortium. (2018). *Web Content Accessibility Guidelines (WCAG) 2.1*. https://www.w3.org/TR/WCAG21/
 
-WebAIM. (o. D.). *WAVE Web Accessibility Evaluation Tool*. https://wave.webaim.org/
+WebAIM. *WAVE Web Accessibility Evaluation Tool*. https://wave.webaim.org/
 
-Eigene Erstellung. (2026). *Mockups, Dokumentation und Beispielinhalte für das Projekt PatternLab*.
+
 
