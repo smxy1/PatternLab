@@ -198,14 +198,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // GitHub-Ansichtslinks werden für die PDF-Anzeige in direkte Datei-Links umgewandelt.
   function getPdfDisplayUrl(pdfUrl) {
-    // GitHub-Links mit /blob/ zeigen eine Webseite. Für <embed> brauchen wir die direkte Datei.
-    if (pdfUrl.includes('github.com') && pdfUrl.includes('/blob/')) {
-      return pdfUrl
-        .replace('https://github.com/', 'https://raw.githubusercontent.com/')
-        .replace('/blob/', '/');
+    const trimmedPdfUrl = pdfUrl.trim();
+
+    try {
+      const pdfUrlObject = new URL(trimmedPdfUrl);
+      const pathParts = pdfUrlObject.pathname.split('/').filter(Boolean);
+      const isGithubBlobUrl =
+        pdfUrlObject.hostname === 'github.com' &&
+        pathParts.length >= 5 &&
+        pathParts[2] === 'blob';
+
+      if (isGithubBlobUrl) {
+        const repositoryName = pathParts[1];
+        const filePath = pathParts.slice(4).join('/');
+        const currentPathParts = window.location.pathname.split('/').filter(Boolean);
+        const currentRepositoryName = currentPathParts[0];
+
+        // Auf GitHub Pages liegen PDFs aus demselben Repository direkt in der veröffentlichten Seite.
+        // Dadurch bleibt die PDF im Browser, statt als raw.githubusercontent.com-Download zu starten.
+        if (window.location.hostname.endsWith('github.io') && currentRepositoryName === repositoryName) {
+          return '/' + currentRepositoryName + '/' + filePath;
+        }
+
+        return 'https://raw.githubusercontent.com/' + pathParts[0] + '/' + repositoryName + '/' + pathParts[3] + '/' + filePath;
+      }
+    } catch (error) {
+      return trimmedPdfUrl;
     }
 
-    return pdfUrl;
+    return trimmedPdfUrl;
   }
 
   // ============================================================

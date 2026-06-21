@@ -1062,8 +1062,47 @@ body.high-contrast .contrast-toggle {
 
 /* Checkboxen bekommen die Akzentfarbe des Designs. */
 .checklist input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex: 0 0 16px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: grid;
+  place-content: center;
+
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+
   cursor: pointer;
-  accent-color: var(--color-accent);
+}
+
+.checklist input[type="checkbox"]::before {
+  content: '';
+  width: 4px;
+  height: 8px;
+
+  border: solid var(--color-surface);
+  border-width: 0 2px 2px 0;
+
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.12s ease-in-out;
+}
+
+.checklist input[type="checkbox"]:checked {
+  background-color: var(--color-accent);
+}
+
+.checklist input[type="checkbox"]:checked::before {
+  transform: rotate(45deg) scale(1);
+}
+
+.checklist input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* Label-Stil für Checklisten, falls Labels verwendet werden. */
